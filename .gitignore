@@ -1,0 +1,7 @@
+### NextJS template
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+/src/generated/prisma
+.env
