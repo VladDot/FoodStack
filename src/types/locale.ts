@@ -1,4 +1,4 @@
-export type Locale = "en" | "ua";
+export type Locale = "en" | "uk";
 
 export interface LocalizationProps {
     params: { locale: Locale };

@@ -7,7 +7,7 @@ import { ChildrenProps, LocalizationProps } from "@/types";
 
 import { WidthToast } from "./with-toast";
 
-import "./globals.css";
+import "@/styles/globals.css";
 
 const roboto = Roboto({
     weight: ["400", "500", "700"],
@@ -43,7 +43,7 @@ export default function RootLayout({
 }: ChildrenProps<LocalizationProps>) {
     const locale = useLocale();
     const messages = useMessages();
-    //TODO add toasts here
+
     return (
         <html
             lang={locale}
