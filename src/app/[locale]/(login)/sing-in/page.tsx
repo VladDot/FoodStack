@@ -1,6 +1,6 @@
 import { Login } from "@/components";
 
-function GoalsPage() {
+function LoginPage() {
     return (
         <>
             <Login />
@@ -8,4 +8,4 @@ function GoalsPage() {
     );
 }
 
-export default GoalsPage;
+export default LoginPage;

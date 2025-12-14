@@ -1,21 +1,19 @@
 import Link from "next/link";
 
 import { links } from "./mock";
+import { useLocale } from "next-intl";
 
-interface INavigation {
-    d: string;
-}
+export const withLocale = (locale: string, path: string) => `/${locale}${path}`;
 
-export const Navigation = ({}: INavigation) => {
+export const Navigation = () => {
+    const locale = useLocale();
+
     return (
         <ul>
             {links.map(({ label, href }, idx) => (
-                <Link
-                    href={href}
-                    key={`nav_${label}_${idx}`}
-                >
-                    {label}
-                </Link>
+                <li key={`nav_${label}_${idx}`}>
+                    <Link href={withLocale(locale, href)}>{label}</Link>
+                </li>
             ))}
         </ul>
     );

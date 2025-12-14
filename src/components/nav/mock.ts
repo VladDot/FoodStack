@@ -1,9 +1,14 @@
 import { routes } from "@/constants";
 
-export const links = [
-    { href: routes.info, label: "Info" },
-    { href: routes.login, label: "Sing-in" },
-    { href: routes.contact, label: "Contact" },
-    { href: routes.premium, label: "Premium" },
-    { href: routes.register, label: "Sing-up" },
+type LinkItem = {
+    href: string;
+    label: string;
+};
+
+export const links: LinkItem[] = [
+    { href: routes.general.info, label: "Info" },
+    { href: routes.general.login, label: "Sing-in" },
+    { href: routes.general.contact, label: "Contact" },
+    { href: routes.marketing.premium, label: "Premium" },
+    { href: routes.general.register, label: "Sing-up" },
 ];

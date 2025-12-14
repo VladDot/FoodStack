@@ -1,8 +1,10 @@
+import { Navigation } from "../nav";
+
 export const Header = () => {
     return (
         <header>
             Logo
-            <nav></nav>
+            <Navigation />
         </header>
     );
 };
