@@ -59,7 +59,7 @@ export default async function RootLayout({
                     messages={messages}
                 >
                     <WidthToast>{children}</WidthToast>
-                </NextIntlClientProvider>{" "}
+                </NextIntlClientProvider>
             </body>
         </html>
     );

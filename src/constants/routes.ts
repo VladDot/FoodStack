@@ -6,11 +6,9 @@ export const routes = {
         login: "/sing-in",
         register: "/sing-up",
         contact: "/contact",
-    },
-    //premium content
-    marketing: {
         premium: "/premium",
     },
+
     // userLogin
     user: {
         profile: "/profile",

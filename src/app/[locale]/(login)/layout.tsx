@@ -1,7 +1,15 @@
-export default function LoginLayout({
+import { HeaderWrapper } from "@/components";
+
+export default function AuthLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    return <>{children}</>;
+    return (
+        <>
+            <HeaderWrapper />
+
+            {children}
+        </>
+    );
 }
