@@ -8,7 +8,7 @@ interface ILogo {
     className?: string;
 }
 
-export const Logo = ({ className = "w-16 h-16" }: ILogo) => {
+export const Logo = ({ className = "w-24 h-22 mix-blend-multiply" }: ILogo) => {
     return (
         <Link href={routes.general.home}>
             <Image

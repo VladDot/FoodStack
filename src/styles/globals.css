@@ -1,18 +1,75 @@
 @import "tailwindcss";
 
-:root {
+@theme {
+    --breakpoint-tablet: 768px;
+    --breakpoint-laptop: 992px;
+    --breakpoint-desktop: 1440px;
+    --breakpoint-desktop-xl: 1919px;
+
+    --font-montserrat: Montserrat, sans-serif;
+    --font-scada: var(--font-scada), sans-serif;
+    --font-roboto: var(--font-roboto), sans-serif;
+    --font-roboto-condensed: var(--font-robotoCondensed), sans-serif;
 }
 
-@theme inline {
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
+
+    button:not(:disabled),
+    [role="button"]:not(:disabled) {
+        cursor: pointer;
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
+@layer components {
+    * {
+        @apply font-roboto box-border text-base font-normal text-inherit;
+    }
+    input {
+        @apply outline-none;
     }
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+            to bottom,
+            transparent,
+            rgb(var(--background-end-rgb))
+        )
+        rgb(var(--background-start-rgb));
+}
+
+.container-app {
+    @apply w-full px-2;
+}
+
+@media (min-width: 768px) {
+    .container-app {
+        @apply px-6;
+    }
+}
+
+@media (min-width: 992px) {
+    .container-app {
+        @apply px-8;
+    }
+}
+
+@media (min-width: 1440px) {
+    .container-app {
+        @apply px-0 max-w-[1168px] mx-auto;
+    }
+}
+
+@media (min-width: 1919px) {
+    .container-app {
+        @apply max-w-[1736px];
+    }
 }

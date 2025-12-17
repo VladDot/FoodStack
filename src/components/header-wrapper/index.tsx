@@ -3,6 +3,7 @@
 import { authLinks, mainLinks } from "@/components/header-wrapper/mock";
 
 import { Header } from "../header";
+import { ResponseWrapper } from "../response-wrapper";
 
 export const HeaderWrapper = () => {
     const user = true;
@@ -10,8 +11,11 @@ export const HeaderWrapper = () => {
     return (
         <Header>
             <Header.Logo />
-            <Header.Navigation links={mainLinks} />
-            <div className="flex gap-8">
+            <ResponseWrapper endpoint="isLaptop">
+                <Header.Navigation links={mainLinks} />
+            </ResponseWrapper>
+
+            <div className="flex gap-8 font-scada tablet:gap-15 px-2">
                 {user ? (
                     <Header.Navigation links={authLinks} />
                 ) : (
