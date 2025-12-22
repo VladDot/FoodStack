@@ -15,7 +15,11 @@ export const HeaderWrapper = () => {
                 <Header.Navigation links={mainLinks} />
             </ResponseWrapper>
 
-            <div className="flex gap-8 font-scada tablet:gap-15 px-2">
+            <div
+                className={
+                    "flex gap-10 items-center font-scada tablet:gap-15 px-2 "
+                }
+            >
                 {user ? (
                     <Header.Navigation links={authLinks} />
                 ) : (

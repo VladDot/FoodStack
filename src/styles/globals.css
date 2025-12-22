@@ -10,6 +10,8 @@
     --font-scada: var(--font-scada), sans-serif;
     --font-roboto: var(--font-roboto), sans-serif;
     --font-roboto-condensed: var(--font-robotoCondensed), sans-serif;
+
+    --shadow-switcher: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
 }
 
 @layer base {
@@ -56,7 +58,7 @@ body {
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
     .container-app {
         @apply px-8;
     }

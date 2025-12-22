@@ -1,8 +1,10 @@
 "use client";
 
+import { ExitIcon } from "@/assets/icons";
+
 export const HeaderProfile = ({}) => {
     return (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-10">
             {/* <Avatar
                 src={avatar ? avatar :  DefaultAvatar}
                 alt={name}
@@ -13,7 +15,7 @@ export const HeaderProfile = ({}) => {
                 onClick={() => console.log("logout")}
                 className="text-sm"
             >
-                Logout
+                <ExitIcon className="w-5 h-5" />
             </button>
         </div>
     );
