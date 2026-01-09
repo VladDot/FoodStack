@@ -6,3 +6,5 @@ export { HomePage } from "@/components/pages/home";
 export { Navigation } from "@/components/header/nav";
 export { Register } from "@/components/pages/register";
 export { HeaderWrapper } from "@/components/header-wrapper";
+export { Burger } from "@/components/burger";
+export { Portal } from "@/components/portal";

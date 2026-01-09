@@ -4,6 +4,7 @@ import { authLinks, mainLinks } from "@/components/header-wrapper/mock";
 
 import { Header } from "../header";
 import { ResponseWrapper } from "../response-wrapper";
+import { Burger } from "../burger";
 
 export const HeaderWrapper = () => {
     const user = true;
@@ -27,6 +28,10 @@ export const HeaderWrapper = () => {
                 )}
                 <Header.LanguageSwitcher />
             </div>
+
+            <ResponseWrapper endpoint="isMobile">
+                <Burger />
+            </ResponseWrapper>
         </Header>
     );
 };
