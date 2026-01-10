@@ -1,8 +1,8 @@
-import { HomePage } from "@/components";
+import { HomePage } from "@/features/general";
 
 function Home() {
     return (
-        <div>
+        <div className="mt-16">
             <HomePage />
         </div>
     );

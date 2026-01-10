@@ -1,6 +1,6 @@
 import createMiddleware from "next-intl/middleware";
 
-import { locales } from "./constants";
+import { locales } from "./shared/constants";
 
 //TODO розібратись з middleware
 

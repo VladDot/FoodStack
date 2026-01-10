@@ -1,5 +1,5 @@
 import { ChildrenProps } from "@/types";
-import { HeaderWrapper } from "@/components";
+import { HeaderWrapper } from "@/widgets";
 
 export default function Layout({ children }: ChildrenProps) {
     return (

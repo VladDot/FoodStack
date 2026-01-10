@@ -1,6 +1,6 @@
 "use client";
 
-import { Toast } from "@/components";
+import { Toast } from "@/shared/ui";
 import { ChildrenProps } from "@/types";
 
 export const WidthToast = ({ children }: ChildrenProps) => {

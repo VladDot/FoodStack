@@ -1,4 +1,4 @@
-import { Info } from "@/components";
+import { Info } from "@/features/general";
 
 function InfoPage() {
     return (
