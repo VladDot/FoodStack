@@ -5,9 +5,9 @@ import { NavigationProps } from "@/types";
 import { getStyles } from "./styles";
 import { ListLink } from "../list-link";
 
-export const Navigation = ({ links }: NavigationProps) => {
+export const Navigation = ({ links, navClass }: NavigationProps) => {
     const locale = useLocale();
-    const { ul } = getStyles();
+    const { ul } = getStyles({ navClass });
 
     return (
         <ul className={ul}>

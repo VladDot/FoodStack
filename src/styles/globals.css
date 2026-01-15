@@ -12,6 +12,45 @@
     --font-roboto-condensed: var(--font-robotoCondensed), sans-serif;
 
     --shadow-switcher: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
+
+    --animate-fade-in: fade-in 300ms ease-out forwards;
+    --animate-fade-out: fade-out 300ms ease-in forwards;
+    --animate-fade-in-opacity: fade-in-opacity 300ms ease-out forwards;
+    --animate-fade-out-opacity: fade-out-opacity 300ms ease-in forwards;
+
+    @keyframes fade-in {
+        from {
+            width: 0;
+        }
+        to {
+            width: 400px;
+        }
+    }
+
+    @keyframes fade-out {
+        from {
+            width: 400px;
+        }
+        to {
+            width: 0;
+        }
+    }
+    @keyframes fade-in-opacity {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 30%;
+        }
+    }
+    @keyframes fade-out-opacity {
+        from {
+            opacity: 30%;
+        }
+        to {
+            opacity: 0;
+        }
+    }
 }
 
 @layer base {

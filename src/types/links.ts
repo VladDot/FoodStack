@@ -5,4 +5,5 @@ export type LinkItem = {
 
 export interface NavigationProps {
     links: LinkItem[];
+    navClass?: string;
 }

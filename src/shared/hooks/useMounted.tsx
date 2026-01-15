@@ -1,27 +1,25 @@
 "use client";
 import { useEffect, useState } from "react";
 
-interface IUseMounted {
+interface IMountedProps {
     isOpened: boolean;
     duration?: number;
 }
 
-export const useMounted = ({ isOpened, duration = 300 }: IUseMounted) => {
-    const [isMounted, setIsMounted] = useState(isOpened);
+export const useMounted = ({ isOpened, duration = 300 }: IMountedProps) => {
+    const [isUnmounted, setIsUnmounted] = useState<boolean>(false);
 
-    if (isOpened && !isMounted) {
-        setIsMounted(true);
+    if (isOpened && !isUnmounted) {
+        setIsUnmounted(true);
     }
 
     useEffect(() => {
-        if (!isOpened && isMounted) {
-            const timeout = setTimeout(() => {
-                setIsMounted(false);
+        if (!isOpened && isUnmounted) {
+            setTimeout(() => {
+                setIsUnmounted(false);
             }, duration);
-
-            return () => clearTimeout(timeout);
         }
-    }, [isOpened, duration, isMounted]);
+    }, [isOpened, duration, isUnmounted]);
 
-    return  isMounted ;
+    return { isUnmounted };
 };

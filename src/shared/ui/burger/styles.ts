@@ -13,9 +13,12 @@ export const getStyles = ({ isOpen }: IGetStyles) => ({
     bottom: clsx({ "-rotate-45 -translate-y-2": isOpen }),
 
     burgerMenu: clsx(
-        "fixed w-screen h-screen top-0 left-0 bg-gray-600 z-998 transition-transform duration-300 ease-in-out ",
-        isOpen ? "translate-x-0" : "-translate-x-full"
+        "fixed top-0 left-0 bg-linear-to-r from-lime-300 to-emerald-500 z-998 h-screen ",
+        isOpen ? "animate-fade-in" : "animate-fade-out"
     ),
 
-    overlay: "absolute w-full h-full bg-black opacity-50",
+    overlay: clsx("absolute top-0 left-0 w-screen h-screen  bg-black z-997  ", {
+        "animate-fade-in-opacity": isOpen,
+        "animate-fade-out-opacity": !isOpen,
+    }),
 });
