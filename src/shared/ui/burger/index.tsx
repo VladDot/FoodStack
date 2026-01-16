@@ -2,19 +2,18 @@
 
 import { useRef, useState } from "react";
 
-import { Portal } from "../portal";
-
-import { getStyles } from "./styles";
+import { mainLinks } from "@/widgets/header/mock";
 import { useMounted, useOutsideClick } from "@/shared/hooks";
 
-interface IBurger {
-    className?: string;
-    children?: React.ReactNode;
-}
+import { Portal } from "../portal";
+import { Navigation } from "../nav";
 
-export const Burger = ({ children, className }: IBurger) => {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+import { getStyles } from "./styles";
+
+export const Burger = () => {
     const ref = useRef<HTMLDivElement>(null);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
     const { isUnmounted } = useMounted({ isOpened: isOpen, duration: 300 });
 
     useOutsideClick(() => setIsOpen(false), ref);
@@ -43,7 +42,17 @@ export const Burger = ({ children, className }: IBurger) => {
                         className={style.burgerMenu}
                         ref={ref}
                     >
-                        <div className="mt-16 h-full ">{children}</div>
+                        <div className="mt-16 h-full">
+                            <div className="border border-t-2 border-gray-300 h-full flex align-center">
+                                <Navigation
+                                    burger={true}
+                                    isOpen={isOpen}
+                                    links={mainLinks}
+                                    setIsOpen={setIsOpen}
+                                    navClass="flex flex-col gap-y-6 w-full my-auto [&>li>a]:text-3xl text-sm -translate-y-20"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </Portal>
             )}

@@ -8,15 +8,27 @@ interface IListLink {
     href: string;
     label: string;
     locale: string;
+    burger?: boolean;
+    isOpen?: boolean;
+    setIsOpen?: (isOpen: boolean) => void;
 }
 
-export const ListLink = ({ locale, href, label }: IListLink) => {
-    const { link } = getStyles();
+export const ListLink = ({
+    href,
+    label,
+    burger,
+    locale,
+    isOpen,
+    setIsOpen,
+}: IListLink) => {
+    const { link } = getStyles({ burger, isOpen });
+
     return (
         <li>
             <Link
-                href={buildLocalPath(locale, href)}
                 className={link}
+                onClick={() => setIsOpen?.(false)}
+                href={buildLocalPath(locale, href)}
             >
                 {label}
             </Link>

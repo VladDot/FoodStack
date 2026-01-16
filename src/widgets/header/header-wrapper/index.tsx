@@ -5,7 +5,6 @@ import { Burger, ResponseWrapper } from "@/shared/ui";
 import { Header } from "..";
 import { mainLinks } from "../mock";
 import { HeaderAction } from "../header-action";
-import { HeaderBurgerMenu } from "../header-burger-menu";
 
 export const HeaderWrapper = () => {
     return (
@@ -26,9 +25,7 @@ export const HeaderWrapper = () => {
                 <ResponseWrapper endpoint="isMobile">
                     <div className="flex gap-6  items-center ">
                         <Header.LanguageSwitcher />
-                        <Burger>
-                            <HeaderBurgerMenu />
-                        </Burger>
+                        <Burger />
                     </div>
                 </ResponseWrapper>
             </div>

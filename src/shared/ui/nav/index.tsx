@@ -5,7 +5,13 @@ import { NavigationProps } from "@/types";
 import { getStyles } from "./styles";
 import { ListLink } from "../list-link";
 
-export const Navigation = ({ links, navClass }: NavigationProps) => {
+export const Navigation = ({
+    links,
+    isOpen,
+    burger,
+    navClass,
+    setIsOpen,
+}: NavigationProps) => {
     const locale = useLocale();
     const { ul } = getStyles({ navClass });
 
@@ -16,6 +22,9 @@ export const Navigation = ({ links, navClass }: NavigationProps) => {
                     href={href}
                     label={label}
                     locale={locale}
+                    isOpen={isOpen}
+                    burger={burger}
+                    setIsOpen={setIsOpen}
                     key={`nav_${label}_${idx}`}
                 />
             ))}
