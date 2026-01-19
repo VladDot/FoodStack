@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
 
-import { locales } from "./constants";
+import { locales } from "./shared/constants";
 import { ActiveLanguage, Locale } from "./types";
 
 export default getRequestConfig(async ({ requestLocale }) => {

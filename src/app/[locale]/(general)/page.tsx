@@ -1,8 +1,8 @@
-import { HomePage } from "@/components/pages";
+import { HomePage } from "@/features/general";
 
 function Home() {
     return (
-        <div>
+        <div className="mt-16  tablet:mt-22 container-app">
             <HomePage />
         </div>
     );
