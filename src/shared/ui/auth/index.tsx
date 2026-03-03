@@ -1,6 +1,6 @@
 "use client";
 
-import { ExitIcon } from "@/assets/icons";
+import { ExitIcon } from "@/shared/assets/icons";
 
 //TODO add avatar and user data
 

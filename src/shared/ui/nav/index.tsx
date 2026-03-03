@@ -1,6 +1,6 @@
 import { useLocale } from "next-intl";
 
-import { NavigationProps } from "@/types";
+import { NavigationProps } from "@/shared/types";
 
 import { getStyles } from "./styles";
 import { ListLink } from "../list-link";
@@ -14,6 +14,9 @@ export const Navigation = ({
 }: NavigationProps) => {
     const locale = useLocale();
     const { ul } = getStyles({ navClass });
+
+    console.log(links);
+    
 
     return (
         <ul className={ul}>

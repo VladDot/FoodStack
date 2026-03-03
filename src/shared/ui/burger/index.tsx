@@ -7,7 +7,6 @@ import { useMounted, useOutsideClick } from "@/shared/hooks";
 
 import { Portal } from "../portal";
 import { Navigation } from "../nav";
-
 import { getStyles } from "./styles";
 
 export const Burger = () => {
@@ -42,14 +41,14 @@ export const Burger = () => {
                         className={style.burgerMenu}
                         ref={ref}
                     >
-                        <div className="mt-16 h-full">
-                            <div className="border border-t-2 border-gray-300 h-full flex align-center">
+                        <div className="h-full mt-16">
+                            <div className="flex h-full border border-t-2 border-gray-300 align-center ">
                                 <Navigation
-                                    burger={true}
-                                    isOpen={isOpen}
                                     links={mainLinks}
+                                    burger={true}
+                                    navClass="flex flex-col w-full text-sm -translate-y-20 [&>li>a]:text-3xl my-auto gap-y-6 "
+                                    isOpen={isOpen}
                                     setIsOpen={setIsOpen}
-                                    navClass="flex flex-col gap-y-6 w-full my-auto [&>li>a]:text-3xl text-sm -translate-y-20"
                                 />
                             </div>
                         </div>

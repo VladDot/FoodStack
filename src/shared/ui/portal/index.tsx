@@ -1,5 +1,5 @@
 "use client";
-import { ChildrenProps } from "@/types";
+import { ChildrenProps } from "@/shared/types";
 import { createPortal } from "react-dom";
 
 interface IPortalProps {
