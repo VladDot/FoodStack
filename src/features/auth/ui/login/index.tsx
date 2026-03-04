@@ -1,8 +1,10 @@
 "use client";
 
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
+
+import { FormTextInput } from "@/shared/lib/form/form-text-input";
+
 import { WrapperForm } from "../wrapper-form";
-import { FormTextInput } from "@/features/form/form-text-input";
 
 interface IForm {
     email: string;
@@ -30,6 +32,7 @@ export const Login = ({}) => {
                     className="flex flex-col gap-8"
                 >
                     <FormTextInput<IForm>
+                        label="Email"
                         name="email"
                         placeholder="Email"
                         rules={{
@@ -41,9 +44,11 @@ export const Login = ({}) => {
                         }}
                     />
                     <FormTextInput<IForm>
+                        label="Password"
                         name="password"
                         type="password"
                         placeholder="password"
+                        defaultValue=""
                         rules={{
                             required: "Password is required",
                             minLength: {

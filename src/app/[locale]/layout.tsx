@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
-import { NextIntlClientProvider } from "next-intl";
 
 import { getMessages } from "next-intl/server";
-import { Roboto, Roboto_Condensed, Scada } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { Scada, Roboto, Roboto_Condensed } from "next/font/google";
 
 import { WidthToast } from "./with-toast";
 
@@ -10,7 +10,9 @@ import "@/styles/globals.css";
 
 type RootLayoutProps = {
     children: ReactNode;
-    params: Promise<{ locale: string }>;
+    params: Promise<{
+        locale: string;
+    }>;
 };
 
 const roboto = Roboto({
