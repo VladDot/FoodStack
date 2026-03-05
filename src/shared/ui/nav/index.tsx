@@ -15,9 +15,6 @@ export const Navigation = ({
     const locale = useLocale();
     const { ul } = getStyles({ navClass });
 
-    console.log(links);
-    
-
     return (
         <ul className={ul}>
             {links.map(({ label, href }, idx) => (

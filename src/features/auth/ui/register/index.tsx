@@ -4,7 +4,9 @@ import { toast } from "react-toastify";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 
 import { PasswordInput } from "@/shared/ui/input";
+import { ConfirmModal } from "@/features/confirm-modal/ui";
 import { FormTextInput } from "@/shared/lib/form/form-text-input";
+import { useConfirmModal } from "@/features/confirm-modal/model/useConfirmModal";
 
 import { WrapperForm } from "../wrapper-form";
 
@@ -17,17 +19,18 @@ interface IForm {
 export const Register = ({}) => {
     const methods = useForm<IForm>();
 
+    const { isOpen, openModal, closeModal, handleConfirm } = useConfirmModal();
+
     const onSubmit: SubmitHandler<IForm> = async (data: IForm) => {
-        try {
+        openModal(() => {
             console.log(data);
 
             toast.success("Користувач успішно зареєстрований!");
-
             methods.reset();
-        } catch (error) {
-            toast.error("Помилка при реєстрації");
-        }
+        });
     };
+
+    console.log(isOpen);
 
     return (
         <FormProvider {...methods}>
@@ -79,6 +82,23 @@ export const Register = ({}) => {
 
                     <button type="submit">Register</button>
                 </form>
+                <ConfirmModal
+                    isOpen={isOpen}
+                    setIsOpen={closeModal}
+                >
+                    <button
+                        type="button"
+                        onClick={handleConfirm}
+                    >
+                        Так
+                    </button>
+                    <button
+                        type="button"
+                        onClick={closeModal}
+                    >
+                        Ні
+                    </button>
+                </ConfirmModal>
             </WrapperForm>
         </FormProvider>
     );

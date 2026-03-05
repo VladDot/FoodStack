@@ -1,7 +1,8 @@
-import { routes } from "@/shared/constants";
 import Link from "next/link";
-import { Button } from "@/shared/ui/button";
 import { usePathname } from "next/navigation";
+
+import { Button } from "@/shared/ui/button";
+import { routes } from "@/shared/constants";
 
 export const WrapperForm = ({ children }: { children: React.ReactNode }) => {
     const pathname = usePathname();
@@ -10,16 +11,16 @@ export const WrapperForm = ({ children }: { children: React.ReactNode }) => {
         <div className=" flex flex-col w-full max-w-[600px] p-2 md:p-6">
             <div className="flex justify-between ">
                 <Button
-                    isActive={pathname === routes.general.login}
-                    variant="ghost"
                     asChild
+                    variant="ghost"
+                    isActive={pathname === routes.general.login}
                 >
                     <Link href={routes.general.login}>Login</Link>
                 </Button>
                 <Button
-                    isActive={pathname === routes.general.register}
-                    variant="ghost"
                     asChild
+                    variant="ghost"
+                    isActive={pathname === routes.general.register}
                 >
                     <Link href={routes.general.register}>Register</Link>
                 </Button>

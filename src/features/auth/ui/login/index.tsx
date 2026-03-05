@@ -48,7 +48,6 @@ export const Login = ({}) => {
                         name="password"
                         type="password"
                         placeholder="password"
-                        defaultValue=""
                         rules={{
                             required: "Password is required",
                             minLength: {
