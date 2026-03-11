@@ -1,12 +1,13 @@
 "use client";
-import { ChildrenProps } from "@/types";
+
 import { createPortal } from "react-dom";
 
 interface IPortalProps {
-    opened: boolean;
+    opened?: boolean;
+    children: React.ReactNode;
 }
 
-export const Portal = ({ children, opened }: ChildrenProps<IPortalProps>) => {
+export const Portal = ({ opened, children }: IPortalProps) => {
     if (!opened) {
         return null;
     }

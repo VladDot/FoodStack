@@ -1,6 +1,6 @@
 import { useLocale } from "next-intl";
 
-import { NavigationProps } from "@/types";
+import { NavigationProps } from "@/shared/types";
 
 import { getStyles } from "./styles";
 import { ListLink } from "../list-link";

@@ -1,22 +1,20 @@
 "use client";
 
-import { HeaderProfile, LanguageSwitcher, Logo, Navigation } from "@/shared/ui";
+import { ChildrenProps } from "@/shared/types";
+import { LanguageSwitcher } from "@/features/general";
+import { Logo, Navigation, HeaderProfile } from "@/shared/ui";
 
-type HeaderProps = {
-    children?: React.ReactNode;
-};
-
-type HeaderComponent = React.FC<HeaderProps> & {
+type HeaderComponent = React.FC<ChildrenProps> & {
     Logo: typeof Logo;
     Navigation: typeof Navigation;
     HeaderProfile: typeof HeaderProfile;
     LanguageSwitcher: typeof LanguageSwitcher;
 };
 
-export const Header: HeaderComponent = ({ children }: HeaderProps) => {
+export const Header: HeaderComponent = ({ children }: ChildrenProps) => {
     return (
-        <header className="w-full bg-linear-to-r from-lime-300 to-emerald-500 text-white z-999 fixed top-0 left-0">
-            <div className="container-app flex justify-between items-center gap-6">
+        <header className="fixed top-0 left-0 w-full text-white bg-linear-to-r from-lime-300 to-emerald-500 z-999">
+            <div className="flex items-center justify-between gap-6 px-2 tablet:px-8">
                 {children}
             </div>
         </header>

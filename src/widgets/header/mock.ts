@@ -1,4 +1,4 @@
-import { LinkItem } from "@/types";
+import { LinkItem } from "@/shared/types";
 import { routes } from "@/shared/constants";
 
 export const mainLinks: LinkItem[] = [

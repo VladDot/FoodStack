@@ -13,6 +13,14 @@
 
     --shadow-switcher: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
 
+    --background-gradient: radial-gradient(
+        ellipse at center,
+        #ffffff 0%,
+        #ecfdf5 72%,
+        #d1fae5 85%,
+        #ecfdf5 100%
+    );
+
     --animate-fade-in: fade-in 300ms ease-out forwards;
     --animate-fade-out: fade-out 300ms ease-in forwards;
     --animate-fade-in-opacity: fade-in-opacity 300ms ease-out forwards;
@@ -40,12 +48,12 @@
             opacity: 0;
         }
         to {
-            opacity: 30%;
+            opacity: 100%;
         }
     }
     @keyframes fade-out-opacity {
         from {
-            opacity: 30%;
+            opacity: 100%;
         }
         to {
             opacity: 0;
@@ -77,6 +85,12 @@
     }
 }
 
+@layer utilities {
+    .bg-page {
+        background: var(--background-gradient);
+    }
+}
+
 body {
     color: rgb(var(--foreground-rgb));
     background: linear-gradient(
@@ -88,18 +102,18 @@ body {
 }
 
 .container-app {
-    @apply w-full px-2;
+    @apply w-full px-2 mt-16 py-4;
 }
 
 @media (min-width: 768px) {
     .container-app {
-        @apply px-6;
+        @apply px-6 mt-22 p-6;
     }
 }
 
 @media (min-width: 1024px) {
     .container-app {
-        @apply px-8;
+        @apply p-8;
     }
 }
 

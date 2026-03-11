@@ -1,4 +1,4 @@
-import { ActiveLanguage } from "@/types";
+import { ActiveLanguage } from "@/shared/types";
 import clsx from "clsx";
 
 interface IGetStyles {

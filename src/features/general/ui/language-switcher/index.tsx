@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
 import { useState } from "react";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
-import { ActiveLanguage } from "@/types";
+import { ActiveLanguage } from "@/shared/types";
 import { cookiesLocale } from "@/shared/constants";
-import { EnIcon, UaIcon } from "@/assets/icons";
+import { EnIcon, UaIcon } from "@/shared/assets/icons";
 
 import { getStyles } from "./styles";
 
@@ -16,7 +16,7 @@ export const LanguageSwitcher = () => {
     const router = useRouter();
 
     const [activeLanguage, setActiveLanguage] = useState<ActiveLanguage>(
-        local as ActiveLanguage
+        local as ActiveLanguage,
     );
 
     const handleClick = () => {

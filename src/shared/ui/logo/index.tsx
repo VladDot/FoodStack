@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { routes } from "@/shared/constants";
-import { LogoIcon } from "@/assets/img";
+import { LogoIcon } from "@/shared/assets/img";
 
 interface ILogo {
     className?: string;
