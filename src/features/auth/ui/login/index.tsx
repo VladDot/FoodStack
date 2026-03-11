@@ -2,6 +2,7 @@
 
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 
+import { Button } from "@/shared/ui";
 import { FormTextInput } from "@/shared/lib/form/form-text-input";
 
 import { WrapperForm } from "../wrapper-form";
@@ -13,7 +14,8 @@ interface IForm {
 
 export const Login = ({}) => {
     const methods = useForm<IForm>({
-        mode: "onChange",
+        mode: "onBlur",
+        reValidateMode: "onChange",
         defaultValues: {
             email: "",
             password: "",
@@ -56,8 +58,7 @@ export const Login = ({}) => {
                             },
                         }}
                     />
-
-                    <button type="submit">Login</button>
+                    <Button className="rounded-full text-white ">Login</Button>
                 </form>
             </WrapperForm>
         </FormProvider>

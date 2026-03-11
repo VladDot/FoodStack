@@ -1,10 +1,10 @@
 import { getStyles } from "./style";
 
 interface InputWrapperProps {
-    children: React.ReactNode;
-    label?: string;
     error?: string;
+    label?: string;
     required?: boolean;
+    children: React.ReactNode;
 }
 
 export const InputWrapper = ({
@@ -13,19 +13,18 @@ export const InputWrapper = ({
     required,
     children,
 }: InputWrapperProps) => {
-    const { inputWrapper } = getStyles({ required });
+    const { inputWrapper, labelStyles } = getStyles({ error });
+
     return (
         <div className={inputWrapper}>
             {label && (
-                <label className="text-red-500">
+                <label className={labelStyles}>
                     {label}
-                    {required && <span className="text-red-500">*</span>}
+                    {required && <span className={labelStyles}>*</span>}
                 </label>
             )}
-
             {children}
-
-            {error && <span className="text-red-500">{error}</span>}
+            {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
         </div>
     );
 };

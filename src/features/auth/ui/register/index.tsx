@@ -3,10 +3,11 @@
 import { toast } from "react-toastify";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 
+import { Button } from "@/shared/ui/button";
 import { PasswordInput } from "@/shared/ui/input";
-import { ConfirmModal } from "@/features/confirm-modal/ui";
+import { ConfirmModal } from "@/shared/ui/confirm-modal/ui";
 import { FormTextInput } from "@/shared/lib/form/form-text-input";
-import { useConfirmModal } from "@/features/confirm-modal/model/useConfirmModal";
+import { useConfirmModal } from "@/shared/ui/confirm-modal/model/useConfirmModal";
 
 import { WrapperForm } from "../wrapper-form";
 
@@ -17,7 +18,14 @@ interface IForm {
 }
 
 export const Register = ({}) => {
-    const methods = useForm<IForm>();
+    const methods = useForm<IForm>({
+        mode: "onBlur",
+        reValidateMode: "onChange",
+        defaultValues: {
+            email: "",
+            password: "",
+        },
+    });
 
     const { isOpen, openModal, closeModal, handleConfirm } = useConfirmModal();
 
@@ -29,8 +37,6 @@ export const Register = ({}) => {
             methods.reset();
         });
     };
-
-    console.log(isOpen);
 
     return (
         <FormProvider {...methods}>
@@ -79,25 +85,36 @@ export const Register = ({}) => {
                                 "Passwords do not match",
                         }}
                     />
-
-                    <button type="submit">Register</button>
+                    <Button className="rounded-full text-white">
+                        Register
+                    </Button>
                 </form>
                 <ConfirmModal
                     isOpen={isOpen}
                     setIsOpen={closeModal}
                 >
-                    <button
-                        type="button"
-                        onClick={handleConfirm}
-                    >
-                        Так
-                    </button>
-                    <button
-                        type="button"
-                        onClick={closeModal}
-                    >
-                        Ні
-                    </button>
+                    <ConfirmModal.ModalHeader>
+                        Підтвердіть реєстрацію
+                    </ConfirmModal.ModalHeader>
+
+                    <ConfirmModal.ModalBody>
+                        Ви впевнені, що хочете зареєструватися з цими даними?
+                    </ConfirmModal.ModalBody>
+                    <ConfirmModal.ModalFooter>
+                        <Button
+                            onClick={handleConfirm}
+                            className="rounded-full"
+                        >
+                            Yes
+                        </Button>
+                        <Button
+                            variant="danger"
+                            onClick={closeModal}
+                            className="rounded-full"
+                        >
+                            No
+                        </Button>
+                    </ConfirmModal.ModalFooter>
                 </ConfirmModal>
             </WrapperForm>
         </FormProvider>

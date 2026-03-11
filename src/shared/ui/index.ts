@@ -13,3 +13,7 @@ export { Portal } from "@/shared/ui/portal";
 export { ResponseWrapper } from "@/shared/ui/response-wrapper";
 
 export { Toast } from "@/shared/ui/toastify";
+
+export { Overlay } from "@/shared/ui/overlay";
+
+export { Button } from "@/shared/ui/button";

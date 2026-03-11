@@ -1,4 +1,6 @@
-import { useMounted } from "@/shared/hooks";
+import { useRef } from "react";
+
+import { useMounted, useOutsideClick } from "@/shared/hooks";
 
 import { Portal } from "../portal";
 import { getStyles } from "./style";
@@ -9,16 +11,19 @@ interface IOverlay {
 }
 
 export const Overlay = ({ isOpen, children }: IOverlay) => {
+    const modalRef = useRef<HTMLDivElement>(null);
     const { isUnmounted } = useMounted({ isOpened: isOpen, duration: 300 });
-
-    console.log(isOpen);
 
     const style = getStyles({ isOpen });
 
     return (
         <Portal opened={isUnmounted}>
-            <div className={style.overlay} />
-            {children}
+            <div
+                ref={modalRef}
+                className={style.overlay}
+            >
+                {children}
+            </div>
         </Portal>
     );
 };

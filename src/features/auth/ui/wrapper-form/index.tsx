@@ -9,7 +9,7 @@ export const WrapperForm = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <div className=" flex flex-col w-full max-w-[600px] p-2 md:p-6">
-            <div className="flex justify-between ">
+            <div className="flex gap-2 justify-between ">
                 <Button
                     asChild
                     variant="ghost"
@@ -26,7 +26,7 @@ export const WrapperForm = ({ children }: { children: React.ReactNode }) => {
                 </Button>
             </div>
             <div className="bg-white  rounded-md py-12 px-4 md:px-8  shadow-md flex flex-col gap-10">
-                <div className="flex flex-col gap-8"> {children}</div>
+                <div className="flex flex-col gap-8">{children}</div>
             </div>
         </div>
     );

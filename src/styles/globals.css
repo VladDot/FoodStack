@@ -48,12 +48,12 @@
             opacity: 0;
         }
         to {
-            opacity: 30%;
+            opacity: 100%;
         }
     }
     @keyframes fade-out-opacity {
         from {
-            opacity: 30%;
+            opacity: 100%;
         }
         to {
             opacity: 0;

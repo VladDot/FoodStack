@@ -1,5 +1,5 @@
-import { Path, FieldValues } from "react-hook-form";
 import { useController, RegisterOptions } from "react-hook-form";
+import { Path, FieldValues, useFormContext } from "react-hook-form";
 
 import { TextInput, InputWrapper } from "@/shared/ui/input";
 
@@ -17,25 +17,31 @@ export const FormTextInput = <T extends FieldValues>({
     component: Component = TextInput,
     ...props
 }: FormTextInputProps<T>) => {
+    const { control } = useFormContext<T>();
+
     const {
         field,
-        fieldState: { error, isTouched },
+        fieldState: { error },
     } = useController({
         name,
         rules,
+        control,
     });
 
+    const isRequired = Boolean(rules?.required);
+
     return (
-        <InputWrapper>
-            <label>{label}</label>
+        <InputWrapper
+            label={label}
+            error={error?.message}
+            required={isRequired}
+        >
             <Component
                 {...field}
                 {...props}
                 value={field.value ?? ""}
+                invalid={!!error}
             />
-            {error?.message && isTouched && (
-                <p className="mt-1 text-sm text-red-500">{error.message}</p>
-            )}
         </InputWrapper>
     );
 };
