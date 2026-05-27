@@ -21,8 +21,6 @@ export const HeaderWrapper = () => {
             <div className="flex gap-10 items-center tablet:hidden">
                 <ResponseWrapper endpoint="isMobile">
                     <HeaderAction className="hidden sm:flex gap-10 items-center font-scada px-2" />
-                </ResponseWrapper>
-                <ResponseWrapper endpoint="isMobile">
                     <div className="flex gap-6  items-center ">
                         <Header.LanguageSwitcher />
                         <Burger />
