@@ -4,6 +4,7 @@ import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { Scada, Roboto, Roboto_Condensed } from "next/font/google";
 
+import { Providers } from "../providers";
 import { WidthToast } from "./with-toast";
 
 import "@/styles/globals.css";
@@ -60,7 +61,9 @@ export default async function RootLayout({
                     locale={locale}
                     messages={messages}
                 >
-                    <WidthToast>{children}</WidthToast>
+                    <Providers>
+                        <WidthToast>{children}</WidthToast>
+                    </Providers>
                 </NextIntlClientProvider>
             </body>
         </html>

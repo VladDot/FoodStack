@@ -1,3 +1,7 @@
+"use client";
+
+import { useSession } from "next-auth/react";
+
 import { Header } from "..";
 import { authLinks } from "../mock";
 
@@ -6,14 +10,14 @@ interface HeaderActionProps {
 }
 
 export const HeaderAction = ({ className }: HeaderActionProps) => {
-    const user = true;
+    const { data: session } = useSession();
 
     return (
         <div className={className}>
-            {user ? (
-                <Header.Navigation links={authLinks} />
-            ) : (
+            {session ? (
                 <Header.HeaderProfile />
+            ) : (
+                <Header.Navigation links={authLinks} />
             )}
         </div>
     );

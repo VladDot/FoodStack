@@ -1,5 +1,8 @@
 "use client";
 
+import { toast } from "react-toastify";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 
 import { Button } from "@/shared/ui";
@@ -13,6 +16,8 @@ interface IForm {
 }
 
 export const Login = ({}) => {
+    const router = useRouter();
+
     const methods = useForm<IForm>({
         mode: "onBlur",
         reValidateMode: "onChange",
@@ -22,8 +27,19 @@ export const Login = ({}) => {
         },
     });
 
-    const onSubmit: SubmitHandler<IForm> = (data) => {
-        console.log(data);
+    const onSubmit: SubmitHandler<IForm> = async (data) => {
+        const result = await signIn("credentials", {
+            email: data.email,
+            password: data.password,
+            redirect: false,
+        });
+
+        if (result?.error) {
+            toast.error("Невірний імейл або пароль");
+        } else {
+            toast.success("Ви увійшли!");
+            router.push("/");
+        }
     };
 
     return (

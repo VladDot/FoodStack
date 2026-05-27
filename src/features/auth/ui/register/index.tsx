@@ -1,6 +1,7 @@
 "use client";
 
 import { toast } from "react-toastify";
+import { signIn } from "next-auth/react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 
 import { Button } from "@/shared/ui/button";
@@ -30,11 +31,37 @@ export const Register = ({}) => {
     const { isOpen, openModal, closeModal, handleConfirm } = useConfirmModal();
 
     const onSubmit: SubmitHandler<IForm> = async (data: IForm) => {
-        openModal(() => {
-            console.log(data);
+        openModal(async () => {
+            try {
+                const res = await fetch("/api/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: data.email,
+                        password: data.password,
+                    }),
+                });
 
-            toast.success("Користувач успішно зареєстрований!");
-            methods.reset();
+                if (!res.ok) {
+                    const err = await res.json();
+                    throw new Error(err.message);
+                }
+
+                toast.success("Реєстрація успішна! Входимо...");
+
+                await signIn("credentials", {
+                    email: data.email,
+                    password: data.password,
+                    redirect: true,
+                    callbackUrl: "/",
+                });
+            } catch (e) {
+                toast.error("Помилка реєстрації");
+            } finally {
+                closeModal();
+            }
         });
     };
 

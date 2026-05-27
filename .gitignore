@@ -1,8 +1,8 @@
 ### NextJS template
 # dependencies
-/node_modules
+node_modules
 /.pnp
 .pnp.js
-/src/generated/prisma
+generated
 .env
 .next
