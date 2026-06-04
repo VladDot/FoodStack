@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
@@ -6,6 +6,7 @@ import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 
 import { Button } from "@/shared/ui/button";
 import { PasswordInput } from "@/shared/ui/input";
+import { GoogleSigninBtn } from "@/shared/ui/auth";
 import { ConfirmModal } from "@/shared/ui/confirm-modal/ui";
 import { FormTextInput } from "@/shared/lib/form/form-text-input";
 import { useConfirmModal } from "@/shared/ui/confirm-modal/model/useConfirmModal";
@@ -115,6 +116,7 @@ export const Register = ({}) => {
                     <Button className="rounded-full text-white">
                         Register
                     </Button>
+                    <GoogleSigninBtn />
                 </form>
                 <ConfirmModal
                     isOpen={isOpen}

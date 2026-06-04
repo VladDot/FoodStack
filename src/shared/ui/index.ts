@@ -1,7 +1,5 @@
 export { Burger } from "@/shared/ui/burger";
 
-export { HeaderProfile } from "@/shared/ui/auth";
-
 export { ListLink } from "@/shared/ui/list-link";
 
 export { Logo } from "@/shared/ui/logo";

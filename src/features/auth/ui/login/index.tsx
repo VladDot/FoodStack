@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 
 import { Button } from "@/shared/ui";
+import { GoogleSigninBtn } from "@/shared/ui/auth";
 import { FormTextInput } from "@/shared/lib/form/form-text-input";
 
 import { WrapperForm } from "../wrapper-form";
@@ -75,6 +76,7 @@ export const Login = ({}) => {
                         }}
                     />
                     <Button className="rounded-full text-white ">Login</Button>
+                    <GoogleSigninBtn />
                 </form>
             </WrapperForm>
         </FormProvider>

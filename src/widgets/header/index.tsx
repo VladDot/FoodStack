@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
 import { ChildrenProps } from "@/shared/types";
+import { Logo, Navigation } from "@/shared/ui";
+import { HeaderProfile } from "@/shared/ui/auth";
 import { LanguageSwitcher } from "@/features/general";
-import { Logo, Navigation, HeaderProfile } from "@/shared/ui";
 
 type HeaderComponent = React.FC<ChildrenProps> & {
     Logo: typeof Logo;
