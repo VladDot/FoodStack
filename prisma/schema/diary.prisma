@@ -1,0 +1,46 @@
+model DailyLog {
+  id         String     @id @default(cuid())
+  date       DateTime   
+  isCheatDay Boolean    @default(false) @map("is_cheat_day")
+  createdAt  DateTime   @default(now()) @map("created_at")
+  updatedAt  DateTime   @updatedAt @map("updated_at")
+  
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String     @map("user_id")
+  
+  mealItems  MealItem[]
+  waterLogs  WaterLog[]
+
+  @@unique([userId, date]) 
+  @@map("daily_logs")
+}
+
+model MealItem {
+  id         String   @id @default(cuid())
+  mealType   String   
+  foodName   String   
+  weight     Float   
+  
+  calories   Float
+  protein    Float
+  fat        Float
+  carbs      Float
+  
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  dailyLog   DailyLog @relation(fields: [dailyLogId], references: [id], onDelete: Cascade)
+  dailyLogId String   @map("daily_log_id")
+
+  @@map("meal_items")
+}
+
+model WaterLog {
+  id        String   @id @default(cuid())
+  amount    Float    // Вода в мілілітрах
+  createdAt DateTime @default(now()) @map("created_at")
+
+  dailyLog   DailyLog @relation(fields: [dailyLogId], references: [id], onDelete: Cascade)
+  dailyLogId String   @map("daily_log_id")
+
+  @@map("water_logs")
+}
