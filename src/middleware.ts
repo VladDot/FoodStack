@@ -3,6 +3,7 @@ import NextAuth from "next-auth";
 import createIntlMiddleware from "next-intl/middleware"; // Імпортуємо next-intl middleware
 import { NextResponse } from "next/server"; // Для створення відповідей
 
+import { routes } from "@/shared/constants";
 import { authConfig } from "@/shared/lib/auth.config";
 import { locales } from "./shared/constants"; // Припускаємо, що тут твої локалі
 
@@ -22,8 +23,8 @@ export default auth((req) => {
 
     // Визначаємо, які маршрути є публічними (не потребують авторизації)
     const publicRoutes = [
-        "/auth/login",
-        "/auth/register",
+        routes.auth.signIn,
+        routes.auth.signUp,
         "/", // Головна сторінка може бути публічною
         // Додай сюди інші публічні маршрути
     ];
@@ -36,7 +37,7 @@ export default auth((req) => {
     // Якщо користувач не авторизований і намагається зайти на приватний маршрут
     if (!isLoggedIn && !isPublicRoute) {
         // Перенаправляємо на сторінку входу
-        const redirectUrl = new URL("/auth/login", nextUrl.origin);
+        const redirectUrl = new URL(routes.auth.signIn, nextUrl.origin);
         // Можна додати `callbackUrl`, щоб після входу повернути користувача на сторінку, з якої він прийшов
         redirectUrl.searchParams.set("callbackUrl", nextUrl.pathname);
         return NextResponse.redirect(redirectUrl);
@@ -46,8 +47,8 @@ export default auth((req) => {
     // перенаправляємо його на головну сторінку (або на /profile)
     if (
         isLoggedIn &&
-        (nextUrl.pathname.startsWith("/auth/login") ||
-            nextUrl.pathname.startsWith("/auth/register"))
+        (nextUrl.pathname.startsWith(routes.auth.signIn) ||
+            nextUrl.pathname.startsWith(routes.auth.signUp))
     ) {
         return NextResponse.redirect(new URL("/", nextUrl.origin));
     }
