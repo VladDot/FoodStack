@@ -5,6 +5,7 @@ export const routes = {
         contact: "/contact",
         premium: "/premium",
         foodsSearch: "/foods-search",
+        foodDetail: (id: string | number) => `/foods-search/${id}`,
         recipes: "/recipes",
     },
 
@@ -20,7 +21,7 @@ export const routes = {
             saved: "/dashboard/saved",
             chat: "/dashboard/chat",
             progress: "/dashboard/progress",
-            settings: "/dashboard/settings",
+            settings: "/dashboard/settings-page",
         },
     },
 

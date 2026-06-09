@@ -11,6 +11,34 @@
     --font-roboto: var(--font-roboto), sans-serif;
     --font-roboto-condensed: var(--font-robotoCondensed), sans-serif;
 
+--color-brand-bg: #f8fafc;                  
+  --color-brand-card: #ffffff;                
+  --color-brand-primary: #059669;            
+  --color-brand-primary-hover: #047857;       
+  --color-brand-ring-light: #a7f3d0;
+  --color-accent: #ffd700;                    
+
+  /* Кольори тексту  */
+  --color-text-main: #0f172a;                
+  --color-text-muted: #64748b;                
+
+  /* ==========================================================================
+     Авторизація та Інпути 
+     ========================================================================== */
+  --color-auth-primary: #0f62fe;             
+  --color-auth-input-bg: #f2f4f8;            
+  --color-auth-input-border: #c1c7cd;         
+  --color-auth-surface-border: #dde1e6;      
+  --color-auth-text: #21272a;                
+
+  /* ==========================================================================
+     Макронутрієнти (КБЖУ графіки та бейджі продуктів)
+     ========================================================================== */
+  --color-macro-calories: #f59e0b;            /* Калорії (amber-500) */
+  --color-macro-protein: #0ea5e9;             /* Білки (sky-500) */
+  --color-macro-fats: #f43f5e;                /* Жири (rose-500) */
+  --color-macro-carbs: #eab308;
+
     --shadow-switcher: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
 
     --background-gradient: radial-gradient(
