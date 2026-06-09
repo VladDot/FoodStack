@@ -1,23 +1,32 @@
 export const routes = {
-    //general
     general: {
         home: "/",
         info: "/info",
-        login: "/sing-in",
-        register: "/sing-up",
         contact: "/contact",
         premium: "/premium",
-    },
-
-    // userLogin
-    user: {
-        profile: "/profile",
-        settings: "/settings",
-        foods: "/foods",
-        addFoodWithMenu: "/add-food-with-menu",
         foodsSearch: "/foods-search",
+        recipes: "/recipes",
     },
 
-    //need add routes
-    passwordChange: "/password-change",
-};
+    auth: {
+        signIn: "/sign-in",
+        signUp: "/sign-up",
+    },
+
+    user: {
+        dashboard: {
+            main: "/dashboard",
+            diary: "/dashboard/diary",
+            saved: "/dashboard/saved",
+            chat: "/dashboard/chat",
+            progress: "/dashboard/progress",
+            settings: "/dashboard/settings",
+        },
+    },
+
+    admin: {
+        panel: "/admin",
+        usersManagement: "/admin/users",
+        foodDatabase: "/admin/food-database",
+    },
+} as const;

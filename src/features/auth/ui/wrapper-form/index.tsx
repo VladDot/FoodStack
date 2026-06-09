@@ -13,16 +13,16 @@ export const WrapperForm = ({ children }: { children: React.ReactNode }) => {
                 <Button
                     asChild
                     variant="ghost"
-                    isActive={pathname === routes.general.login}
+                    isActive={pathname === routes.auth.signIn}
                 >
-                    <Link href={routes.general.login}>Login</Link>
+                    <Link href={routes.auth.signIn}>Login</Link>
                 </Button>
                 <Button
                     asChild
                     variant="ghost"
-                    isActive={pathname === routes.general.register}
+                    isActive={pathname === routes.auth.signUp}
                 >
-                    <Link href={routes.general.register}>Register</Link>
+                    <Link href={routes.auth.signUp}>Register</Link>
                 </Button>
             </div>
             <div className="bg-white  rounded-md py-12 px-4 md:px-8  shadow-md flex flex-col gap-10">

@@ -6,9 +6,11 @@ export const mainLinks: LinkItem[] = [
     { href: routes.general.info, label: "Info" },
     { href: routes.general.contact, label: "Contact" },
     { href: routes.general.premium, label: "Premium" },
+    { href: routes.general.foodsSearch, label: "Foods Search" },
+    { href: routes.general.recipes, label: "Recipes" },
 ];
 
 export const authLinks: LinkItem[] = [
-    { href: routes.general.login, label: "Sing-in" },
-    { href: routes.general.register, label: "Sing-up" },
+    { href: routes.auth.signIn, label: "Sign-in" },
+    { href: routes.auth.signUp, label: "Sign-up" },
 ];
