@@ -1,24 +1,24 @@
-import React from "react";
+import React from 'react';
 
-import { getStyles } from "./styles";
+import { getStyles } from './styles';
 
 type TextInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
-    invalid?: boolean;
+  invalid?: boolean;
 };
 
 export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
-    ({ invalid, className, ...props }, ref) => {
-        const { input } = getStyles({ invalid, className });
-        return (
-            <input
-                {...props}
-                ref={ref}
-                value={props.value ?? ""}
-                type={props.type || "text"}
-                className={input}
-            />
-        );
-    },
+  ({ invalid, className, ...props }, ref) => {
+    const { input } = getStyles({ invalid, className });
+    return (
+      <input
+        {...props}
+        ref={ref}
+        value={props.value ?? ''}
+        type={props.type || 'text'}
+        className={input}
+      />
+    );
+  }
 );
 
-TextInput.displayName = "TextInput";
+TextInput.displayName = 'TextInput';

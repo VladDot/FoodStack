@@ -1,25 +1,25 @@
-import { useWindowWidth } from "@/shared/hooks/useWindowWIdth";
+import { useWindowWidth } from '@/shared/hooks/useWindowWIdth';
 
 type Endpoints =
-    | "isMobile"
-    | "isLaptop"
-    | "isTablet"
-    | "isDesktop"
-    | "isDesktopXL"
-    | "isNotMobile"
-    | "isNotDesktop";
+  | 'isMobile'
+  | 'isLaptop'
+  | 'isTablet'
+  | 'isDesktop'
+  | 'isDesktopXL'
+  | 'isNotMobile'
+  | 'isNotDesktop';
 
 interface IResponseWrapper {
-    endpoint: Endpoints;
-    children: React.ReactNode;
+  endpoint: Endpoints;
+  children: React.ReactNode;
 }
 
 export const ResponseWrapper = ({ endpoint, children }: IResponseWrapper) => {
-    const response = useWindowWidth();
+  const response = useWindowWidth();
 
-    if (response[endpoint]) {
-        return <>{children}</>;
-    }
+  if (response[endpoint]) {
+    return <>{children}</>;
+  }
 
-    return null;
+  return null;
 };

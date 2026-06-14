@@ -1,5 +1,5 @@
 function Progress({}) {
-    return <>Progress</>;
+  return <>Progress</>;
 }
 
 export default Progress;

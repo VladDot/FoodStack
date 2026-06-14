@@ -1,6 +1,6 @@
 interface StylesProps {
-    navClass?: string;
+  navClass?: string;
 }
 export const getStyles = ({ navClass }: StylesProps) => ({
-    ul: `flex items-center gap-6 laptop:gap-12 ${navClass}`,
+  ul: `flex items-center gap-6 laptop:gap-12 ${navClass}`,
 });

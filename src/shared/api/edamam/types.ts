@@ -10,11 +10,11 @@ export interface CleanRecipeItem {
   ingredients: string[];
 }
 export interface CleanFoodItem {
-  id: string;          
-  fat: number;         
-  kcal: number;        
-  carbs: number;       
-  label: string;       
-  image?: string;     
-  protein: number;     
+  id: string;
+  fat: number;
+  kcal: number;
+  carbs: number;
+  label: string;
+  image?: string;
+  protein: number;
 }

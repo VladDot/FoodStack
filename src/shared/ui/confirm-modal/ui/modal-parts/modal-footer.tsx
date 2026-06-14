@@ -1,5 +1,5 @@
-import { ChildrenProps } from "@/shared/types";
+import { ChildrenProps } from '@/shared/types';
 
 export const ModalFooter = ({ children }: ChildrenProps) => {
-    return <div className="flex  gap-2 justify-between">{children}</div>;
+  return <div className="flex  gap-2 justify-between">{children}</div>;
 };

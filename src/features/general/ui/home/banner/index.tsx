@@ -1,3 +1,3 @@
 export const Banner = ({}) => {
-    return <>Banner</>;
+  return <>Banner</>;
 };

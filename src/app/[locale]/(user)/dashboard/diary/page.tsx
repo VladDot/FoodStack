@@ -1,5 +1,5 @@
 function Diary({}) {
-    return <>Diary</>;
+  return <>Diary</>;
 }
 
 export default Diary;

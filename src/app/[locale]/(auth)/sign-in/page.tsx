@@ -1,11 +1,11 @@
-import { Login } from "@/features/auth";
+import { Login } from '@/features/auth';
 
 function LoginPage() {
-    return (
-        <>
-            <Login />
-        </>
-    );
+  return (
+    <>
+      <Login />
+    </>
+  );
 }
 
 export default LoginPage;

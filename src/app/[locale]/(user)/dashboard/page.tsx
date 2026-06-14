@@ -1,5 +1,5 @@
 function AddPage({}) {
-    return <>AddPage</>;
+  return <>AddPage</>;
 }
 
 export default AddPage;

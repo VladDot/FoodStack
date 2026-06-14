@@ -1,5 +1,5 @@
 function Saved({}) {
-    return <>Saved</>;
+  return <>Saved</>;
 }
 
 export default Saved;

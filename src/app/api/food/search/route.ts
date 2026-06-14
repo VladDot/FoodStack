@@ -1,9 +1,10 @@
-import { z } from "zod";
-import axios from "axios";
-import { NextResponse } from "next/server";
+import { searchEdamamFoods } from '@/shared/api/edamam';
+import { logger } from '@/shared/lib/logger';
 
-import { logger } from "@/shared/lib/logger";
-import { searchEdamamFoods } from "@/shared/api/edamam";
+import { NextResponse } from 'next/server';
+
+import axios from 'axios';
+import { z } from 'zod';
 
 const searchParamsSchema = z.object({
   query: z.string().trim().min(1, 'Search query cannot be empty'),
@@ -12,33 +13,35 @@ const searchParamsSchema = z.object({
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const rawQuery = searchParams.get('query') || '' ;
-    
+    const rawQuery = searchParams.get('query') || '';
+
     const validation = searchParamsSchema.safeParse({ query: rawQuery });
 
-    if( !validation.success ) {
+    if (!validation.success) {
       const errorMessage = validation.error.issues[0]?.message || 'Invalid request';
 
-      logger.warn({ rawQuery, issues: validation.error.issues }, 'Validation failed for food search query');
+      logger.warn(
+        { rawQuery, issues: validation.error.issues },
+        'Validation failed for food search query'
+      );
 
       return NextResponse.json({ error: errorMessage }, { status: 400 });
     }
 
     const cleanedData = await searchEdamamFoods(validation.data.query);
 
-      return NextResponse.json(cleanedData);
-  } catch (error: unknown) {    
-
+    return NextResponse.json(cleanedData);
+  } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       const status = error.response?.status || 500;
       const edamamErrorMessage = error.response?.data?.message || 'Edamam API error';
 
       logger.error(
-        { 
-          status, 
+        {
+          status,
           edamamData: error.response?.data,
-          url: error.config?.url 
-        }, 
+          url: error.config?.url,
+        },
         'Axios error during Edamam request'
       );
 
@@ -56,13 +59,16 @@ export async function GET(request: Request) {
     }
 
     if (error instanceof Error) {
-      logger.error({ message: error.message, stack: error.stack }, 'Unexpected internal server error');
+      logger.error(
+        { message: error.message, stack: error.stack },
+        'Unexpected internal server error'
+      );
     } else {
       logger.error({ error }, 'Unknown internal server error');
     }
 
     return NextResponse.json(
-      { error: 'Internal server error during data processing' }, 
+      { error: 'Internal server error during data processing' },
       { status: 500 }
     );
   }

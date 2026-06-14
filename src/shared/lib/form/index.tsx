@@ -1,1 +1,1 @@
-export { FormTextInput } from "./form-text-input";
+export { FormTextInput } from './form-text-input';

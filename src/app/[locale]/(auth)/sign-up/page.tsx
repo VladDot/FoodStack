@@ -1,11 +1,11 @@
-import { Register } from "@/features/auth";
+import { Register } from '@/features/auth';
 
 function RegisterPage({}) {
-    return (
-        <>
-            <Register />
-        </>
-    );
+  return (
+    <>
+      <Register />
+    </>
+  );
 }
 
 export default RegisterPage;

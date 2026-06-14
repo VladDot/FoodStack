@@ -1,5 +1,5 @@
 function FoodsSearch({}) {
-    return <>FoodsSearch</>;
+  return <>FoodsSearch</>;
 }
 
 export default FoodsSearch;

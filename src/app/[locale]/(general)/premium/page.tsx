@@ -1,5 +1,5 @@
 function PremiumPage({}) {
-    return <>PremiumPage</>;
+  return <>PremiumPage</>;
 }
 
 export default PremiumPage;

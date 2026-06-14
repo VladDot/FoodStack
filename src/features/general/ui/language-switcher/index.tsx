@@ -1,50 +1,44 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useLocale } from "next-intl";
-import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
+import { EnIcon, UaIcon } from '@/shared/assets/icons';
+import { cookiesLocale } from '@/shared/constants';
+import { ActiveLanguage } from '@/shared/types';
 
-import { ActiveLanguage } from "@/shared/types";
-import { cookiesLocale } from "@/shared/constants";
-import { EnIcon, UaIcon } from "@/shared/assets/icons";
+import { useLocale } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
-import { getStyles } from "./styles";
+import Cookies from 'js-cookie';
+
+import { getStyles } from './styles';
 
 export const LanguageSwitcher = () => {
-    const local = useLocale();
-    const router = useRouter();
+  const local = useLocale();
+  const router = useRouter();
 
-    const [activeLanguage, setActiveLanguage] = useState<ActiveLanguage>(
-        local as ActiveLanguage,
-    );
+  const [activeLanguage, setActiveLanguage] = useState<ActiveLanguage>(local as ActiveLanguage);
 
-    const handleClick = () => {
-        const newLanguage =
-            activeLanguage === ActiveLanguage.EN
-                ? ActiveLanguage.UA
-                : ActiveLanguage.EN;
+  const handleClick = () => {
+    const newLanguage =
+      activeLanguage === ActiveLanguage.EN ? ActiveLanguage.UA : ActiveLanguage.EN;
 
-        setActiveLanguage(newLanguage);
+    setActiveLanguage(newLanguage);
 
-        Cookies.set(cookiesLocale, newLanguage, { expires: 365 });
+    Cookies.set(cookiesLocale, newLanguage, { expires: 365 });
 
-        router.refresh();
-    };
+    router.refresh();
+  };
 
-    const style = getStyles({ activeLanguage });
-    return (
-        <div
-            className={style.wrapper}
-            onClick={handleClick}
-        >
-            <span className={style.span}>ua</span>
-            <span className={style.span}>en</span>
+  const style = getStyles({ activeLanguage });
+  return (
+    <div className={style.wrapper} onClick={handleClick}>
+      <span className={style.span}>ua</span>
+      <span className={style.span}>en</span>
 
-            <div className={style.iconWrapper}>
-                <UaIcon className={`${style.icon} ${style.ua}`} />
-                <EnIcon className={`${style.icon} ${style.en}`} />
-            </div>
-        </div>
-    );
+      <div className={style.iconWrapper}>
+        <UaIcon className={`${style.icon} ${style.ua}`} />
+        <EnIcon className={`${style.icon} ${style.en}`} />
+      </div>
+    </div>
+  );
 };

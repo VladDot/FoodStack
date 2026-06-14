@@ -1,3 +1,3 @@
-export { GoogleSigninBtn } from "./google-signin-btn";
+export { GoogleSigninBtn } from './google-signin-btn';
 
-export { HeaderProfile } from "./header-profile";
+export { HeaderProfile } from './header-profile';

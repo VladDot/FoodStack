@@ -1,158 +1,154 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-    --breakpoint-tablet: 768px;
-    --breakpoint-laptop: 992px;
-    --breakpoint-desktop: 1440px;
-    --breakpoint-desktop-xl: 1919px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-laptop: 992px;
+  --breakpoint-desktop: 1440px;
+  --breakpoint-desktop-xl: 1919px;
 
-    --font-montserrat: Montserrat, sans-serif;
-    --font-scada: var(--font-scada), sans-serif;
-    --font-roboto: var(--font-roboto), sans-serif;
-    --font-roboto-condensed: var(--font-robotoCondensed), sans-serif;
+  --font-montserrat: Montserrat, sans-serif;
+  --font-scada: var(--font-scada), sans-serif;
+  --font-roboto: var(--font-roboto), sans-serif;
+  --font-roboto-condensed: var(--font-robotoCondensed), sans-serif;
 
---color-brand-bg: #f8fafc;                  
-  --color-brand-card: #ffffff;                
-  --color-brand-primary: #059669;            
-  --color-brand-primary-hover: #047857;       
+  --color-brand-bg: #f8fafc;
+  --color-brand-card: #ffffff;
+  --color-brand-primary: #059669;
+  --color-brand-primary-hover: #047857;
   --color-brand-ring-light: #a7f3d0;
-  --color-accent: #ffd700;                    
+  --color-accent: #ffd700;
 
   /* Кольори тексту  */
-  --color-text-main: #0f172a;                
-  --color-text-muted: #64748b;                
+  --color-text-main: #0f172a;
+  --color-text-muted: #64748b;
 
   /* ==========================================================================
      Авторизація та Інпути 
      ========================================================================== */
-  --color-auth-primary: #0f62fe;             
-  --color-auth-input-bg: #f2f4f8;            
-  --color-auth-input-border: #c1c7cd;         
-  --color-auth-surface-border: #dde1e6;      
-  --color-auth-text: #21272a;                
+  --color-auth-primary: #0f62fe;
+  --color-auth-input-bg: #f2f4f8;
+  --color-auth-input-border: #c1c7cd;
+  --color-auth-surface-border: #dde1e6;
+  --color-auth-text: #21272a;
 
   /* ==========================================================================
      Макронутрієнти (КБЖУ графіки та бейджі продуктів)
      ========================================================================== */
-  --color-macro-calories: #f59e0b;            /* Калорії (amber-500) */
-  --color-macro-protein: #0ea5e9;             /* Білки (sky-500) */
-  --color-macro-fats: #f43f5e;                /* Жири (rose-500) */
+  --color-macro-calories: #f59e0b; /* Калорії (amber-500) */
+  --color-macro-protein: #0ea5e9; /* Білки (sky-500) */
+  --color-macro-fats: #f43f5e; /* Жири (rose-500) */
   --color-macro-carbs: #eab308;
 
-    --shadow-switcher: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
+  --shadow-switcher: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
 
-    --background-gradient: radial-gradient(
-        ellipse at center,
-        #ffffff 0%,
-        #ecfdf5 72%,
-        #d1fae5 85%,
-        #ecfdf5 100%
-    );
+  --background-gradient: radial-gradient(
+    ellipse at center,
+    #ffffff 0%,
+    #ecfdf5 72%,
+    #d1fae5 85%,
+    #ecfdf5 100%
+  );
 
-    --animate-fade-in: fade-in 300ms ease-out forwards;
-    --animate-fade-out: fade-out 300ms ease-in forwards;
-    --animate-fade-in-opacity: fade-in-opacity 300ms ease-out forwards;
-    --animate-fade-out-opacity: fade-out-opacity 300ms ease-in forwards;
+  --animate-fade-in: fade-in 300ms ease-out forwards;
+  --animate-fade-out: fade-out 300ms ease-in forwards;
+  --animate-fade-in-opacity: fade-in-opacity 300ms ease-out forwards;
+  --animate-fade-out-opacity: fade-out-opacity 300ms ease-in forwards;
 
-    @keyframes fade-in {
-        from {
-            width: 0;
-        }
-        to {
-            width: 400px;
-        }
+  @keyframes fade-in {
+    from {
+      width: 0;
     }
+    to {
+      width: 400px;
+    }
+  }
 
-    @keyframes fade-out {
-        from {
-            width: 400px;
-        }
-        to {
-            width: 0;
-        }
+  @keyframes fade-out {
+    from {
+      width: 400px;
     }
-    @keyframes fade-in-opacity {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 100%;
-        }
+    to {
+      width: 0;
     }
-    @keyframes fade-out-opacity {
-        from {
-            opacity: 100%;
-        }
-        to {
-            opacity: 0;
-        }
+  }
+  @keyframes fade-in-opacity {
+    from {
+      opacity: 0;
     }
+    to {
+      opacity: 100%;
+    }
+  }
+  @keyframes fade-out-opacity {
+    from {
+      opacity: 100%;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 }
 
 @layer base {
-    *,
-    ::after,
-    ::before,
-    ::backdrop,
-    ::file-selector-button {
-        border-color: var(--color-gray-200, currentcolor);
-    }
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
 
-    button:not(:disabled),
-    [role="button"]:not(:disabled) {
-        cursor: pointer;
-    }
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 @layer components {
-    * {
-        @apply font-roboto box-border text-base font-normal text-inherit;
-    }
-    input {
-        @apply outline-none;
-    }
+  * {
+    @apply font-roboto box-border text-base font-normal text-inherit;
+  }
+  input {
+    @apply outline-none;
+  }
 }
 
 @layer utilities {
-    .bg-page {
-        background: var(--background-gradient);
-    }
+  .bg-page {
+    background: var(--background-gradient);
+  }
 }
 
 body {
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(
-            to bottom,
-            transparent,
-            rgb(var(--background-end-rgb))
-        )
-        rgb(var(--background-start-rgb));
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
+    rgb(var(--background-start-rgb));
 }
 
 .container-app {
-    @apply w-full px-2 mt-16 py-4;
+  @apply w-full px-2 mt-16 py-4;
 }
 
 @media (min-width: 768px) {
-    .container-app {
-        @apply px-6 mt-22 p-6;
-    }
+  .container-app {
+    @apply px-6 mt-22 p-6;
+  }
 }
 
 @media (min-width: 1024px) {
-    .container-app {
-        @apply p-8;
-    }
+  .container-app {
+    @apply p-8;
+  }
 }
 
 @media (min-width: 1440px) {
-    .container-app {
-        @apply px-0 max-w-[1168px] mx-auto;
-    }
+  .container-app {
+    @apply px-0 max-w-[1168px] mx-auto;
+  }
 }
 
 @media (min-width: 1919px) {
-    .container-app {
-        @apply max-w-[1736px];
-    }
+  .container-app {
+    @apply max-w-[1736px];
+  }
 }
