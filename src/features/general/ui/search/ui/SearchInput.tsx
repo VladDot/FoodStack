@@ -18,6 +18,7 @@ export function SearchInput() {
     } else {
       params.delete('query');
     }
+    params.set('page', '1');
     replace(`${pathname}?${params.toString()}`);
   }, 400);
 

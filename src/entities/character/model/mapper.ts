@@ -1,8 +1,8 @@
 import { CleanCardItem } from '@/shared/ui/card/types';
 
-import { RickMortyRawCharacter } from './scheme';
+import { RickMortyCharacterSchema } from './scheme';
 
-export function mapCharactersToCards(rawCharacters: RickMortyRawCharacter[]): CleanCardItem[] {
+export function mapCharactersToCards(rawCharacters: RickMortyCharacterSchema[]): CleanCardItem[] {
   return rawCharacters.map((char) => {
     return {
       id: char.id.toString(),

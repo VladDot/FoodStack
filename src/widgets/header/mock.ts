@@ -8,6 +8,7 @@ export const mainLinks: LinkItem[] = [
   { href: routes.general.premium, label: 'Premium' },
   { href: routes.general.foodsSearch, label: 'Foods Search' },
   { href: routes.general.recipes, label: 'Recipes' },
+  { href: routes.general.character, label: 'Character' },
 ];
 
 export const authLinks: LinkItem[] = [

@@ -1,10 +1,9 @@
-import { searchEdamamFoods } from '@/shared/api/edamam';
-import { logger } from '@/shared/lib/logger';
-
+import z from 'zod';
+import axios from 'axios';
 import { NextResponse } from 'next/server';
 
-import axios from 'axios';
-import { z } from 'zod';
+import { logger } from '@/shared/lib/logger';
+import { searchEdamamFoods } from '@/shared/api/edamam';
 
 const searchParamsSchema = z.object({
   query: z.string().trim().min(1, 'Search query cannot be empty'),

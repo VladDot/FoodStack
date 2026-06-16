@@ -1,14 +1,14 @@
 'use client';
 
-import { EnIcon, UaIcon } from '@/shared/assets/icons';
-import { cookiesLocale } from '@/shared/constants';
-import { ActiveLanguage } from '@/shared/types';
-
-import { useLocale } from 'next-intl';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import Cookies from 'js-cookie';
+import { useLocale } from 'next-intl';
+import { useRouter } from 'next/navigation';
+
+import { ActiveLanguage } from '@/shared/types';
+import { cookiesLocale } from '@/shared/constants';
+import { EnIcon, UaIcon } from '@/shared/assets/icons';
 
 import { getStyles } from './styles';
 

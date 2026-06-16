@@ -7,6 +7,7 @@ export const routes = {
     foodsSearch: '/foods-search',
     foodDetail: (id: string | number) => `/foods-search/${id}`,
     recipes: '/recipes',
+    character: '/characters',
   },
 
   auth: {
