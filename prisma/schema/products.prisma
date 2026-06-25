@@ -1,0 +1,14 @@
+model Product {
+  id            String   @id // Штрих-код з Open Food Facts (завжди String, бо бувають нулі на початку)
+  name          String
+  brand         String
+  calories      Float    // Енергетична цінність на 100г
+  protein       Float    // Білки на 100г
+  fat           Float    // Жири на 100г
+  carbs         Float    // Вуглеводи на 100г
+  imageUrl      String   // Посилання на картинку продукту
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("products") // Зберігає таблицю в базі під нижнім регістром (good practice для PostgreSQL)
+}

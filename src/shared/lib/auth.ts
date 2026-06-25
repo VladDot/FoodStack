@@ -3,19 +3,19 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import Credentials from "next-auth/providers/credentials";
 import NextAuth, { type User, type DefaultSession } from "next-auth";
 
-import { prisma } from "@/shared/api/prisma";
+import { prisma } from "@/shared/lib/db/prisma";
 
 import { authConfig } from "./auth.config";
 
 declare module "next-auth" {
-  interface User {
-    id?: string;
-  }
-  interface Session {
-    user: {
-      id: string;
-    } & DefaultSession["user"];
-  }
+    interface User {
+        id?: string;
+    }
+    interface Session {
+        user: {
+            id: string;
+        } & DefaultSession["user"];
+    }
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
