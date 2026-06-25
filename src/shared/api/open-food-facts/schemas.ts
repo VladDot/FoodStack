@@ -1,11 +1,10 @@
 import { z } from "zod";
-// 1. Safe Number: гарантує, що ми отримаємо валідне число, навіть якщо прийшов null, undefined або NaN
+
 const safeNumberSchema = z.unknown().transform((val) => {
     if (val === null || val === undefined || val === "") return 0;
     const parsed = Number(val);
     return isNaN(parsed) ? 0 : parsed;
 });
-// 2. Safe String: ковтає null/undefined і замінює на наш дефолтний рядок
 
 const safeStringSchema = (defaultValue: string) =>
     z.unknown().transform((val) => {
@@ -14,7 +13,6 @@ const safeStringSchema = (defaultValue: string) =>
         return val.trim();
     });
 
-// Схема макронутрієнтів тепер абсолютно залізобетонна
 export const offNutrimentsSchema = z.object({
     "energy-kcal_100g": safeNumberSchema,
     proteins_100g: safeNumberSchema,
