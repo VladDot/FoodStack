@@ -19,3 +19,5 @@ export { SearchInput } from "./search-input";
 export { SearchPageLayout } from "./search-page-wrapper";
 
 export { Toast } from "@/shared/ui/toastify";
+
+export { Pagination } from "./pagination";
