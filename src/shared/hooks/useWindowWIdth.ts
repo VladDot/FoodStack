@@ -3,9 +3,9 @@
 import { useLayoutEffect, useState } from "react";
 
 import { media } from "@/shared/constants";
-import { IUseWidowWidthProps } from "@/shared/types";
+import { IUseWindowWidthProps } from "@/shared/types";
 
-export function useWindowWidth(): IUseWidowWidthProps {
+export function useWindowWidth(): IUseWindowWidthProps {
     const [width, setWidth] = useState<number>(0);
     const { tablet, laptop, desktop, desktopXL } = media;
 

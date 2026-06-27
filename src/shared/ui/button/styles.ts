@@ -1,13 +1,15 @@
 import { cn } from "@/shared/utils";
 
+import type { ButtonSize, ButtonVariant } from "./types";
+
 type getStylesProps = {
     asChild?: boolean;
     className?: string;
     disabled?: boolean;
     isActive?: boolean;
     isLoading?: boolean;
-    size?: "sm" | "md" | "icon";
-    variant?: "primary" | "ghost" | "outline" | "danger";
+    size?: ButtonSize;
+    variant?: ButtonVariant;
 };
 
 export const getStyles = ({

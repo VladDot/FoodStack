@@ -1,8 +1,9 @@
-import { ActiveLanguage } from "@/shared/types";
 import clsx from "clsx";
 
+import { Locale, LANGUAGES } from "@/shared/types";
+
 interface IGetStyles {
-    activeLanguage: ActiveLanguage;
+    activeLanguage: Locale;
 }
 
 export const getStyles = ({ activeLanguage }: IGetStyles) => ({
@@ -14,16 +15,16 @@ export const getStyles = ({ activeLanguage }: IGetStyles) => ({
     iconWrapper: `absolute top-1/2 left-[2px] -translate-y-1/2 flex justify-between items-center `,
 
     icon: clsx("w-[22px] h-6 transition-all duration-200 ease-in-out ", {
-        "transform translate-x-0": activeLanguage === ActiveLanguage.UA,
-        "transform translate-x-1/2": activeLanguage === ActiveLanguage.EN,
+        "transform translate-x-0": activeLanguage === LANGUAGES.uk,
+        "transform translate-x-1/2": activeLanguage === LANGUAGES.en,
     }),
 
     ua: clsx({
-        "opacity-0": activeLanguage === ActiveLanguage.EN,
-        "opacity-100": activeLanguage === ActiveLanguage.UA,
+        "opacity-0": activeLanguage === LANGUAGES.en,
+        "opacity-100": activeLanguage === LANGUAGES.uk,
     }),
     en: clsx({
-        "opacity-100": activeLanguage === ActiveLanguage.EN,
-        "opacity-0": activeLanguage === ActiveLanguage.UA,
+        "opacity-100": activeLanguage === LANGUAGES.en,
+        "opacity-0": activeLanguage === LANGUAGES.uk,
     }),
 });

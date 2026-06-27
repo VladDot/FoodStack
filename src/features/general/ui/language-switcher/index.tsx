@@ -1,38 +1,31 @@
 "use client";
 
-import { useState } from "react";
-import { useLocale } from "next-intl";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
-import { ActiveLanguage } from "@/shared/types";
 import { cookiesLocale } from "@/shared/constants";
+import { Locale, LANGUAGES } from "@/shared/types";
 import { EnIcon, UaIcon } from "@/shared/assets/icons";
 
 import { getStyles } from "./styles";
 
 export const LanguageSwitcher = () => {
-    const local = useLocale();
+    const pathname = usePathname();
     const router = useRouter();
 
-    const [activeLanguage, setActiveLanguage] = useState<ActiveLanguage>(
-        local as ActiveLanguage,
-    );
+    const currentLanguage: Locale =
+        pathname.startsWith("/en") ? LANGUAGES.en : LANGUAGES.uk;
 
     const handleClick = () => {
         const newLanguage =
-            activeLanguage === ActiveLanguage.EN
-                ? ActiveLanguage.UA
-                : ActiveLanguage.EN;
-
-        setActiveLanguage(newLanguage);
+            currentLanguage === LANGUAGES.en ? LANGUAGES.uk : LANGUAGES.en;
+        const newPathname = pathname.replace(/^\/(en|uk)/, `/${newLanguage}`);
 
         Cookies.set(cookiesLocale, newLanguage, { expires: 365 });
-
-        router.refresh();
+        router.replace(newPathname);
     };
 
-    const style = getStyles({ activeLanguage });
+    const style = getStyles({ activeLanguage: currentLanguage });
     return (
         <div
             className={style.wrapper}
