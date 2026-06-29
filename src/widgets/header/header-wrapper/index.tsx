@@ -6,21 +6,25 @@ import { Header } from "..";
 import { mainLinks } from "../mock";
 import { HeaderAction } from "../header-action";
 
-export const HeaderWrapper = () => {
+interface HeaderWrapperProps {
+    isLoggedIn: boolean;
+}
+
+export const HeaderWrapper = ({ isLoggedIn }: HeaderWrapperProps) => {
     return (
         <Header>
             <Header.Logo />
             <ResponseWrapper endpoint="isTablet">
                 <Header.Navigation links={mainLinks} />
                 <div className="hidden sm:flex laptop:gap-12 items-center font-scada tablet:gap-6 px-2">
-                    <HeaderAction />
+                    <HeaderAction isLoggedIn={isLoggedIn} />
                     <Header.LanguageSwitcher />
                 </div>
             </ResponseWrapper>
 
             <div className="flex gap-10 items-center tablet:hidden">
                 <ResponseWrapper endpoint="isMobile">
-                    <HeaderAction className="hidden sm:flex gap-10 items-center font-scada px-2" />
+                    <HeaderAction className="hidden sm:flex gap-10 items-center font-scada px-2" isLoggedIn={isLoggedIn} />
                     <div className="flex gap-6  items-center ">
                         <Header.LanguageSwitcher />
                         <Burger />

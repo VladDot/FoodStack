@@ -4,6 +4,8 @@ import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { Scada, Roboto, Roboto_Condensed } from "next/font/google";
 
+import { auth } from "@/shared/lib/auth";
+
 import { Providers } from "../providers";
 import { WithToast } from "./with-toast";
 
@@ -46,6 +48,7 @@ export default async function RootLayout({
 }: RootLayoutProps) {
     const { locale } = await params;
     const messages = await getMessages({ locale });
+    const session = await auth();
 
     return (
         <html
@@ -61,7 +64,7 @@ export default async function RootLayout({
                     locale={locale}
                     messages={messages}
                 >
-                    <Providers>
+                    <Providers session={session}>
                         <WithToast>{children}</WithToast>
                     </Providers>
                 </NextIntlClientProvider>
