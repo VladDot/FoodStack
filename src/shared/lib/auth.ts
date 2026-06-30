@@ -8,14 +8,14 @@ import { prisma } from "@/shared/api/prisma";
 import { authConfig } from "./auth.config";
 
 declare module "next-auth" {
-  interface User {
-    id?: string;
-  }
-  interface Session {
-    user: {
-      id: string;
-    } & DefaultSession["user"];
-  }
+    interface User {
+        id?: string;
+    }
+    interface Session {
+        user: {
+            id: string;
+        } & DefaultSession["user"];
+    }
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({

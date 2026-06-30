@@ -1,10 +1,10 @@
-export interface IUseWidowWidthProps {
-  width: number;
-  isMobile: boolean;
-  isTablet: boolean;
-  isLaptop: boolean;
-  isDesktop: boolean;
-  isNotMobile: boolean;
-  isDesktopXL: boolean;
-  isNotDesktop: boolean;
+export interface IUseWindowWidthProps {
+    width: number;
+    isLaptop: boolean;
+    isMobile: boolean;
+    isTablet: boolean;
+    isDesktop: boolean;
+    isDesktopXL: boolean;
+    isNotMobile: boolean;
+    isNotDesktop: boolean;
 }

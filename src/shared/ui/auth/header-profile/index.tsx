@@ -1,11 +1,18 @@
 "use client";
 
 import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 import { ExitIcon } from "@/shared/assets/icons";
 
 export const HeaderProfile = ({}) => {
+    const router = useRouter();
     const { data: session } = useSession();
+
+    const handleSignOut = async () => {
+        await signOut({ redirect: false });
+        router.push("/");
+    };
 
     return (
         <div className="flex items-center gap-4">
@@ -16,7 +23,7 @@ export const HeaderProfile = ({}) => {
                 </span>
             </div>
             <button
-                onClick={() => signOut()}
+                onClick={handleSignOut}
                 className="text-sm hover:opacity-70 transition-opacity"
             >
                 <ExitIcon className="w-5 h-5" />

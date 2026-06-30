@@ -2,13 +2,13 @@ import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
 
 import { locales } from "./shared/constants";
-import { ActiveLanguage, Locale } from "./shared/types";
+import { Locale, LANGUAGES } from "./shared/types";
 
 export default getRequestConfig(async ({ requestLocale }) => {
     const locale = await requestLocale;
     const supportedLocale = locales.includes(locale as Locale)
         ? locale
-        : ActiveLanguage.UA;
+        : LANGUAGES.uk;
 
     if (!supportedLocale) {
         notFound();

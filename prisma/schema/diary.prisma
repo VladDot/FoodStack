@@ -1,6 +1,6 @@
 model DailyLog {
   id         String     @id @default(cuid())
-  date       DateTime   
+  date       DateTime   @db.Date
   isCheatDay Boolean    @default(false) @map("is_cheat_day")
   createdAt  DateTime   @default(now()) @map("created_at")
   updatedAt  DateTime   @updatedAt @map("updated_at")

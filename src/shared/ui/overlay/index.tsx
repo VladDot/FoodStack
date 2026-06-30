@@ -1,6 +1,8 @@
+"use client";
+
 import { useRef } from "react";
 
-import { useMounted, useOutsideClick } from "@/shared/hooks";
+import { useMounted } from "@/shared/hooks";
 
 import { Portal } from "../portal";
 import { getStyles } from "./style";

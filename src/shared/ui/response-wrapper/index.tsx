@@ -1,3 +1,5 @@
+"use client";
+
 import { useWindowWidth } from "@/shared/hooks/useWindowWIdth";
 
 type Endpoints =
@@ -8,7 +10,6 @@ type Endpoints =
     | "isDesktopXL"
     | "isNotMobile"
     | "isNotDesktop";
-
 interface IResponseWrapper {
     endpoint: Endpoints;
     children: React.ReactNode;

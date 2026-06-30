@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { ChildrenProps } from "@/shared/types";
 import { Logo, Navigation } from "@/shared/ui";

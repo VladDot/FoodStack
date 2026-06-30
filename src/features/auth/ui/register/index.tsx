@@ -2,6 +2,7 @@
 
 import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 
 import { Button } from "@/shared/ui/button";
@@ -29,6 +30,7 @@ export const Register = ({}) => {
         },
     });
 
+    const router = useRouter();
     const { isOpen, openModal, closeModal, handleConfirm } = useConfirmModal();
 
     const onSubmit: SubmitHandler<IForm> = async (data: IForm) => {
@@ -55,10 +57,11 @@ export const Register = ({}) => {
                 await signIn("credentials", {
                     email: data.email,
                     password: data.password,
-                    redirect: true,
-                    callbackUrl: "/",
+                    redirect: false,
                 });
-            } catch (e) {
+                router.refresh();
+                router.push("/");
+            } catch {
                 toast.error("Помилка реєстрації");
             } finally {
                 closeModal();

@@ -15,5 +15,6 @@ model Recipe {
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId         String   @map("user_id")
 
+  @@index([externalFoodId])
   @@map("recipes")
 }
