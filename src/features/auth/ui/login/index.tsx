@@ -39,6 +39,7 @@ export const Login = ({}) => {
             toast.error("Невірний імейл або пароль");
         } else {
             toast.success("Ви увійшли!");
+            router.refresh();
             router.push("/");
         }
     };

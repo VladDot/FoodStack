@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { Scada, Roboto, Roboto_Condensed } from "next/font/google";
 
 import { auth } from "@/shared/lib/auth";
+import { HeaderWrapper } from "@/widgets";
 
 import { Providers } from "../providers";
 import { WithToast } from "./with-toast";
@@ -65,6 +66,7 @@ export default async function RootLayout({
                     messages={messages}
                 >
                     <Providers session={session}>
+                        <HeaderWrapper />
                         <WithToast>{children}</WithToast>
                     </Providers>
                 </NextIntlClientProvider>

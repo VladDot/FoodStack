@@ -7,3 +7,4 @@ generated
 .env
 .env.local
 .next
+tsconfig.tsbuildinfo

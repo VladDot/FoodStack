@@ -1,16 +1,15 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import { Burger, ResponseWrapper } from "@/shared/ui";
 
 import { Header } from "..";
 import { mainLinks } from "../mock";
 import { HeaderAction } from "../header-action";
 
-interface HeaderWrapperProps {
-    isLoggedIn: boolean;
-}
-
-export const HeaderWrapper = ({ isLoggedIn }: HeaderWrapperProps) => {
+export const HeaderWrapper = ({}) => {
+    const { data: session } = useSession();
+    const isLoggedIn = !!session;
     return (
         <Header>
             <Header.Logo />
