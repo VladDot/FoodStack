@@ -1,14 +1,23 @@
 import { z } from "zod";
-import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
 import { logger } from "@/shared/lib/logger";
+
+type SearchHandler = (query: string) => Promise<unknown>;
 
 const searchParamsSchema = z.object({
     query: z.string().trim().min(1, "Search query cannot be empty"),
 });
 
-type SearchHandler = (query: string) => Promise<unknown>;
+export class ApiError extends Error {
+    constructor(
+        public status: number,
+        message: string,
+    ) {
+        super(message);
+        this.name = "ApiError";
+    }
+}
 
 export function createBffHandler(handler: SearchHandler) {
     return async function GET(request: NextRequest) {
@@ -39,45 +48,21 @@ export function createBffHandler(handler: SearchHandler) {
 
             return NextResponse.json(data);
         } catch (error: unknown) {
-            if (axios.isAxiosError(error)) {
-                const status = error.response?.status || 500;
-                const edamamErrorMessage =
-                    error.response?.data?.message || "Edamam API error";
-
-                logger.error(
-                    {
-                        status,
-                        edamamData: error.response?.data,
-                        url: error.config?.url,
-                    },
-                    "Axios error during Edamam request",
-                );
-
-                if (status === 429) {
+            if (error instanceof ApiError) {
+                if (error.status === 429) {
                     return NextResponse.json(
-                        {
-                            error:
-                                "Request limit exceeded. Please try again later.",
-                        },
+                        { error: "Request limit exceeded" },
                         { status: 429 },
                     );
                 }
-
                 return NextResponse.json(
-                    {
-                        error: `Error from external service: ${edamamErrorMessage}`,
-                    },
-                    { status },
+                    { error: error.message },
+                    { status: error.status },
                 );
             }
 
             if (error instanceof Error) {
-                logger.error(
-                    { message: error.message, stack: error.stack },
-                    "Unexpected error during search",
-                );
-            } else {
-                logger.error({ error }, "Unknown error type during search");
+                logger.error({ message: error.message }, "Unexpected error");
             }
 
             return NextResponse.json(

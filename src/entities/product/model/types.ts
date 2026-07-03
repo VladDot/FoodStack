@@ -1,4 +1,4 @@
-export interface CleanFoodItem {
+export type CleanFoodItem = {
     id: string;
     fat: number;
     kcal: number;
@@ -6,4 +6,4 @@ export interface CleanFoodItem {
     label: string;
     image?: string;
     protein: number;
-}
+};

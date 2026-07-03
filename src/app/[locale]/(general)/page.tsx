@@ -1,4 +1,4 @@
-import { HomePage } from "@/features/general";
+import { HomePage } from "@/pages";
 
 function Home() {
     return (

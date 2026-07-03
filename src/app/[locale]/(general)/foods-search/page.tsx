@@ -1,5 +1,5 @@
-function FoodsSearch({}) {
-    return <>FoodsSearch</>;
-}
+import { FoodSearchPage } from "@/pages";
 
-export default FoodsSearch;
+export default function FoodsSearch() {
+    return <FoodSearchPage />;
+}

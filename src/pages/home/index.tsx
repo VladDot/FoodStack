@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 
-import { Banner } from "./banner";
+import { Banner } from "../../shared/ui/banner";
 
 export const HomePage = ({}) => {
     const t = useTranslations("");

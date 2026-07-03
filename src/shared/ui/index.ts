@@ -15,3 +15,5 @@ export { Toast } from "@/shared/ui/toastify";
 export { Overlay } from "@/shared/ui/overlay";
 
 export { Button } from "@/shared/ui/button";
+
+export { Banner } from "./banner";
