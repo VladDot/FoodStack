@@ -1,5 +1,7 @@
 import { FoodSearchPage } from "@/pages";
 
-export default function FoodsSearch() {
+function FoodsSearch() {
     return <FoodSearchPage />;
 }
+
+export default FoodsSearch;

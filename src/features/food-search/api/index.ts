@@ -1,10 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 
 import type { EdamamHint } from "@/shared/api/edamam/foods";
-import {
-    type CleanFoodItem,
-    mapResponseToCleanFoodItems,
-} from "@/entities/product/model";
+import type { CleanFoodItem } from "@/entities/product/model/types";
+import { mapResponseToCleanFoodItems } from "@/entities/product/model/product.mapper";
 
 const fetchFoodSearch = async (query: string): Promise<CleanFoodItem[]> => {
     const response = await fetch(
