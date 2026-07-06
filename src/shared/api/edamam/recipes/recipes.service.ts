@@ -1,18 +1,9 @@
 import { unstable_cache } from "next/cache";
 
-import { logger } from "@/shared/lib/logger";
+import { logger, ApiError } from "@/shared/lib";
 
 import { edamamConfig } from "../config";
 import { EdamamRecipeHint, edamamRecipeResponseSchema } from "./schemas";
-
-class ApiError extends Error {
-    constructor(
-        public status: number,
-        message: string,
-    ) {
-        super(message);
-    }
-}
 
 export async function getRawRecipesFromApi(
     query: string,
@@ -54,5 +45,5 @@ export async function getRawRecipesFromApi(
 export const searchEdamamRecipes = unstable_cache(
     async (query: string) => getRawRecipesFromApi(query),
     ["edamam-recipes"],
-    { revalidate: 60 * 60 * 24 * 7 },
+    { revalidate: 60 * 60 * 24 },
 );

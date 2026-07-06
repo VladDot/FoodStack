@@ -1,23 +1,13 @@
 import { z } from "zod";
 import { NextRequest, NextResponse } from "next/server";
 
-import { logger } from "@/shared/lib/logger";
+import { logger, ApiError } from "@/shared/lib";
 
 type SearchHandler = (query: string) => Promise<unknown>;
 
 const searchParamsSchema = z.object({
     query: z.string().trim().min(1, "Search query cannot be empty"),
 });
-
-export class ApiError extends Error {
-    constructor(
-        public status: number,
-        message: string,
-    ) {
-        super(message);
-        this.name = "ApiError";
-    }
-}
 
 export function createBffHandler(handler: SearchHandler) {
     return async function GET(request: NextRequest) {
@@ -62,7 +52,12 @@ export function createBffHandler(handler: SearchHandler) {
             }
 
             if (error instanceof Error) {
-                logger.error({ message: error.message }, "Unexpected error");
+                logger.error(
+                    { message: error.message, stack: error.stack },
+                    "Unexpected error occurred",
+                );
+            } else {
+                logger.error({ error }, "Unknown error type occurred");
             }
 
             return NextResponse.json(

@@ -1,19 +1,9 @@
 import { unstable_cache } from "next/cache";
 
-import { logger } from "@/shared/lib/logger";
+import { logger, ApiError } from "@/shared/lib";
 
 import { edamamConfig } from "../config";
 import { EdamamHint, edamamFoodResponseSchema } from "./schemas";
-//TODO винести ApiError щоб не дублювати
-
-class ApiError extends Error {
-    constructor(
-        public status: number,
-        message: string,
-    ) {
-        super(message);
-    }
-}
 
 export async function getRawFoodsFromApi(query: string): Promise<EdamamHint[]> {
     const url = new URL("https://api.edamam.com/api/food-database/v2/parser");
@@ -54,5 +44,5 @@ export async function getRawFoodsFromApi(query: string): Promise<EdamamHint[]> {
 export const searchEdamamFoods = unstable_cache(
     async (query: string) => getRawFoodsFromApi(query),
     ["edamam-foods"],
-    { revalidate: 60 * 60 * 24 * 7 },
+    { revalidate: 60 * 60 * 24 },
 );
