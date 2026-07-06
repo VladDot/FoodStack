@@ -14,12 +14,12 @@ export const LanguageSwitcher = () => {
     const router = useRouter();
 
     const currentLanguage: Locale =
-        pathname.startsWith("/en") ? LANGUAGES.en : LANGUAGES.uk;
+        pathname?.startsWith("/en") ? LANGUAGES.en : LANGUAGES.uk;
 
     const handleClick = () => {
         const newLanguage =
             currentLanguage === LANGUAGES.en ? LANGUAGES.uk : LANGUAGES.en;
-        const newPathname = pathname.replace(/^\/(en|uk)/, `/${newLanguage}`);
+        const newPathname = pathname?.replace(/^\/(en|uk)/, `/${newLanguage}`) ?? `/${newLanguage}`;
 
         Cookies.set(cookiesLocale, newLanguage, { expires: 365 });
         router.replace(newPathname);

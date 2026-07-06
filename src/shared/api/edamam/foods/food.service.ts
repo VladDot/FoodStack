@@ -1,31 +1,48 @@
-import axios from "axios";
+import { unstable_cache } from "next/cache";
 
-import { logger } from "@/shared/lib/logger";
+import { logger, ApiError } from "@/shared/lib";
 
 import { edamamConfig } from "../config";
 import { EdamamHint, edamamFoodResponseSchema } from "./schemas";
 
-export async function searchEdamamFoods(query: string): Promise<EdamamHint[]> {
-    const response = await axios.get(
-        "https://api.edamam.com/api/food-database/v2/parser",
-        {
-            params: {
-                ingr: query,
-                app_id: edamamConfig.EDAMAM_FOOD_APP_ID,
-                app_key: edamamConfig.EDAMAM_FOOD_APP_KEY,
-            },
-        },
-    );
+export async function getRawFoodsFromApi(query: string): Promise<EdamamHint[]> {
+    const url = new URL("https://api.edamam.com/api/food-database/v2/parser");
+    url.searchParams.set("ingr", query);
+    url.searchParams.set("app_id", edamamConfig.EDAMAM_FOOD_APP_ID);
+    url.searchParams.set("app_key", edamamConfig.EDAMAM_FOOD_APP_KEY);
 
-    const result = edamamFoodResponseSchema.safeParse(response.data);
+    const response = await fetch(url.toString());
+
+    if (!response.ok) {
+        let detail = `HTTP ${response.status}`;
+        try {
+            const body = await response.json();
+            if (body.message) detail = body.message;
+        } catch {
+            /* ignore parse error */
+        }
+        throw new ApiError(response.status, `Edamam API error: ${detail}`);
+    }
+
+    const data = await response.json();
+
+    const result = edamamFoodResponseSchema.safeParse(data);
 
     if (!result.success) {
         logger.error(
             { issues: result.error.issues },
             "Edamam food API response shape changed",
         );
-        return [];
+        throw new Error(
+            "External food database service is temporarily unavailable",
+        );
     }
 
     return result.data.hints;
 }
+
+export const searchEdamamFoods = unstable_cache(
+    async (query: string) => getRawFoodsFromApi(query),
+    ["edamam-foods"],
+    { revalidate: 60 * 60 * 24 },
+);

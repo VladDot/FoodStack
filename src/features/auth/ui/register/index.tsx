@@ -1,15 +1,14 @@
-'use client';
+"use client";
 
 import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 
-import { Button } from "@/shared/ui/button";
 import { PasswordInput } from "@/shared/ui/input";
 import { GoogleSigninBtn } from "@/shared/ui/auth";
+import { Button, FormTextInput } from "@/shared/ui";
 import { ConfirmModal } from "@/shared/ui/confirm-modal/ui";
-import { FormTextInput } from "@/shared/lib/form/form-text-input";
 import { useConfirmModal } from "@/shared/ui/confirm-modal/model/useConfirmModal";
 
 import { WrapperForm } from "../wrapper-form";

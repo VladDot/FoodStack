@@ -1,5 +1,11 @@
+import { RecipesSearchPage } from "@/pages";
+
 function Recipes({}) {
-    return <>Recipes</>;
+    return (
+        <>
+            <RecipesSearchPage />
+        </>
+    );
 }
 
 export default Recipes;

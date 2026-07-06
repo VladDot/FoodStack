@@ -1,4 +1,4 @@
-export interface CleanRecipeItem {
+export type CleanRecipeItem = {
     id: string;
     fat: number;
     carbs: number;
@@ -8,4 +8,4 @@ export interface CleanRecipeItem {
     calories: number;
     servings: number;
     ingredients: string[];
-}
+};

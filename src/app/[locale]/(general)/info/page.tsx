@@ -1,11 +1,7 @@
-import { Info } from "@/features/general";
+import { Info } from "@/pages";
 
 function InfoPage() {
-    return (
-        <>
-            <Info />
-        </>
-    );
+    return <Info />;
 }
 
 export default InfoPage;
