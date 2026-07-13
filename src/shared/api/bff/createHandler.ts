@@ -3,20 +3,26 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { logger, ApiError } from "@/shared/lib";
 
-type SearchHandler = (query: string) => Promise<unknown>;
+type SearchHandler<T> = (params: {
+    query: string;
+    cursor?: string;
+}) => Promise<T>;
 
 const searchParamsSchema = z.object({
     query: z.string().trim().min(1, "Search query cannot be empty"),
+    cursor: z.string().optional(),
 });
 
-export function createBffHandler(handler: SearchHandler) {
+export function createBffHandler<T>(handler: SearchHandler<T>) {
     return async function GET(request: NextRequest) {
         try {
             const { searchParams } = request.nextUrl;
             const rawQuery = searchParams.get("query") || "";
+            const rawCursor = searchParams.get("cursor") || undefined;
 
             const validation = searchParamsSchema.safeParse({
                 query: rawQuery,
+                cursor: rawCursor,
             });
 
             if (!validation.success) {
@@ -34,7 +40,10 @@ export function createBffHandler(handler: SearchHandler) {
                 );
             }
 
-            const data = await handler(validation.data.query);
+            const data: T = await handler({
+                query: validation.data.query,
+                cursor: validation.data.cursor,
+            });
 
             return NextResponse.json(data);
         } catch (error: unknown) {

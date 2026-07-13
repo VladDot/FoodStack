@@ -22,6 +22,13 @@ export const edamamHintSchema = z.object({
     food: edamamFoodSchema,
 });
 
+export const edamamLinksSchema = z.object({
+    next: z.object({
+        href: z.string(),
+    }).nullish(),
+}).nullish();
+
 export const edamamFoodResponseSchema = z.object({
     hints: z.array(edamamHintSchema),
+    _links: edamamLinksSchema,
 });

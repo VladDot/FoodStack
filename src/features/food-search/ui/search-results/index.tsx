@@ -1,5 +1,6 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
+import { Button } from "@/shared/ui/button";
 import type { CleanFoodItem } from "@/entities/product/model/types";
 
 interface FoodSearchResultsProps {
@@ -7,7 +8,10 @@ interface FoodSearchResultsProps {
     isError: boolean;
     isLoading: boolean;
     error: Error | null;
+    hasNextPage: boolean;
     items: CleanFoodItem[];
+    onLoadMore: () => void;
+    isFetchingNextPage: boolean;
 }
 // TODO refactor SearchResults with fsd create layout for search results and move this component there
 export function FoodSearchResults({
@@ -16,6 +20,9 @@ export function FoodSearchResults({
     query,
     isError,
     isLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    onLoadMore,
 }: FoodSearchResultsProps) {
     if (!query) return null;
 
@@ -52,7 +59,7 @@ export function FoodSearchResults({
         <div className="mt-4 space-y-2">
             {items.map((item) => (
                 <div
-                    key={item.id}
+                    key={`${item.id}-${item.label}-${item.kcal}-${item.protein}-${item.fat}-${item.carbs}`}
                     className="border rounded p-3 flex items-center gap-3 hover:bg-gray-50 transition-colors"
                 >
                     {item.image ? (
@@ -81,6 +88,19 @@ export function FoodSearchResults({
                     </div>
                 </div>
             ))}
+
+            {hasNextPage && (
+                <div className="flex justify-center pt-2">
+                    <Button
+                        variant="primary"
+                        size="sm"
+                        onClick={onLoadMore}
+                        disabled={isFetchingNextPage}
+                    >
+                        {isFetchingNextPage ? "Loading..." : "Load more"}
+                    </Button>
+                </div>
+            )}
         </div>
     );
 }

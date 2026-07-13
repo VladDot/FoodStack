@@ -21,8 +21,11 @@ export async function getRawRecipesFromApi(
         try {
             const body = await response.json();
             if (body.message) detail = body.message;
-        } catch {
-            /* ignore parse error */
+        } catch (parseError) {
+            logger.warn(
+                { status: response.status, parseError },
+                "Failed to parse Edamam error body",
+            );
         }
         throw new ApiError(response.status, `Edamam API error: ${detail}`);
     }
@@ -43,7 +46,8 @@ export async function getRawRecipesFromApi(
     return result.data.hits;
 }
 export const searchEdamamRecipes = unstable_cache(
-    async (query: string) => getRawRecipesFromApi(query),
+    async (params: { query: string; cursor?: string }) =>
+        getRawRecipesFromApi(params.query),
     ["edamam-recipes"],
     { revalidate: 60 * 60 * 24 },
 );
