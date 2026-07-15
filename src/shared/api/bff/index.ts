@@ -1,1 +1,3 @@
-export { createBffHandler } from "./createHandler";
+export { createBffHandler } from "./createEdamamHandler";
+
+export { createOffsetBffHandler } from "./createSpoonacularBffHandler";

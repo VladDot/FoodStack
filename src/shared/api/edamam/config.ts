@@ -1,11 +1,10 @@
-import "server-only";
 import { z } from "zod";
+
+import "server-only";
 
 const edamamConfigSchema = z.object({
     EDAMAM_FOOD_APP_ID: z.string().min(1),
     EDAMAM_FOOD_APP_KEY: z.string().min(1),
-    EDAMAM_RECIPE_APP_ID: z.string().min(1),
-    EDAMAM_RECIPE_APP_KEY: z.string().min(1),
 });
 
 let cachedConfig: z.infer<typeof edamamConfigSchema> | null = null;
@@ -32,11 +31,5 @@ export const edamamConfig = {
     },
     get EDAMAM_FOOD_APP_KEY() {
         return loadAndValidate().EDAMAM_FOOD_APP_KEY;
-    },
-    get EDAMAM_RECIPE_APP_ID() {
-        return loadAndValidate().EDAMAM_RECIPE_APP_ID;
-    },
-    get EDAMAM_RECIPE_APP_KEY() {
-        return loadAndValidate().EDAMAM_RECIPE_APP_KEY;
     },
 };

@@ -1,4 +1,6 @@
-import { createBffHandler } from "@/shared/api/bff/createHandler";
-import { searchEdamamRecipes } from "@/shared/api/edamam";
+import { createOffsetBffHandler } from "@/shared/api/bff";
+import { searchSpoonacularRecipes } from "@/shared/api/spoonacular";
 
-export const GET = createBffHandler(searchEdamamRecipes);
+export const GET = createOffsetBffHandler(({ query, offset }) =>
+    searchSpoonacularRecipes(query, offset),
+);
