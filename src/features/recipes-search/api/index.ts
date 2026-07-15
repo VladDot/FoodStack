@@ -1,12 +1,18 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 
+import { ApiError } from "@/shared/lib";
 import type { CleanRecipeItem } from "@/entities/recipes/model";
 import { mapResponseToCleanRecipeItems } from "@/entities/recipes/model";
-import type { SpoonacularRecipeResponse } from "@/shared/api/spoonacular";
+import type { SpoonacularRecipe } from "@/shared/api/spoonacular/recipes/schemas";
+
+type BffRecipesSearchResponse = {
+    items: SpoonacularRecipe[];
+    nextOffset: number | null;
+};
 
 type RecipesSearchPage = {
     items: CleanRecipeItem[];
-    nextOffset: number | undefined;
+    nextOffset: number | null;
 };
 
 const fetchRecipesSearch = async (
@@ -19,17 +25,17 @@ const fetchRecipesSearch = async (
 
     if (!response.ok) {
         const body = await response.json().catch(() => ({}));
-        throw new Error(body.error || "Failed to search recipes");
+        throw new ApiError(
+            response.status,
+            body.error || "Failed to search recipes",
+        );
     }
 
-    const data: SpoonacularRecipeResponse = await response.json();
+    const data: BffRecipesSearchResponse = await response.json();
 
     return {
-        items: mapResponseToCleanRecipeItems(data.results),
-        nextOffset:
-            offset + data.number >= data.totalResults
-                ? undefined
-                : offset + data.number,
+        items: mapResponseToCleanRecipeItems(data.items),
+        nextOffset: data.nextOffset,
     };
 };
 
@@ -38,7 +44,7 @@ export const useRecipesSearch = (query: string) => {
         queryKey: ["recipes-search", query],
         queryFn: ({ pageParam }) => fetchRecipesSearch(query, pageParam),
         initialPageParam: 0,
-        getNextPageParam: (lastPage) => lastPage.nextOffset,
+        getNextPageParam: (lastPage) => lastPage.nextOffset ?? undefined,
         enabled: query.length >= 2,
         staleTime: 30 * 60 * 1000,
         gcTime: 60 * 60 * 1000,

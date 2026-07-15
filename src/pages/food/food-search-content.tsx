@@ -1,5 +1,5 @@
 import { EndOfListMessage } from "@/shared/ui";
-import { useFlatPages, useQueryError } from "@/shared/lib";
+import { useFlatItems, useQueryError } from "@/shared/lib";
 import { useInfiniteFoodSearch } from "@/features/food-search/api";
 import { FoodSearchResults } from "@/features/food-search/ui/search-results";
 
@@ -14,7 +14,7 @@ export const FoodSearchContent = ({ query }: { query: string }) => {
         isFetchingNextPage,
     } = useInfiniteFoodSearch(query);
 
-    const items = useFlatPages(data);
+    const items = useFlatItems(data);
     const { isFSRError } = useQueryError(error, isError);
 
     return (

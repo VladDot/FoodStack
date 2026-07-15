@@ -1,4 +1,4 @@
-"use client";
+'use client';
 /* eslint-disable @next/next/no-img-element */
 import { Button } from "@/shared/ui/button";
 import type { CleanFoodItem } from "@/entities/product/model/types";
@@ -59,7 +59,7 @@ export function FoodSearchResults({
         <div className="mt-4 space-y-2">
             {items.map((item) => (
                 <div
-                    key={`${item.id}-${item.label}-${item.kcal}-${item.protein}-${item.fat}-${item.carbs}`}
+                    key={item.id}
                     className="border rounded p-3 flex items-center gap-3 hover:bg-gray-50 transition-colors"
                 >
                     {item.image ? (
