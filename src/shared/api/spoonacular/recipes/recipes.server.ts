@@ -14,7 +14,7 @@ export async function getRawRecipesFromApi(
     url.searchParams.set("apiKey", spoonacularConfig.SPOONACULAR_API_KEY);
     url.searchParams.set("query", query);
     url.searchParams.set("offset", String(offset));
-    url.searchParams.set("number", "100");
+    url.searchParams.set("number", "20");
     url.searchParams.set("addRecipeNutrition", "true");
 
     const response = await fetch(url.toString());

@@ -19,3 +19,5 @@ export { ListLink } from "@/shared/ui/list-link";
 export { FormTextInput } from "./form-text-input";
 
 export { ResponseWrapper } from "@/shared/ui/response-wrapper";
+
+export { EndOfListMessage } from "@/shared/ui/end-of-list-message";

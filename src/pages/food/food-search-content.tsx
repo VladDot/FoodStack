@@ -1,6 +1,5 @@
-import { useEffect } from "react";
-
-import { showMessage } from "@/shared/ui/toastify";
+import { EndOfListMessage } from "@/shared/ui";
+import { useFlatPages, useQueryError } from "@/shared/lib";
 import { useInfiniteFoodSearch } from "@/features/food-search/api";
 import { FoodSearchResults } from "@/features/food-search/ui/search-results";
 
@@ -15,33 +14,11 @@ export const FoodSearchContent = ({ query }: { query: string }) => {
         isFetchingNextPage,
     } = useInfiniteFoodSearch(query);
 
-    const items = data?.pages.flatMap((page) => page.items) ?? [];
-    const isLimitExceeded = error?.message === "Request limit exceeded";
-    const isFSRError = isError && !isLimitExceeded;
-
-    useEffect(() => {
-        if (isLimitExceeded) {
-            showMessage.warn("Request limit exceeded. Please try again later.");
-        }
-    }, [isLimitExceeded]);
-
-    useEffect(() => {
-        if (isFSRError) {
-            showMessage.warn(
-                error?.message ||
-                    "Something went wrong while searching for food",
-            );
-        }
-    }, [isFSRError, error]);
+    const items = useFlatPages(data);
+    const { isFSRError } = useQueryError(error, isError);
 
     return (
         <>
-            {items.length > 0 && (
-                <p className="text-xs text-gray-400 mt-2">
-                    Showing {items.length} of {items.length} result
-                    {items.length !== 1 ? "s" : ""}
-                </p>
-            )}
             <FoodSearchResults
                 items={items}
                 query={query}
@@ -52,11 +29,10 @@ export const FoodSearchContent = ({ query }: { query: string }) => {
                 error={isFSRError ? error : null}
                 isFetchingNextPage={isFetchingNextPage}
             />
-            {!hasNextPage && items.length > 0 && (
-                <p className="text-xs text-gray-400 text-center mt-2">
-                    All results loaded
-                </p>
-            )}
+            <EndOfListMessage
+                hasNextPage={!!hasNextPage}
+                totalCount={items.length}
+            />
         </>
     );
 };

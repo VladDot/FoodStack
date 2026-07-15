@@ -14,6 +14,7 @@ export const Logo = ({
     return (
         <Link href={routes.general.home}>
             <Image
+                priority
                 alt="Logo"
                 src={LogoIcon}
                 className={className}

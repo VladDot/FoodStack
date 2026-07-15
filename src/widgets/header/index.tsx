@@ -14,7 +14,7 @@ type HeaderComponent = React.FC<ChildrenProps> & {
 
 export const Header: HeaderComponent = ({ children }: ChildrenProps) => {
     return (
-        <header className="fixed top-0 left-0 w-full text-white bg-linear-to-r from-lime-300 to-emerald-500 z-999">
+        <header className="sticky top-0 left-0 w-full text-white bg-linear-to-r from-lime-300 to-emerald-500 z-999">
             <div className="flex items-center justify-between gap-6 px-2 tablet:px-8">
                 {children}
             </div>
