@@ -1,5 +1,5 @@
-import { EdamamHint } from "@/shared/api/edamam/foods";
 import { roundValue } from "@/shared/utils";
+import { EdamamHint } from "@/shared/api/edamam/foods";
 
 import { CleanFoodItem } from "./types";
 

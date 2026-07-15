@@ -1,29 +1,35 @@
 import { roundValue } from "@/shared/utils";
-import { EdamamRecipeHint } from "@/shared/api/edamam/recipes";
+import { SpoonacularRecipe } from "@/shared/api/spoonacular";
 
 import { CleanRecipeItem } from "./types";
 
 export function mapResponseToCleanRecipeItems(
-    hints: EdamamRecipeHint[],
+    recipes: SpoonacularRecipe[],
 ): CleanRecipeItem[] {
-    if (!hints || hints.length === 0) return [];
+    if (!recipes || recipes.length === 0) return [];
 
-    return hints.map((hint) => {
-        const recipe = hint?.recipe;
-        const nutrients = recipe?.totalNutrients || {};
+    return recipes.map((recipe) => {
+        const nutrients = recipe.nutrition?.nutrients || [];
 
-        const recipeId = recipe?.uri?.split("_recipe_")[1] || "fallback-id";
+        const findNutrient = (name: string): number => {
+            const amount = nutrients.find(
+                (n) => n.name.toLowerCase() === name.toLowerCase(),
+            )?.amount;
+
+            return amount ?? 0;
+        };
 
         return {
-            id: recipeId,
-            image: recipe?.image || "",
-            calories: roundValue(recipe?.calories),
-            title: recipe?.label || "Unknown Recipe",
-            servings: roundValue(recipe?.yield) || 1,
-            fat: roundValue(nutrients.FAT?.quantity),
-            ingredients: recipe?.ingredientLines || [],
-            carbs: roundValue(nutrients.CHOCDF?.quantity),
-            protein: roundValue(nutrients.PROCNT?.quantity),
+            id: String(recipe.id),
+            image: recipe.image || "",
+            fat: roundValue(findNutrient("Fat")),
+            title: recipe.title || "Unknown Recipe",
+            servings: roundValue(recipe.servings) || 1,
+            protein: roundValue(findNutrient("Protein")),
+            calories: roundValue(findNutrient("Calories")),
+            carbs: roundValue(findNutrient("Carbohydrates")),
+            ingredients:
+                recipe.extendedIngredients?.map((ing) => ing.original) || [],
         };
     });
 }

@@ -1,13 +1,17 @@
 "use client";
-
-import { CleanRecipeItem } from "@/entities/recipes/model";
 /* eslint-disable @next/next/no-img-element */
+import { Button } from "@/shared/ui/button";
+import { CleanRecipeItem } from "@/entities/recipes/model";
+
 interface RecipesSearchResultsProps {
     query: string;
     isError: boolean;
     isLoading: boolean;
     error: Error | null;
+    hasNextPage: boolean;
     items: CleanRecipeItem[];
+    onLoadMore: () => void;
+    isFetchingNextPage: boolean;
 }
 // TODO refactor SearchResults with fsd create layout for search results and move this component there
 export function RecipesSearchResults({
@@ -16,6 +20,9 @@ export function RecipesSearchResults({
     query,
     isError,
     isLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    onLoadMore,
 }: RecipesSearchResultsProps) {
     if (!query) return null;
 
@@ -81,6 +88,19 @@ export function RecipesSearchResults({
                     </div>
                 </div>
             ))}
+
+            {hasNextPage && (
+                <div className="flex justify-center pt-2">
+                    <Button
+                        variant="primary"
+                        size="sm"
+                        onClick={onLoadMore}
+                        disabled={isFetchingNextPage}
+                    >
+                        {isFetchingNextPage ? "Loading..." : "Load more"}
+                    </Button>
+                </div>
+            )}
         </div>
     );
 }

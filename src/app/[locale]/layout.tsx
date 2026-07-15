@@ -59,7 +59,7 @@ export default async function RootLayout({
         >
             <body
                 suppressHydrationWarning
-                className={`${roboto.variable} ${robotoCondensed.variable} ${scada.variable}`}
+                className={`${roboto.variable} ${robotoCondensed.variable} ${scada.variable} flex min-h-screen flex-col`}
             >
                 <NextIntlClientProvider
                     locale={locale}

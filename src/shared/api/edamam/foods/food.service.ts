@@ -5,11 +5,29 @@ import { logger, ApiError } from "@/shared/lib";
 import { edamamConfig } from "../config";
 import { EdamamHint, edamamFoodResponseSchema } from "./schemas";
 
-export async function getRawFoodsFromApi(query: string): Promise<EdamamHint[]> {
+function extractSessionToken(
+    href: string | null | undefined,
+): string | undefined {
+    if (!href) return undefined;
+    try {
+        return new URL(href).searchParams.get("session") || undefined;
+    } catch {
+        return undefined;
+    }
+}
+
+export async function getRawFoodsFromApi(
+    query: string,
+    cursor?: string,
+): Promise<{ hints: EdamamHint[]; cursor?: string }> {
     const url = new URL("https://api.edamam.com/api/food-database/v2/parser");
     url.searchParams.set("ingr", query);
     url.searchParams.set("app_id", edamamConfig.EDAMAM_FOOD_APP_ID);
     url.searchParams.set("app_key", edamamConfig.EDAMAM_FOOD_APP_KEY);
+
+    if (cursor) {
+        url.searchParams.set("session", cursor);
+    }
 
     const response = await fetch(url.toString());
 
@@ -18,8 +36,11 @@ export async function getRawFoodsFromApi(query: string): Promise<EdamamHint[]> {
         try {
             const body = await response.json();
             if (body.message) detail = body.message;
-        } catch {
-            /* ignore parse error */
+        } catch (parseError) {
+            logger.warn(
+                { status: response.status, parseError },
+                "Failed to parse Edamam error body",
+            );
         }
         throw new ApiError(response.status, `Edamam API error: ${detail}`);
     }
@@ -38,11 +59,14 @@ export async function getRawFoodsFromApi(query: string): Promise<EdamamHint[]> {
         );
     }
 
-    return result.data.hints;
+    const nextCont = extractSessionToken(result.data._links?.next?.href);
+
+    return { hints: result.data.hints, cursor: nextCont };
 }
 
 export const searchEdamamFoods = unstable_cache(
-    async (query: string) => getRawFoodsFromApi(query),
+    async (params: { query: string; cursor?: string }) =>
+        getRawFoodsFromApi(params.query, params.cursor),
     ["edamam-foods"],
     { revalidate: 60 * 60 * 24 },
 );
