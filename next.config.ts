@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
-
-import next_intl from "next-intl/plugin";
 import { NextConfig } from "next";
+import next_intl from "next-intl/plugin";
 
 const withNextIntl = next_intl("./src/i18n.ts");
 
@@ -43,7 +42,13 @@ const nextConfig: NextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "static.tildacdn.com",
+                hostname: "img.spoonacular.com",
+                port: "",
+                pathname: "/**",
+            },
+            {
+                protocol: "https",
+                hostname: "www.edamam.com",
                 port: "",
                 pathname: "/**",
             },

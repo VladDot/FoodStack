@@ -14,17 +14,16 @@ export const RecipesSearchPage = () => {
     const isQueryTooShort = query.length < 2;
 
     return (
-        <div className="p-4 w-full max-w-2xl mx-auto">
-            <h1 className="text-2xl font-bold mb-4">Recipes Search</h1>
+        <div className="p-4 w-full">
+            <h1 className="text-2xl font-bold mb-4 max-w-2xl mx-auto">
+                Recipes Search
+            </h1>
 
             <RecipesSearchInput
                 value={query}
+                minLength={2}
                 onChange={setQuery}
             />
-
-            <p className="text-xs text-brand-gray mt-1">
-                {isQueryTooShort ? "Type at least 2 characters" : "\u00A0"}
-            </p>
 
             {!isQueryTooShort && (
                 <RecipesSearchContent
