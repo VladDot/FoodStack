@@ -4,11 +4,11 @@ import type { ButtonSize, ButtonVariant } from "./types";
 
 type getStylesProps = {
     asChild?: boolean;
+    size?: ButtonSize;
     className?: string;
     disabled?: boolean;
     isActive?: boolean;
     isLoading?: boolean;
-    size?: ButtonSize;
     variant?: ButtonVariant;
 };
 
@@ -23,27 +23,36 @@ export const getStyles = ({
 }: getStylesProps) => {
     return {
         button: cn(
-            "inline-flex items-center justify-center rounded-md font-medium transition-colors w-full ",
+            "inline-flex items-center justify-center rounded-lg px-5 py-2.5 font-medium transition-colors w-full",
             {
-                "bg-emerald-400  text-black ": variant === "primary",
-                "hover:bg-emerald-500":
+                "bg-brand-green text-white hover:bg-brand-green-hover active:bg-brand-green-active":
                     variant === "primary" && !disabled && !isLoading,
-                "text-black  ": variant === "ghost",
-                "border border-emerald-500 text-black ": variant === "outline",
-                "bg-red-400 hover:bg-red-500": variant === "danger",
+                "bg-brand-green/50 text-white/60 cursor-not-allowed":
+                    variant === "primary" && disabled,
 
-                "opacity-50 cursor-not-allowed": disabled,
+                "bg-brand-orange text-white hover:bg-brand-orange-hover active:bg-brand-orange-active":
+                    variant === "cta" && !disabled && !isLoading,
+                "bg-brand-orange/40 text-white/60 cursor-not-allowed":
+                    variant === "cta" && disabled,
+
+                "bg-white border border-brand-gray text-brand-dark hover:bg-neutral-100 active:bg-neutral-200":
+                    variant === "outline" && !disabled && !isLoading,
+                "bg-white border border-brand-gray/30 text-brand-dark/30 cursor-not-allowed":
+                    variant === "outline" && disabled,
+
+                "bg-red-400 hover:bg-red-500": variant === "danger" && !disabled,
+                "opacity-50 cursor-not-allowed": variant === "danger" && disabled,
+
+                "text-brand-dark": variant === "ghost",
             },
             {
-                "h-8 px-3 text-sm": size === "sm",
-                "h-10 px-4": size === "md",
+                "px-3 py-1.5 text-sm": size === "sm",
+                "px-5 py-2.5": size === "md",
                 "h-10 w-10 p-0 aspect-square": size === "icon",
             },
-
             asChild &&
                 !isActive &&
-                "bg-emerald-100 text-black rounded-t-[30px] hover:bg-emerald-200 data-[state=open]:bg-emerald-200",
-
+                "bg-brand-green/10 rounded-t-[30px] hover:bg-brand-green/20 data-[state=open]:bg-brand-green/20",
             className,
         ),
     };

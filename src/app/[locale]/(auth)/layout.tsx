@@ -5,7 +5,7 @@ export default async function AuthLayout({
 }) {
     return (
         <>
-            <main className="bg-page flex-1 container-app">
+            <main className=" flex-1 ">
                 <div className=" flex justify-center pt-10">{children}</div>
             </main>
         </>

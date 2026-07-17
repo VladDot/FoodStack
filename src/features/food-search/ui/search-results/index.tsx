@@ -32,7 +32,7 @@ export function FoodSearchResults({
                 {Array.from({ length: 3 }).map((_, i) => (
                     <div
                         key={i}
-                        className="border rounded p-3 h-16 animate-pulse bg-gray-100"
+                        className="border rounded p-3 h-16 animate-pulse bg-neutral-100"
                     />
                 ))}
             </div>
@@ -49,7 +49,7 @@ export function FoodSearchResults({
 
     if (query.length >= 2 && items.length === 0) {
         return (
-            <div className="mt-4 text-gray-500 text-sm">
+            <div className="mt-4 text-brand-dark/60 text-sm">
                 No results for &quot;{query}&quot;
             </div>
         );
@@ -60,28 +60,28 @@ export function FoodSearchResults({
             {items.map((item) => (
                 <div
                     key={item.id}
-                    className="border rounded p-3 flex items-center gap-3 hover:bg-gray-50 transition-colors"
+                    className="border rounded p-3 flex items-center gap-3 hover:bg-neutral-50 transition-colors"
                 >
                     {item.image ? (
                         <img
                             src={item.image}
                             alt={item.label}
-                            className="w-12 h-12 rounded object-cover bg-gray-100"
+                            className="w-12 h-12 rounded object-cover bg-neutral-100"
                         />
                     ) : (
-                        <div className="w-12 h-12 rounded bg-gray-100 flex items-center justify-center text-xs text-gray-400">
+                        <div className="w-12 h-12 rounded bg-neutral-100 flex items-center justify-center text-xs text-brand-gray">
                             No img
                         </div>
                     )}
 
                     <div className="flex-1 min-w-0">
                         <p className="font-medium truncate">{item.label}</p>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-brand-dark/60">
                             {item.kcal} kcal
                         </p>
                     </div>
 
-                    <div className="text-xs text-gray-400 text-right shrink-0">
+                    <div className="text-xs text-brand-gray text-right shrink-0">
                         <p>P {item.protein}g</p>
                         <p>F {item.fat}g</p>
                         <p>C {item.carbs}g</p>

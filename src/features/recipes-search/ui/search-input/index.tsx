@@ -1,18 +1,18 @@
 "use client";
 
-import { TextInput } from "@/shared/ui/input/text-input";
+import { SearchInput } from "@/shared/ui/input/search-input";
 
 interface RecipesSearchInputProps {
     value: string;
     onChange: (value: string) => void;
 }
-//TODO refactor SearchInput with fsd
+
 export function RecipesSearchInput({
     value,
     onChange,
 }: RecipesSearchInputProps) {
     return (
-        <TextInput
+        <SearchInput
             value={value}
             placeholder="Search Recipes..."
             onChange={(e) => onChange(e.target.value)}

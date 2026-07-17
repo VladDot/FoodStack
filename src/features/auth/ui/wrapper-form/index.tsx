@@ -8,6 +8,7 @@ import { routes } from "@/shared/constants";
 
 export const WrapperForm = ({ children }: { children: React.ReactNode }) => {
     const pathname = usePathname();
+    const locale = pathname?.split("/")[1];
 
     return (
         <div className=" flex flex-col w-full max-w-[600px] p-2 md:p-6">
@@ -15,14 +16,14 @@ export const WrapperForm = ({ children }: { children: React.ReactNode }) => {
                 <Button
                     asChild
                     variant="ghost"
-                    isActive={pathname === routes.auth.signIn}
+                    isActive={pathname === `/${locale}${routes.auth.signIn}`}
                 >
                     <Link href={routes.auth.signIn}>Login</Link>
                 </Button>
                 <Button
                     asChild
                     variant="ghost"
-                    isActive={pathname === routes.auth.signUp}
+                    isActive={pathname === `/${locale}${routes.auth.signUp}`}
                 >
                     <Link href={routes.auth.signUp}>Register</Link>
                 </Button>

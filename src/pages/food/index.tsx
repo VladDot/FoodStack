@@ -22,7 +22,7 @@ export const FoodSearchPage = () => {
                 onChange={setQuery}
             />
 
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-xs text-brand-gray mt-1">
                 {isQueryTooShort ? "Type at least 2 characters" : "\u00A0"}
             </p>
 

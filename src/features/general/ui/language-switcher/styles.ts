@@ -8,9 +8,9 @@ interface IGetStyles {
 
 export const getStyles = ({ activeLanguage }: IGetStyles) => ({
     wrapper:
-        "group relative rounded-full h-6 flex gap-3 justify-between items-center p-[6px]  border-1 border-solid border-gray-300 cursor-pointer ",
+        "group relative rounded-full h-6 flex gap-3 justify-between items-center p-[6px]  border-1 border-solid border-brand-gray cursor-pointer ",
 
-    span: "group-hover:text-rose-500 transition-text duration-300 easy-in-out",
+    span: "group-hover:text-brand-orange transition-text duration-300 easy-in-out",
 
     iconWrapper: `absolute top-1/2 left-[2px] -translate-y-1/2 flex justify-between items-center `,
 

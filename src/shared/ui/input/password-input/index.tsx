@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
 import { TextInput } from "../text-input";
 
@@ -13,13 +14,15 @@ export const PasswordInput = React.forwardRef<
                 {...props}
                 ref={ref}
                 type={show ? "text" : "password"}
+                className="pr-10"
             />
             <button
                 type="button"
                 onClick={() => setShow((prev) => !prev)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-gray hover:text-brand-dark transition-colors"
+                tabIndex={-1}
             >
-                {show ? "Hide" : "Show"}
+                {show ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
             </button>
         </div>
     );

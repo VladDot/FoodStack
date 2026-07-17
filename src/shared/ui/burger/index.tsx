@@ -38,7 +38,7 @@ export const Burger = () => {
                     ref={ref}
                 >
                     <div className="h-full mt-16">
-                        <div className="flex h-full border border-t-2 border-gray-300 align-center ">
+                        <div className="flex h-full border border-t-2 border-brand-gray/30 align-center ">
                             <Navigation
                                 burger={true}
                                 isOpen={isOpen}
