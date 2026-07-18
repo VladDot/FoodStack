@@ -12,13 +12,23 @@
     --font-roboto-condensed: var(--font-robotoCondensed), sans-serif;
 
     --shadow-switcher: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
+    --color-main-bg: #f8faf9;
+    --color-brand-green: #4ade80;
+    --color-brand-orange: #fb923c;
+    --color-brand-dark: #1f2937;
+    --color-brand-gray: #a1a1aa;
+    --color-brand-teal: #00cc96;
+    --color-brand-forest: #2b3a31;
+    --color-brand-green-hover: #86efac;
+    --color-brand-green-active: #16a34a;
+    --color-brand-orange-hover: #fdba74;
+    --color-brand-orange-active: #ea580c;
 
     --background-gradient: radial-gradient(
         ellipse at center,
-        #ffffff 0%,
-        #ecfdf5 72%,
-        #d1fae5 85%,
-        #ecfdf5 100%
+        #ecfdf5 0%,
+        #ecfdf5 42%,
+        #d1fae5 100%
     );
 
     --animate-fade-in: fade-in 300ms ease-out forwards;
@@ -92,28 +102,22 @@
 }
 
 body {
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(
-            to bottom,
-            transparent,
-            rgb(var(--background-end-rgb))
-        )
-        rgb(var(--background-start-rgb));
+    @apply bg-main-bg text-brand-dark font-sans antialiased;
 }
 
 .container-app {
-    @apply w-full px-2 mt-16 py-4;
+    @apply w-full px-2;
 }
 
 @media (min-width: 768px) {
     .container-app {
-        @apply px-6 mt-22 p-6;
+        @apply px-6;
     }
 }
 
 @media (min-width: 1024px) {
     .container-app {
-        @apply p-8;
+        @apply px-8;
     }
 }
 

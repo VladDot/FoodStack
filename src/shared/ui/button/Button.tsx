@@ -1,7 +1,6 @@
 import React from "react";
 
-import { cn } from "@/shared/utils";
-import { Loader } from "@/shared/assets/icons";
+import { Loader } from "lucide-react";
 
 import { getStyles } from "./styles";
 import { ButtonProps } from "./types";
@@ -17,32 +16,19 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             rightIcon,
             isLoading,
             size = "md",
-            asChild = false,
             variant = "primary",
             ...props
         },
         ref,
     ) => {
         const styles = getStyles({
-            isActive,
-            variant,
             size,
-            asChild,
-            className,
+            variant,
+            isActive,
             disabled,
+            className,
             isLoading,
         });
-
-        if (asChild && children) {
-            const child = React.Children.only(children) as React.ReactElement<{
-                className?: string;
-            }>;
-
-            return React.cloneElement(child, {
-                className: cn(styles.button, child.props.className, className),
-                ...props,
-            });
-        }
 
         return (
             <button

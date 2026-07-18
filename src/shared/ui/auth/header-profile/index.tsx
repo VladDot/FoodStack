@@ -17,7 +17,7 @@ export const HeaderProfile = ({}) => {
     return (
         <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-amber-700" />
+                <div className="w-8 h-8 rounded-full bg-brand-orange" />
                 <span className="text-sm font-medium hidden laptop:block">
                     {session?.user?.email}
                 </span>

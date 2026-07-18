@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { buildLocalPath } from "@/shared/utils";
 
@@ -21,14 +24,17 @@ export const ListLink = ({
     isOpen,
     setIsOpen,
 }: IListLink) => {
-    const { link } = getStyles({ burger, isOpen });
+    const pathname = usePathname();
+    const localHref = buildLocalPath(locale, href);
+    const isActive = pathname === localHref;
+    const { link } = getStyles({ burger, isOpen, isActive });
 
     return (
         <li>
             <Link
                 className={link}
                 onClick={() => setIsOpen?.(false)}
-                href={buildLocalPath(locale, href)}
+                href={localHref}
             >
                 {label}
             </Link>

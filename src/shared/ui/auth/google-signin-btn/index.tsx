@@ -10,7 +10,7 @@ export const GoogleSigninBtn = () => {
         <button
             type="button"
             onClick={() => signIn("google", { redirectTo: `/${locale}/` })}
-            className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-md py-2 text-gray-700 font-medium hover:bg-gray-50 transition"
+            className="w-full flex items-center justify-center gap-3 border border-brand-gray rounded-md py-2 text-brand-dark font-medium hover:bg-neutral-50 transition"
         >
             {/* SVG іконка Google */}
             <svg

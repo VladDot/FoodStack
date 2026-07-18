@@ -1,20 +1,24 @@
 "use client";
 
-import { TextInput } from "@/shared/ui/input/text-input";
+import { SearchInput } from "@/shared/ui/input";
 
 interface RecipesSearchInputProps {
     value: string;
+    minLength?: number;
     onChange: (value: string) => void;
 }
-//TODO refactor SearchInput with fsd
+
 export function RecipesSearchInput({
     value,
     onChange,
+    minLength,
 }: RecipesSearchInputProps) {
     return (
-        <TextInput
+        <SearchInput
             value={value}
+            minLength={minLength}
             placeholder="Search Recipes..."
+            containerClassName="max-w-2xl mx-auto"
             onChange={(e) => onChange(e.target.value)}
         />
     );

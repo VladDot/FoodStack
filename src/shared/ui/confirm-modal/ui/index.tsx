@@ -29,7 +29,7 @@ export const ConfirmModal: TConfirmModal = ({
             <div className="flex items-center justify-center min-h-screen ">
                 <div
                     ref={modalRef}
-                    className="w-100 bg-green-50 -translate-y-16  flex flex-col gap-8 p-8 shadow-green-200 shadow-md border border-green-100 rounded-md"
+                    className="w-100 bg-brand-bg -translate-y-16  flex flex-col gap-8 p-8 shadow-md border border-brand-green/20 rounded-md"
                 >
                     {children}
                 </div>
