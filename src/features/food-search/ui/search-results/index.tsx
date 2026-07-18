@@ -37,13 +37,8 @@ export function FoodSearchResults({
         >
             {items.map((item) => (
                 <PreviewCard
+                    item={item}
                     key={item.id}
-                    fat={item.fat}
-                    image={item.image}
-                    title={item.label}
-                    carbs={item.carbs}
-                    calories={item.kcal}
-                    protein={item.protein}
                 />
             ))}
         </SearchResults>

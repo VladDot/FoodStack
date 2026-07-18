@@ -3,7 +3,6 @@ import { cn } from "@/shared/utils";
 import type { ButtonSize, ButtonVariant } from "./types";
 
 type getStylesProps = {
-    asChild?: boolean;
     size?: ButtonSize;
     className?: string;
     disabled?: boolean;
@@ -16,7 +15,6 @@ export const getStyles = ({
     isActive,
     disabled,
     isLoading,
-    asChild,
     className,
     size = "md",
     variant = "primary",
@@ -40,8 +38,10 @@ export const getStyles = ({
                 "bg-white border border-brand-gray/30 text-brand-dark/30 cursor-not-allowed":
                     variant === "outline" && disabled,
 
-                "bg-red-400 hover:bg-red-500": variant === "danger" && !disabled,
-                "opacity-50 cursor-not-allowed": variant === "danger" && disabled,
+                "bg-red-400 hover:bg-red-500":
+                    variant === "danger" && !disabled,
+                "opacity-50 cursor-not-allowed":
+                    variant === "danger" && disabled,
 
                 "text-brand-dark": variant === "ghost",
             },
@@ -50,8 +50,8 @@ export const getStyles = ({
                 "px-5 py-2.5": size === "md",
                 "h-10 w-10 p-0 aspect-square": size === "icon",
             },
-            asChild &&
-                !isActive &&
+            !isActive &&
+                variant === "ghost" &&
                 "bg-brand-green/10 rounded-t-[30px] hover:bg-brand-green/20 data-[state=open]:bg-brand-green/20",
             className,
         ),

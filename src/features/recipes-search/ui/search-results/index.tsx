@@ -38,12 +38,7 @@ export function RecipesSearchResults({
             {items.map((item) => (
                 <PreviewCard
                     key={item.id}
-                    fat={item.fat}
-                    image={item.image}
-                    title={item.title}
-                    carbs={item.carbs}
-                    protein={item.protein}
-                    calories={item.calories}
+                    item={item}
                 />
             ))}
         </SearchResults>

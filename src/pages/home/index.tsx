@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
-import { Button } from "@/shared/ui/button";
+import { Button } from "@/shared/ui";
 
 import { Banner } from "../../shared/ui/banner";
 

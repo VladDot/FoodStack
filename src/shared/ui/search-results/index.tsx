@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
 
-import { Button } from "@/shared/ui/button";
 import { SkeletonCard } from "@/shared/ui/skeleton-card";
+
+import { Button } from "../button";
 
 interface SearchResultsProps {
     query: string;

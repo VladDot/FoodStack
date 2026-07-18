@@ -16,10 +16,10 @@ export function mapResponseToCleanFoodItems(
             id: food.foodId || food.label,
             image: food.image || undefined,
             fat: roundValue(nutrients.FAT),
-            label: food.label || "Unknown Food",
+            title: food.label || "Unknown Food",
             carbs: roundValue(nutrients.CHOCDF),
             protein: roundValue(nutrients.PROCNT),
-            kcal: roundValue(nutrients.ENERC_KCAL),
+            calories: roundValue(nutrients.ENERC_KCAL),
         };
     });
 }
