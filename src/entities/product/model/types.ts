@@ -7,3 +7,9 @@ export type CleanFoodItem = {
     protein: number;
     calories: number;
 };
+export type CleanDetailedFoodItem = CleanFoodItem & {
+    brand?: string;
+    fiber?: number;
+    category?: string;
+    ingredients?: string;
+};

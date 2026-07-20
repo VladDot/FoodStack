@@ -11,8 +11,7 @@ type RecipeCardProps = {
 export const PreviewCard = ({
     item: { image, title, calories, protein, fat, carbs, id },
 }: RecipeCardProps) => (
-
-<div className="bg-white p-2 rounded-2xl overflow-hidden border border-neutral-100 shadow-sm transition-all duration-300 ease-in-out hover:shadow-xl shadow-brand-gray hover:scale-110 flex flex-col">
+    <div className="bg-white p-2 rounded-2xl overflow-hidden border border-neutral-100 shadow-sm transition-all duration-300 ease-in-out hover:shadow-xl shadow-brand-gray hover:scale-110 flex flex-col">
         {image ? (
             <Image
                 src={image}
@@ -44,11 +43,14 @@ export const PreviewCard = ({
                     Carbohydrates: {carbs}g
                 </span>
             </div>
-                <LinkButton variant="outline" href={`/recipes/${id}`}>
-                    <div className="flex justify-between gap-6 w-full items-center">
-                        <span>Переглянути деталі</span>
-                    </div>
-                </LinkButton>
+            <LinkButton
+                variant="outline"
+                href={`/foods-search/${id}`}
+            >
+                <div className="flex justify-between gap-6 w-full items-center">
+                    <span>Переглянути деталі</span>
+                </div>
+            </LinkButton>
         </div>
     </div>
 );

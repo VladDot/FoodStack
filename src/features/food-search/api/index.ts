@@ -1,15 +1,9 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-import type { EdamamHint } from "@/shared/api/edamam/foods";
 import { ApiError, getCursorNextPageParam } from "@/shared/lib";
 import type { CleanFoodItem } from "@/entities/product/model/types";
-import { mapResponseToCleanFoodItems } from "@/entities/product/model/product.mapper";
 
 type FoodSearchResponse = {
-    cursor?: string;
-    hints: EdamamHint[];
-};
-type FoodSearchPage = {
     cursor?: string;
     items: CleanFoodItem[];
 };
@@ -17,7 +11,7 @@ type FoodSearchPage = {
 const fetchFoodSearch = async (
     query: string,
     cursor?: string,
-): Promise<FoodSearchPage> => {
+): Promise<FoodSearchResponse> => {
     const params = new URLSearchParams({ query });
     if (cursor) params.set("cursor", cursor);
 
@@ -31,11 +25,7 @@ const fetchFoodSearch = async (
         );
     }
 
-    const data: FoodSearchResponse = await response.json();
-    return {
-        items: mapResponseToCleanFoodItems(data.hints),
-        cursor: data.cursor,
-    };
+    return response.json();
 };
 
 export const useInfiniteFoodSearch = (query: string) => {

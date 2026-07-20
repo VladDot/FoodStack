@@ -2,7 +2,7 @@ import { unstable_cache } from "next/cache";
 
 import { logger, ApiError } from "@/shared/lib";
 
-import { edamamConfig } from "../config";
+import { edamamConfig } from "./config";
 import { EdamamHint, edamamFoodResponseSchema } from "./schemas";
 
 function extractSessionToken(
@@ -64,7 +64,7 @@ export async function getRawFoodsFromApi(
     return { hints: result.data.hints, cursor: nextCont };
 }
 
-export const searchEdamamFoods = unstable_cache(
+export const getSearchEdamamFoods = unstable_cache(
     async (params: { query: string; cursor?: string }) =>
         getRawFoodsFromApi(params.query, params.cursor),
     ["edamam-foods"],
