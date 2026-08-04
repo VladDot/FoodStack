@@ -5,3 +5,5 @@ export { Info } from "./info";
 export { RecipesSearchPage } from "./recipes";
 
 export { FoodSearchPage } from "./food";
+
+export { FoodDetailPage } from "./food-detail";

@@ -3,7 +3,7 @@ import { unstable_cache } from "next/cache";
 import { logger, ApiError } from "@/shared/lib";
 
 import { edamamConfig } from "./config";
-import { EdamamDetailedFood, edamamDetailedFoodSchema } from "./schemas";
+import { EdamamDetailedFood, edamamDetailSchema } from "./schemas";
 
 export async function getFoodByIdFromApi(
     foodId: string,
@@ -45,16 +45,8 @@ export async function getFoodByIdFromApi(
     }
 
     const data = await response.json();
-    const foodData = data?.ingredients?.[0]?.parsed?.[0].food;
 
-    if (!foodData) {
-        logger.error(
-            { foodId },
-            "Food data is missing in Edamam nutrients response",
-        );
-        return null;
-    }
-    const result = edamamDetailedFoodSchema.safeParse(foodData);
+    const result = edamamDetailSchema.safeParse(data);
 
     if (!result.success) {
         logger.error(

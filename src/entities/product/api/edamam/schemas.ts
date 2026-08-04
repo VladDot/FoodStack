@@ -3,11 +3,7 @@ import { z } from "zod";
 export type EdamamNutrients = z.infer<typeof edamamNutrientsSchema>;
 export type EdamamFood = z.infer<typeof edamamFoodSchema>;
 export type EdamamHint = z.infer<typeof edamamHintSchema>;
-export type EdamamDetailedNutrients = z.infer<
-    typeof edamamDetailedNutrientsSchema
->;
-export type EdamamDetailedFood = z.infer<typeof edamamDetailedFoodSchema>;
-export type EdamamDetailedHint = z.infer<typeof edamamDetailedHintSchema>;
+export type EdamamDetailedFood = z.infer<typeof edamamDetailSchema>;
 
 export const edamamNutrientsSchema = z.object({
     FAT: z.number().nullish(),
@@ -42,18 +38,45 @@ export const edamamFoodResponseSchema = z.object({
     _links: edamamLinksSchema,
 });
 
-export const edamamDetailedNutrientsSchema = edamamNutrientsSchema.extend({
-    FIBTG: z.number().nullish(),
-});
-
-export const edamamDetailedFoodSchema = edamamFoodSchema.extend({
-    brand: z.string().nullish(),
-    category: z.string().nullish(),
-    categoryLabel: z.string().nullish(),
-    foodContentsLabel: z.string().nullish(),
-    nutrients: edamamDetailedNutrientsSchema.nullish(),
-});
-
-export const edamamDetailedHintSchema = z.object({
-    food: edamamDetailedFoodSchema,
+export const edamamDetailSchema = z.object({
+    uri: z.string(),
+    calories: z.number(),
+    totalWeight: z.number(),
+    dietLabels: z.array(z.string()),
+    healthLabels: z.array(z.string()),
+    cautions: z.array(z.string()),
+    totalNutrients: z.record(
+        z.string(),
+        z.object({
+            label: z.string(),
+            quantity: z.number(),
+            unit: z.string(),
+        }),
+    ),
+    totalDaily: z.record(
+        z.string(),
+        z.object({
+            label: z.string(),
+            quantity: z.number(),
+            unit: z.string(),
+        }),
+    ),
+    ingredients: z.array(
+        z.object({
+            parsed: z
+                .array(
+                    z.object({
+                        quantity: z.number(),
+                        measure: z.string(),
+                        food: z.string(),
+                        foodId: z.string(),
+                        weight: z.number(),
+                        retainedWeight: z.number(),
+                        measureURI: z.string(),
+                        status: z.string(),
+                    }),
+                )
+                .optional(),
+        }),
+    ),
 });

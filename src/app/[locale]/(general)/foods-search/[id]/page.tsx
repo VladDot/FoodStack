@@ -1,13 +1,19 @@
+import { FoodDetailPage } from "@/pages/food-detail";
+
 export default async function ProductPage({
     params,
+    searchParams,
 }: {
     params: Promise<{ id: string }>;
+    searchParams: Promise<{ image?: string }>;
 }) {
     const { id } = await params;
+    const { image } = await searchParams;
 
     return (
-        <div className="p-6">
-            <h1>Деталі продукту {id}</h1>
-        </div>
+        <FoodDetailPage
+            id={id}
+            image={image}
+        />
     );
 }

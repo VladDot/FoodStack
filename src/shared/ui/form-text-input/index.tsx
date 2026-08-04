@@ -1,5 +1,6 @@
-import { useController, RegisterOptions } from "react-hook-form";
-import { Path, FieldValues, useFormContext } from "react-hook-form";
+'use client';
+
+import { Path, FieldValues, useController, useFormContext, RegisterOptions } from "react-hook-form";
 
 import { TextInput, InputWrapper } from "@/shared/ui/input";
 
@@ -33,14 +34,14 @@ export const FormTextInput = <T extends FieldValues>({
     return (
         <InputWrapper
             label={label}
-            error={error?.message}
             required={isRequired}
+            error={error?.message}
         >
             <Component
                 {...field}
                 {...props}
-                value={field.value ?? ""}
                 invalid={!!error}
+                value={field.value ?? ""}
             />
         </InputWrapper>
     );
