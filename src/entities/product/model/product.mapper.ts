@@ -1,7 +1,7 @@
 import { roundValue } from "@/shared/utils";
-import { EdamamHint } from "@/shared/api/edamam/foods";
 
 import { CleanFoodItem } from "./types";
+import { EdamamHint } from "../api/edamam/schemas";
 
 export function mapResponseToCleanFoodItems(
     hints: EdamamHint[],

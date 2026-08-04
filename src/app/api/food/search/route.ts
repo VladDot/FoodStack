@@ -1,4 +1,4 @@
-import { searchEdamamFoods } from "@/shared/api/edamam";
-import { createBffHandler } from "@/shared/api/bff/createEdamamHandler";
+import { createBffHandler } from "@/shared/api/bff";
+import { searchEdamamFoods } from "@/entities/product/api/searchEdamamFoods";
 
 export const GET = createBffHandler(searchEdamamFoods);

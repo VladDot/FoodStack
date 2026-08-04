@@ -1,0 +1,55 @@
+import { NutrientGroupId } from "./types";
+
+export const NUTRIENT_GROUP_ORDER: NutrientGroupId[] = [
+    "macros",
+    "fats",
+    "vitamins",
+    "minerals",
+    "other",
+];
+
+export const NUTRIENT_GROUP_TITLES: Record<NutrientGroupId, string> = {
+    macros: "Energy & Macros",
+    fats: "Fats",
+    vitamins: "Vitamins",
+    minerals: "Minerals",
+    other: "Other",
+};
+
+export const NUTRIENT_KEY_GROUPS: Record<string, NutrientGroupId> = {
+    ENERC_KCAL: "macros",
+    PROCNT: "macros",
+    CHOCDF: "macros",
+    "CHOCDF.net": "macros",
+    FIBTG: "macros",
+    SUGAR: "macros",
+    "SUGAR.added": "macros",
+    "Sugar.alcohol": "macros",
+    FAT: "fats",
+    FASAT: "fats",
+    FATRN: "fats",
+    FAMS: "fats",
+    FAPU: "fats",
+    CHOLE: "fats",
+    VITA_RAE: "vitamins",
+    VITC: "vitamins",
+    THIA: "vitamins",
+    RIBF: "vitamins",
+    NIA: "vitamins",
+    VITB6A: "vitamins",
+    FOLDFE: "vitamins",
+    FOLFD: "vitamins",
+    FOLAC: "vitamins",
+    VITB12: "vitamins",
+    VITD: "vitamins",
+    TOCPHA: "vitamins",
+    VITK1: "vitamins",
+    CA: "minerals",
+    MG: "minerals",
+    K: "minerals",
+    FE: "minerals",
+    ZN: "minerals",
+    P: "minerals",
+    NA: "minerals",
+    WATER: "other",
+};

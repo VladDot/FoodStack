@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { PreviewCard, SearchResults } from "@/shared/ui";
 import type { CleanFoodItem } from "@/entities/product/model/types";
@@ -24,6 +24,7 @@ export function FoodSearchResults({
     hasNextPage,
     isFetchingNextPage,
 }: FoodSearchResultsProps) {
+
     return (
         <SearchResults
             query={query}
