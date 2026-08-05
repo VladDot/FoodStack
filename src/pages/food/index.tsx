@@ -1,15 +1,12 @@
 "use client";
 
-import { useState } from "react";
-
-import { useDebounce } from "@/shared/hooks/use-debounce";
+import { useUrlSearchQuery } from "@/shared/hooks";
 
 import { FoodSearchContent } from "./food-search-content";
 import { FoodSearchInput } from "../../features/food-search/ui/search-input";
 
 export const FoodSearchPage = () => {
-    const [query, setQuery] = useState("");
-    const debouncedQuery = useDebounce(query, 400);
+    const { query, setQuery, debouncedQuery } = useUrlSearchQuery();
 
     const isQueryTooShort = query.length < 2;
 

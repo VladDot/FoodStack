@@ -1,15 +1,12 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-
-import { useDebounce } from "@/shared/hooks";
+import { useUrlSearchQuery } from "@/shared/hooks";
 import { RecipesSearchInput } from "@/features/recipes-search/ui/search-input";
 
 import { RecipesSearchContent } from "./recipes-search-content";
 
 export const RecipesSearchPage = () => {
-    const [query, setQuery] = useState("");
-    const debouncedQuery = useDebounce(query, 600);
+    const { query, setQuery, debouncedQuery } = useUrlSearchQuery();
 
     const isQueryTooShort = query.length < 2;
 

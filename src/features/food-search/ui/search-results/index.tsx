@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { PreviewCard, SearchResults } from "@/shared/ui";
 import type { CleanFoodItem } from "@/entities/product/model/types";
@@ -14,7 +14,7 @@ interface FoodSearchResultsProps {
     isFetchingNextPage: boolean;
 }
 
-export function FoodSearchResults({
+export const FoodSearchResults = ({
     items,
     error,
     query,
@@ -23,8 +23,7 @@ export function FoodSearchResults({
     onLoadMore,
     hasNextPage,
     isFetchingNextPage,
-}: FoodSearchResultsProps) {
-
+}: FoodSearchResultsProps) => {
     return (
         <SearchResults
             query={query}
@@ -40,8 +39,9 @@ export function FoodSearchResults({
                 <PreviewCard
                     item={item}
                     key={item.id}
+                    detailsQuery={query}
                 />
             ))}
         </SearchResults>
     );
-}
+};

@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 
+import { BackButton } from "@/shared/ui";
+
 import { FoodDetail } from "@/entities/product/ui/food-detail";
 import { getProductById } from "@/entities/product/api/edamam/food-by-id.service";
 import { mapResponseToCleanFoodItemsDetail } from "@/entities/product/model/product-detailed.mapper";
@@ -24,6 +26,7 @@ export const FoodDetailPage = async ({ id, image }: IFoodDetailPage) => {
 
     return (
         <main className="max-w-4xl mx-auto px-4 py-8">
+            <BackButton />
             <FoodDetail food={food} />
         </main>
     );

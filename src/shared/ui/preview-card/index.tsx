@@ -11,11 +11,17 @@ type RecipeCardProps = {
         fiber?: number;
         healthLabels?: string[];
     };
+    detailsQuery?: string;
 };
 
 export const PreviewCard = ({
     item: { id, fat, image, title, carbs, fiber, protein, calories },
+    detailsQuery,
 }: RecipeCardProps) => {
+    const params = new URLSearchParams();
+    if (detailsQuery) params.set("query", detailsQuery);
+    if (image) params.set("image", image);
+    const queryString = params.toString();
     return (
         <div className="bg-white p-2 rounded-2xl overflow-hidden border border-neutral-100 shadow-sm transition-all duration-300 ease-in-out hover:shadow-xl shadow-brand-gray hover:scale-110 flex flex-col">
             {image ? (
@@ -46,7 +52,7 @@ export const PreviewCard = ({
                 />
                 <LinkButton
                     variant="outline"
-                    href={`/foods-search/${id}${image ? `?image=${encodeURIComponent(image)}` : ""}`}
+                    href={`/foods-search/${id}${queryString ? `?${queryString}` : ""}`}
                 >
                     View Details
                 </LinkButton>
