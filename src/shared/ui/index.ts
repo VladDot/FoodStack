@@ -28,9 +28,13 @@ export { Overlay } from "@/shared/ui/overlay";
 
 export { Portal } from "@/shared/ui/portal";
 
+export { BackButton } from "@/shared/ui/back-button";
+
 export { PreviewCard } from "@/shared/ui/preview-card";
 
 export { ResponseWrapper } from "@/shared/ui/response-wrapper";
+
+export { ScrollToTop } from "@/shared/ui/scroll-to-top";
 
 export { SearchResults } from "@/shared/ui/search-results";
 

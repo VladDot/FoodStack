@@ -1,7 +1,13 @@
+import { Suspense } from "react";
+
 import { FoodSearchPage } from "@/pages";
 
 function FoodsSearch() {
-    return <FoodSearchPage />;
+    return (
+        <Suspense fallback={null}>
+            <FoodSearchPage />
+        </Suspense>
+    );
 }
 
 export default FoodsSearch;

@@ -5,7 +5,7 @@ export default async function ProductPage({
     searchParams,
 }: {
     params: Promise<{ id: string }>;
-    searchParams: Promise<{ image?: string }>;
+    searchParams: Promise<{ image?: string; query?: string }>;
 }) {
     const { id } = await params;
     const { image } = await searchParams;

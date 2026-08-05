@@ -14,7 +14,7 @@ interface RecipesSearchResultsProps {
     isFetchingNextPage: boolean;
 }
 
-export function RecipesSearchResults({
+export const RecipesSearchResults = ({
     items,
     error,
     query,
@@ -23,7 +23,7 @@ export function RecipesSearchResults({
     onLoadMore,
     hasNextPage,
     isFetchingNextPage,
-}: RecipesSearchResultsProps) {
+}: RecipesSearchResultsProps) => {
     return (
         <SearchResults
             query={query}
@@ -39,8 +39,9 @@ export function RecipesSearchResults({
                 <PreviewCard
                     key={item.id}
                     item={item}
+                    detailsQuery={query}
                 />
             ))}
         </SearchResults>
     );
-}
+};
