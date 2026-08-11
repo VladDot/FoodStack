@@ -1,12 +1,12 @@
-import Image from "next/image";
-
 import { CleanFoodItem } from "@/entities/food/model";
 
 import { LinkButton } from "../button";
 import { MacroCards } from "../macro-cards";
+import { SkeletonImage } from "../skeleton-image";
 import { ImagePlaceholder } from "../image-placeholder";
 
 type RecipeCardProps = {
+    href?: string;
     detailsQuery?: string;
     item: CleanFoodItem & {
         fiber?: number;
@@ -17,6 +17,7 @@ type RecipeCardProps = {
 export const PreviewCard = ({
     item: { id, fat, image, title, carbs, fiber, protein, calories },
     detailsQuery,
+    href = `/foods-search/${id}`,
 }: RecipeCardProps) => {
     const params = new URLSearchParams();
     if (detailsQuery) params.set("query", detailsQuery);
@@ -25,12 +26,12 @@ export const PreviewCard = ({
     return (
         <div className="bg-white p-2 rounded-2xl overflow-hidden border border-neutral-100 shadow-sm transition-all duration-300 ease-in-out hover:shadow-xl shadow-brand-gray hover:scale-110 flex flex-col">
             {image ? (
-                <Image
+                <SkeletonImage
                     src={image}
                     alt={title}
                     width={500}
                     height={400}
-                    className="w-full aspect-4/3 object-cover bg-neutral-100 rounded-2xl"
+                    className="w-full aspect-4/3 rounded-2xl bg-neutral-100"
                 />
             ) : (
                 <div className="w-full aspect-4/3  flex items-center justify-center ">
@@ -52,7 +53,7 @@ export const PreviewCard = ({
                 />
                 <LinkButton
                     variant="outline"
-                    href={`/foods-search/${id}${queryString ? `?${queryString}` : ""}`}
+                    href={`${href}${queryString ? `?${queryString}` : ""}`}
                 >
                     View Details
                 </LinkButton>

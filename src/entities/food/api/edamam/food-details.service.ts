@@ -31,6 +31,8 @@ export async function fetchFoodByIdFromEdamam(
         }),
     });
     if (!response.ok) {
+        if (response.status === 404) return null;
+
         let detail = `HTTP ${response.status}`;
         try {
             const body = await response.json();

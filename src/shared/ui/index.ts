@@ -36,6 +36,8 @@ export { ResponseWrapper } from "@/shared/ui/response-wrapper";
 
 export { ScrollToTop } from "@/shared/ui/scroll-to-top";
 
+export { SkeletonImage } from "@/shared/ui/skeleton-image";
+
 export { SearchResults } from "@/shared/ui/search-results";
 
 export { SkeletonCard } from "@/shared/ui/skeleton-card";

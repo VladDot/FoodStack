@@ -1,7 +1,10 @@
-import Image from "next/image";
-
 import { titleNormalizeName } from "@/shared/utils";
-import { HealthLabels, CaloriesDisplay, ImagePlaceholder } from "@/shared/ui";
+import {
+    HealthLabels,
+    SkeletonImage,
+    CaloriesDisplay,
+    ImagePlaceholder,
+} from "@/shared/ui";
 
 import { CleanFoodDetailItem } from "../../model/types";
 
@@ -14,12 +17,12 @@ export const FoodHeader = ({ food }: FoodHeaderProps) => {
         <div className="flex flex-col sm:flex-row gap-5 mb-6">
             <div className="shrink-0">
                 {food.image ? (
-                    <Image
+                    <SkeletonImage
                         width={160}
                         height={160}
                         src={food.image}
                         alt={food.title}
-                        className="w-40 h-40 object-cover rounded-2xl shadow-sm"
+                        className="w-40 h-40 rounded-2xl shadow-sm"
                     />
                 ) : (
                     <ImagePlaceholder />

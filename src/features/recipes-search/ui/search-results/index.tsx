@@ -40,6 +40,7 @@ export const RecipesSearchResults = ({
                     item={item}
                     key={item.id}
                     detailsQuery={query}
+                    href={`/recipes/${item.id}`}
                 />
             ))}
         </SearchResults>
