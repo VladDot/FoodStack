@@ -2,14 +2,13 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { ApiError } from "@/shared/lib";
 import type { CleanRecipeItem } from "@/entities/recipes/model";
+import { SpoonacularRecipe } from "@/entities/recipes/api/spoonacular";
 import { mapResponseToCleanRecipeItems } from "@/entities/recipes/model";
-import type { SpoonacularRecipe } from "@/shared/api/spoonacular/recipes/schemas";
 
 type BffRecipesSearchResponse = {
-    items: SpoonacularRecipe[];
     nextOffset: number | null;
+    items: SpoonacularRecipe[];
 };
-
 type RecipesSearchPage = {
     items: CleanRecipeItem[];
     nextOffset: number | null;

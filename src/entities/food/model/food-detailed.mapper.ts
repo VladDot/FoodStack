@@ -1,11 +1,11 @@
 import { roundValue } from "@/shared/utils";
 
-import { CleanDetailedFoodItem } from "./types";
+import { CleanFoodDetailItem } from "./types";
 import { EdamamDetailedFood } from "../api/edamam/schemas";
 
-export function mapResponseToCleanFoodItemsDetail(
+export function mapResponseToCleanFoodDetail(
     data: EdamamDetailedFood,
-): CleanDetailedFoodItem {
+): CleanFoodDetailItem {
     const parsed = data.ingredients?.[0]?.parsed?.[0];
     const nutrients = data.totalNutrients ?? {};
 

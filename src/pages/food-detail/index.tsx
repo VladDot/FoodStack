@@ -1,10 +1,9 @@
 import { notFound } from "next/navigation";
 
 import { BackButton } from "@/shared/ui";
-
-import { FoodDetail } from "@/entities/product/ui/food-detail";
-import { getProductById } from "@/entities/product/api/edamam/food-by-id.service";
-import { mapResponseToCleanFoodItemsDetail } from "@/entities/product/model/product-detailed.mapper";
+import { FoodDetail } from "@/entities/food/ui/food-detail";
+import { getFoodById } from "@/entities/food/api/edamam/food-details.service";
+import { mapResponseToCleanFoodDetail } from "@/entities/food/model/food-detailed.mapper";
 
 interface IFoodDetailPage {
     id: string;
@@ -12,13 +11,13 @@ interface IFoodDetailPage {
 }
 
 export const FoodDetailPage = async ({ id, image }: IFoodDetailPage) => {
-    const rawFood = await getProductById(id);
+    const rawFood = await getFoodById(id);
 
     if (!rawFood) {
         notFound();
     }
 
-    const food = mapResponseToCleanFoodItemsDetail(rawFood);
+    const food = mapResponseToCleanFoodDetail(rawFood);
 
     if (image) {
         food.image = image;

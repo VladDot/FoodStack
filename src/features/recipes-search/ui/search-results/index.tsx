@@ -37,8 +37,8 @@ export const RecipesSearchResults = ({
         >
             {items.map((item) => (
                 <PreviewCard
-                    key={item.id}
                     item={item}
+                    key={item.id}
                     detailsQuery={query}
                 />
             ))}

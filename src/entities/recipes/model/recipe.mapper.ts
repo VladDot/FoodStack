@@ -1,5 +1,5 @@
 import { roundValue } from "@/shared/utils";
-import { SpoonacularRecipe } from "@/shared/api/spoonacular";
+import { SpoonacularRecipe } from "@/entities/recipes/api/spoonacular";
 
 import { CleanRecipeItem } from "./types";
 

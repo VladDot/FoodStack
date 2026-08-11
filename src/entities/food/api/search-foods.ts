@@ -4,14 +4,14 @@ import { NextRequest } from "next/server";
 import { ApiError } from "@/shared/lib";
 
 import { mapResponseToCleanFoodItems } from "../model";
-import { getSearchEdamamFoods } from "./edamam/food.service";
+import { getSearchFoods } from "./edamam/food-search.service";
 
 const searchParamsSchema = z.object({
     query: z.string().trim().min(1, "Search query cannot be empty"),
     cursor: z.string().optional(),
 });
 
-export async function searchEdamamFoods(request: NextRequest) {
+export async function searchFoodsHandler(request: NextRequest) {
     const { searchParams } = request.nextUrl;
     const rawQuery = searchParams.get("query") || "";
     const rawCursor = searchParams.get("cursor") || undefined;
@@ -28,7 +28,7 @@ export async function searchEdamamFoods(request: NextRequest) {
         );
     }
 
-    const rawData = await getSearchEdamamFoods({
+    const rawData = await getSearchFoods({
         query: validation.data.query,
         cursor: validation.data.cursor,
     });

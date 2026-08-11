@@ -16,7 +16,7 @@ function extractSessionToken(
     }
 }
 
-export async function getRawFoodsFromApi(
+export async function fetchFoodsFromEdamam(
     query: string,
     cursor?: string,
 ): Promise<{ hints: EdamamHint[]; cursor?: string }> {
@@ -64,9 +64,9 @@ export async function getRawFoodsFromApi(
     return { hints: result.data.hints, cursor: nextCont };
 }
 
-export const getSearchEdamamFoods = unstable_cache(
+export const getSearchFoods = unstable_cache(
     async (params: { query: string; cursor?: string }) =>
-        getRawFoodsFromApi(params.query, params.cursor),
+        fetchFoodsFromEdamam(params.query, params.cursor),
     ["edamam-foods"],
     { revalidate: 60 * 60 * 24 },
 );

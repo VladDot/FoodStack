@@ -5,7 +5,7 @@ import { logger, ApiError } from "@/shared/lib";
 import { edamamConfig } from "./config";
 import { EdamamDetailedFood, edamamDetailSchema } from "./schemas";
 
-export async function getFoodByIdFromApi(
+export async function fetchFoodByIdFromEdamam(
     foodId: string,
 ): Promise<EdamamDetailedFood | null> {
     const url = new URL(
@@ -61,9 +61,9 @@ export async function getFoodByIdFromApi(
     return result.data;
 }
 
-export const getProductById = unstable_cache(
+export const getFoodById = unstable_cache(
     async (foodId: string): Promise<EdamamDetailedFood | null> =>
-        getFoodByIdFromApi(foodId),
+        fetchFoodByIdFromEdamam(foodId),
     ["edamam-food-detail"],
     {
         revalidate: 60 * 60 * 24 * 7,

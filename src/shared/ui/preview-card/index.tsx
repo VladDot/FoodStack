@@ -1,17 +1,17 @@
 import Image from "next/image";
 
-import { CleanFoodItem } from "@/entities/product/model";
+import { CleanFoodItem } from "@/entities/food/model";
 
 import { LinkButton } from "../button";
 import { MacroCards } from "../macro-cards";
 import { ImagePlaceholder } from "../image-placeholder";
 
 type RecipeCardProps = {
+    detailsQuery?: string;
     item: CleanFoodItem & {
         fiber?: number;
         healthLabels?: string[];
     };
-    detailsQuery?: string;
 };
 
 export const PreviewCard = ({

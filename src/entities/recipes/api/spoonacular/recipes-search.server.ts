@@ -3,10 +3,13 @@ import { unstable_cache } from "next/cache";
 import { ApiError } from "@/shared/lib";
 import { logger } from "@/shared/lib/logger";
 
-import { spoonacularConfig } from "../config";
-import { SpoonacularRecipeResponse, spoonacularRecipeResponseSchema } from "./schemas";
+import { spoonacularConfig } from "./config";
+import {
+    SpoonacularRecipeResponse,
+    spoonacularRecipeResponseSchema,
+} from "./schemas";
 
-export async function getRawRecipesFromApi(
+export async function fetchFoodsFromSpoonacular(
     query: string,
     offset: number = 0,
 ): Promise<SpoonacularRecipeResponse> {
@@ -56,7 +59,7 @@ export async function getRawRecipesFromApi(
 
 export const searchSpoonacularRecipes = unstable_cache(
     async (query: string, offset: number) =>
-        getRawRecipesFromApi(query, offset),
+        fetchFoodsFromSpoonacular(query, offset),
     ["spoonacular-recipes"],
     { revalidate: 60 * 60 * 24 },
 );
