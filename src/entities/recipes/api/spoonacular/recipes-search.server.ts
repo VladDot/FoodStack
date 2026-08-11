@@ -9,7 +9,7 @@ import {
     spoonacularRecipeResponseSchema,
 } from "./schemas";
 
-export async function fetchFoodsFromSpoonacular(
+export async function fetchRecipesFromSpoonacular(
     query: string,
     offset: number = 0,
 ): Promise<SpoonacularRecipeResponse> {
@@ -57,9 +57,9 @@ export async function fetchFoodsFromSpoonacular(
     return result.data;
 }
 
-export const searchSpoonacularRecipes = unstable_cache(
-    async (query: string, offset: number) =>
-        fetchFoodsFromSpoonacular(query, offset),
+export const getSearchRecipes = unstable_cache(
+    async (params: { query: string; offset: number }) =>
+        fetchRecipesFromSpoonacular(params.query, params.offset),
     ["spoonacular-recipes"],
     { revalidate: 60 * 60 * 24 },
 );

@@ -1,3 +1,3 @@
-export { searchSpoonacularRecipes } from "./recipes-search.server";
+export { fetchRecipesFromSpoonacular } from "./recipes-search.server";
 
 export * from "./schemas";

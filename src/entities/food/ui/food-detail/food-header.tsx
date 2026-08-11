@@ -3,10 +3,10 @@ import Image from "next/image";
 import { titleNormalizeName } from "@/shared/utils";
 import { HealthLabels, CaloriesDisplay, ImagePlaceholder } from "@/shared/ui";
 
-import { CleanDetailedFoodItem } from "../../model/types";
+import { CleanFoodDetailItem } from "../../model/types";
 
 interface FoodHeaderProps {
-    food: CleanDetailedFoodItem;
+    food: CleanFoodDetailItem;
 }
 
 export const FoodHeader = ({ food }: FoodHeaderProps) => {

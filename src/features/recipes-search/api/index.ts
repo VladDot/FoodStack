@@ -2,22 +2,16 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { ApiError } from "@/shared/lib";
 import type { CleanRecipeItem } from "@/entities/recipes/model";
-import { SpoonacularRecipe } from "@/entities/recipes/api/spoonacular";
-import { mapResponseToCleanRecipeItems } from "@/entities/recipes/model";
 
 type BffRecipesSearchResponse = {
     nextOffset: number | null;
-    items: SpoonacularRecipe[];
-};
-type RecipesSearchPage = {
     items: CleanRecipeItem[];
-    nextOffset: number | null;
 };
 
 const fetchRecipesSearch = async (
     query: string,
     offset: number,
-): Promise<RecipesSearchPage> => {
+): Promise<BffRecipesSearchResponse> => {
     const response = await fetch(
         `/api/recipes/search?query=${encodeURIComponent(query)}&offset=${offset}`,
     );
@@ -30,12 +24,7 @@ const fetchRecipesSearch = async (
         );
     }
 
-    const data: BffRecipesSearchResponse = await response.json();
-
-    return {
-        items: mapResponseToCleanRecipeItems(data.items),
-        nextOffset: data.nextOffset,
-    };
+    return response.json();
 };
 
 export const useRecipesSearch = (query: string) => {
