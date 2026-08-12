@@ -12,12 +12,15 @@ export function mapResponseToCleanRecipeDetail(
     const summary = (recipe.summary || "").replace(/<[^>]*>/g, "").trim();
 
     const steps =
-        recipe.analyzedInstructions?.flatMap((section) =>
-            section.steps.map((step) => ({
-                text: step.step,
-                number: step.number,
-            })),
-        ) || [];
+        recipe.analyzedInstructions
+            ?.filter((section) => section.steps.length > 0)
+            .map((section) => ({
+                name: section.name,
+                steps: section.steps.map((step) => ({
+                    text: step.step,
+                    number: step.number,
+                })),
+            })) || [];
 
     return {
         steps,

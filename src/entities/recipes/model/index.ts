@@ -2,6 +2,7 @@ export type {
     RecipeStep,
     CleanRecipeItem,
     RecipeIngredient,
+    RecipeStepSection,
     CleanRecipeDetailItem,
 } from "./types";
 

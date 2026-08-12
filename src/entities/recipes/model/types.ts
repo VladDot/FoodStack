@@ -19,6 +19,10 @@ export type RecipeStep = {
     text: string;
     number: number;
 };
+export type RecipeStepSection = {
+    name: string;
+    steps: RecipeStep[];
+};
 export type CleanRecipeDetailItem = {
     id: string;
     fat: number;
@@ -32,7 +36,7 @@ export type CleanRecipeDetailItem = {
     servings: number;
     sourceUrl?: string;
     dishTypes: string[];
-    steps: RecipeStep[];
     readyInMinutes: number;
+    steps: RecipeStepSection[];
     ingredients: RecipeIngredient[];
 };
