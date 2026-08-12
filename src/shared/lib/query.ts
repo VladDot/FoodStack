@@ -1,5 +1,7 @@
 import { useMemo } from "react";
 
+import { isRateLimitError } from "./api-error";
+
 export const useFlatItems = <T extends { id: string }>(
     data?: { pages: { items: T[] }[] },
 ) =>
@@ -13,8 +15,5 @@ export const useFlatItems = <T extends { id: string }>(
         });
     }, [data]);
 
-export const useQueryError = (error: unknown, isError: boolean) => {
-    const isLimitExceeded =
-        error instanceof Error && error.message === "Request limit exceeded";
-    return { isLimitExceeded, isFSRError: isError && !isLimitExceeded };
-};
+export const useQueryError = (error: unknown, isError: boolean) =>
+    isError && !isRateLimitError(error);

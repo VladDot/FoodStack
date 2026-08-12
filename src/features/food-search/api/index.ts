@@ -21,7 +21,8 @@ const fetchFoodSearch = async (
         const body = await response.json().catch(() => ({}));
         throw new ApiError(
             response.status,
-            body.error || "Failed to search food",
+            body?.error?.message || "Failed to search food",
+            body?.error?.code,
         );
     }
 

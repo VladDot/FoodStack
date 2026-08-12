@@ -1,18 +1,8 @@
-import { CleanFoodItem } from "@/entities/food/model";
-
 import { LinkButton } from "../button";
+import { RecipeCardProps } from "./types";
 import { MacroCards } from "../macro-cards";
 import { SkeletonImage } from "../skeleton-image";
 import { ImagePlaceholder } from "../image-placeholder";
-
-type RecipeCardProps = {
-    href?: string;
-    detailsQuery?: string;
-    item: CleanFoodItem & {
-        fiber?: number;
-        healthLabels?: string[];
-    };
-};
 
 export const PreviewCard = ({
     item: { id, fat, image, title, carbs, fiber, protein, calories },

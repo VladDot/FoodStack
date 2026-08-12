@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache";
 
-import { ApiError } from "@/shared/lib";
+import { ApiError, fetchWithTimeout } from "@/shared/lib";
 import { logger } from "@/shared/lib/logger";
 
 import { spoonacularConfig } from "./config";
@@ -20,7 +20,7 @@ export async function fetchRecipesFromSpoonacular(
     url.searchParams.set("number", "20");
     url.searchParams.set("addRecipeNutrition", "true");
 
-    const response = await fetch(url.toString());
+    const response = await fetchWithTimeout(url);
 
     if (!response.ok) {
         let detail = `HTTP ${response.status}`;

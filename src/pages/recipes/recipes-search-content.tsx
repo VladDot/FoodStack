@@ -15,7 +15,7 @@ export const RecipesSearchContent = ({ query }: { query: string }) => {
     } = useRecipesSearch(query);
 
     const items = useFlatItems(data);
-    const { isFSRError } = useQueryError(error, isError);
+    const isFSRError = useQueryError(error, isError);
 
     return (
         <>
@@ -30,8 +30,8 @@ export const RecipesSearchContent = ({ query }: { query: string }) => {
                 isFetchingNextPage={isFetchingNextPage}
             />
             <EndOfListMessage
-                hasNextPage={!!hasNextPage}
                 totalCount={items.length}
+                hasNextPage={!!hasNextPage}
             />
         </>
     );

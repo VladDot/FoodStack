@@ -4,7 +4,7 @@ export { Info } from "./info";
 
 export { RecipesSearchPage } from "./recipes";
 
-export { RecipeDetailPage } from "./recipes/recipe-detail";
+export { RecipeDetailPage } from "./recipe-details";
 
 export { FoodSearchPage } from "./food";
 

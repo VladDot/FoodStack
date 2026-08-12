@@ -15,7 +15,7 @@ export const FoodSearchContent = ({ query }: { query: string }) => {
     } = useFoodSearch(query);
 
     const items = useFlatItems(data);
-    const { isFSRError } = useQueryError(error, isError);
+    const isFSRError = useQueryError(error, isError);
 
     return (
         <>

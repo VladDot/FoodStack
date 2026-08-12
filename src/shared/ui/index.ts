@@ -38,6 +38,12 @@ export { ScrollToTop } from "@/shared/ui/scroll-to-top";
 
 export { SkeletonImage } from "@/shared/ui/skeleton-image";
 
+export {
+    ErrorState,
+    LoadingState,
+    NotFoundState,
+} from "@/shared/ui/page-states";
+
 export { SearchResults } from "@/shared/ui/search-results";
 
 export { SkeletonCard } from "@/shared/ui/skeleton-card";

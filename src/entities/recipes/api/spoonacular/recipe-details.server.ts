@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache";
 
-import { logger, ApiError } from "@/shared/lib";
+import { logger, ApiError, fetchWithTimeout } from "@/shared/lib";
 
 import { spoonacularConfig } from "./config";
 import {
@@ -10,7 +10,7 @@ import {
 
 export async function fetchRecipesByIdFromSpoonacular(
     recipeId: string,
-): Promise<SpoonacularRecipeDetail | null> {
+): Promise<SpoonacularRecipeDetail> {
     const url = new URL(
         `https://api.spoonacular.com/recipes/${recipeId}/information`,
     );
@@ -18,10 +18,12 @@ export async function fetchRecipesByIdFromSpoonacular(
     url.searchParams.set("apiKey", spoonacularConfig.SPOONACULAR_API_KEY);
     url.searchParams.set("includeNutrition", "true");
 
-    const response = await fetch(url.toString());
+    const response = await fetchWithTimeout(url);
 
     if (!response.ok) {
-        if (response.status === 404) return null;
+        if (response.status === 404) {
+            throw new ApiError(404, "Food not found");
+        }
 
         let detail = `HTTP ${response.status}`;
 
@@ -59,7 +61,7 @@ export async function fetchRecipesByIdFromSpoonacular(
 }
 
 export const getRecipeById = unstable_cache(
-    async (recipeId: string): Promise<SpoonacularRecipeDetail | null> =>
+    async (recipeId: string): Promise<SpoonacularRecipeDetail> =>
         fetchRecipesByIdFromSpoonacular(recipeId),
     ["spoonacular-recipe-detail"],
     { revalidate: 60 * 60 * 24 * 7, tags: ["recipe-details"] },

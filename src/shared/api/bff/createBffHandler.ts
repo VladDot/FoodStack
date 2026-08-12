@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { logger, ApiError } from "@/shared/lib";
+import { logger, ApiError, ApiErrorCode } from "@/shared/lib";
 
 type GenericHandler<T, Ctx = unknown> = (
     request: NextRequest,
     context: Ctx,
 ) => Promise<T>;
+
+function toErrorCode(status: number): ApiErrorCode {
+    if (status === 429) return "RATE_LIMIT";
+    return "UNKNOWN";
+}
 
 export function createBffHandler<T, Ctx = unknown>(
     handler: GenericHandler<T, Ctx>,
@@ -19,14 +24,13 @@ export function createBffHandler<T, Ctx = unknown>(
             return NextResponse.json(data);
         } catch (error: unknown) {
             if (error instanceof ApiError) {
-                if (error.status === 429) {
-                    return NextResponse.json(
-                        { error: "Request limit exceeded" },
-                        { status: 429 },
-                    );
-                }
                 return NextResponse.json(
-                    { error: error.message },
+                    {
+                        error: {
+                            code: toErrorCode(error.status),
+                            message: error.message,
+                        },
+                    },
                     { status: error.status },
                 );
             }
@@ -41,7 +45,7 @@ export function createBffHandler<T, Ctx = unknown>(
             }
 
             return NextResponse.json(
-                { error: "An unexpected error occurred" },
+                { error: { code: "UNKNOWN", message: "An unexpected error occurred" } },
                 { status: 500 },
             );
         }

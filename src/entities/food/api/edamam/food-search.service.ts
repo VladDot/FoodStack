@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache";
 
-import { logger, ApiError } from "@/shared/lib";
+import { logger, ApiError, fetchWithTimeout } from "@/shared/lib";
 
 import { edamamConfig } from "./config";
 import { EdamamHint, edamamFoodResponseSchema } from "./schemas";
@@ -29,7 +29,7 @@ export async function fetchFoodsFromEdamam(
         url.searchParams.set("session", cursor);
     }
 
-    const response = await fetch(url.toString());
+    const response = await fetchWithTimeout(url);
 
     if (!response.ok) {
         let detail = `HTTP ${response.status}`;

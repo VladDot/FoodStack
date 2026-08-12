@@ -20,7 +20,8 @@ const fetchRecipesSearch = async (
         const body = await response.json().catch(() => ({}));
         throw new ApiError(
             response.status,
-            body.error || "Failed to search recipes",
+            body?.error?.message || "Failed to search recipes",
+            body?.error?.code,
         );
     }
 
