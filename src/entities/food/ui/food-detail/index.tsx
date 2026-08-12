@@ -3,10 +3,10 @@ import { MacroCards } from "@/shared/ui";
 import { FoodHeader } from "./food-header";
 import { FoodActions } from "./food-actions";
 import { NutrientTable } from "./nutrient-table";
-import { CleanDetailedFoodItem } from "../../model/types";
+import { CleanFoodDetailItem } from "../../model/types";
 
 interface FoodDetailProps {
-    food: CleanDetailedFoodItem;
+    food: CleanFoodDetailItem;
 }
 
 export const FoodDetail = ({ food }: FoodDetailProps) => {

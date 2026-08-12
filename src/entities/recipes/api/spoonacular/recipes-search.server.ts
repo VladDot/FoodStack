@@ -1,12 +1,15 @@
 import { unstable_cache } from "next/cache";
 
-import { ApiError } from "@/shared/lib";
+import { ApiError, fetchWithTimeout } from "@/shared/lib";
 import { logger } from "@/shared/lib/logger";
 
-import { spoonacularConfig } from "../config";
-import { SpoonacularRecipeResponse, spoonacularRecipeResponseSchema } from "./schemas";
+import { spoonacularConfig } from "./config";
+import {
+    SpoonacularRecipeResponse,
+    spoonacularRecipeResponseSchema,
+} from "./schemas";
 
-export async function getRawRecipesFromApi(
+export async function fetchRecipesFromSpoonacular(
     query: string,
     offset: number = 0,
 ): Promise<SpoonacularRecipeResponse> {
@@ -17,7 +20,7 @@ export async function getRawRecipesFromApi(
     url.searchParams.set("number", "20");
     url.searchParams.set("addRecipeNutrition", "true");
 
-    const response = await fetch(url.toString());
+    const response = await fetchWithTimeout(url);
 
     if (!response.ok) {
         let detail = `HTTP ${response.status}`;
@@ -54,9 +57,9 @@ export async function getRawRecipesFromApi(
     return result.data;
 }
 
-export const searchSpoonacularRecipes = unstable_cache(
-    async (query: string, offset: number) =>
-        getRawRecipesFromApi(query, offset),
+export const getSearchRecipes = unstable_cache(
+    async (params: { query: string; offset: number }) =>
+        fetchRecipesFromSpoonacular(params.query, params.offset),
     ["spoonacular-recipes"],
     { revalidate: 60 * 60 * 24 },
 );

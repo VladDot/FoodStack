@@ -1,4 +1,7 @@
+"use client";
+
 import { ReactNode } from "react";
+import { useTranslations } from "next-intl";
 
 import { SkeletonCard } from "@/shared/ui/skeleton-card";
 
@@ -27,6 +30,8 @@ export function SearchResults({
     hasNextPage,
     isFetchingNextPage,
 }: SearchResultsProps) {
+    const t = useTranslations("search");
+
     if (!query) return null;
 
     if (isLoading) {
@@ -42,7 +47,7 @@ export function SearchResults({
     if (isError) {
         return (
             <div className="mt-4 p-3 border border-red-200 rounded bg-red-50 text-red-700 text-sm">
-                {error?.message || "Something went wrong"}
+                {error?.message || t("errorFallback")}
             </div>
         );
     }
@@ -50,16 +55,16 @@ export function SearchResults({
     if (isEmpty) {
         return (
             <div className="mt-4 text-brand-dark/60 text-sm">
-                No results for &quot;{query}&quot;
+                {t("noResults", { query })}
             </div>
         );
     }
 
     return (
         <div className="mt-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 m-0">
                 {children}
-            </div>
+            </ul>
 
             {hasNextPage && (
                 <div className="flex justify-center pt-6">
@@ -68,7 +73,7 @@ export function SearchResults({
                         onClick={onLoadMore}
                         disabled={isFetchingNextPage}
                     >
-                        {isFetchingNextPage ? "Loading..." : "Load more"}
+                        {isFetchingNextPage ? t("loading") : t("loadMore")}
                     </Button>
                 </div>
             )}

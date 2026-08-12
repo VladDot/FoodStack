@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 
+import { ApiError } from "@/shared/lib";
 import { BackButton } from "@/shared/ui";
-
-import { FoodDetail } from "@/entities/product/ui/food-detail";
-import { getProductById } from "@/entities/product/api/edamam/food-by-id.service";
-import { mapResponseToCleanFoodItemsDetail } from "@/entities/product/model/product-detailed.mapper";
+import { FoodDetail } from "@/entities/food/ui/food-detail";
+import { getFoodById } from "@/entities/food/api/edamam/food-details.service";
+import { mapResponseToCleanFoodDetail } from "@/entities/food/model/food-detailed.mapper";
 
 interface IFoodDetailPage {
     id: string;
@@ -12,22 +12,27 @@ interface IFoodDetailPage {
 }
 
 export const FoodDetailPage = async ({ id, image }: IFoodDetailPage) => {
-    const rawFood = await getProductById(id);
+    let rawFood;
 
-    if (!rawFood) {
-        notFound();
+    try {
+        rawFood = await getFoodById(id);
+    } catch (error) {
+        if (error instanceof ApiError && error.status === 404) {
+            notFound();
+        }
+        throw error;
     }
 
-    const food = mapResponseToCleanFoodItemsDetail(rawFood);
+    const food = mapResponseToCleanFoodDetail(rawFood);
 
     if (image) {
         food.image = image;
     }
 
     return (
-        <main className="max-w-4xl mx-auto px-4 py-8">
+        <section className="max-w-4xl mx-auto px-4 py-8">
             <BackButton />
             <FoodDetail food={food} />
-        </main>
+        </section>
     );
 };

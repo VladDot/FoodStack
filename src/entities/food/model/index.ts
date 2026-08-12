@@ -3,12 +3,12 @@ export type {
     CleanFoodItem,
     NutrientGroupId,
     GroupedNutrient,
+    CleanFoodDetailItem,
     NutrientGroupSection,
-    CleanDetailedFoodItem,
 } from "./types";
 
-export { mapResponseToCleanFoodItems } from "./product.mapper";
+export { mapResponseToCleanFoodItems } from "./food.mapper";
 
-export { mapResponseToCleanFoodItemsDetail } from "./product-detailed.mapper";
+export { mapResponseToCleanFoodDetail } from "./food-detailed.mapper";
 
 export { groupNutrients } from "./nutrient-groups";

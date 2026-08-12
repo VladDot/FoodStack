@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { ApiError, getCursorNextPageParam } from "@/shared/lib";
-import type { CleanFoodItem } from "@/entities/product/model/types";
+import type { CleanFoodItem } from "@/entities/food/model/types";
 
 type FoodSearchResponse = {
     cursor?: string;
@@ -21,14 +21,15 @@ const fetchFoodSearch = async (
         const body = await response.json().catch(() => ({}));
         throw new ApiError(
             response.status,
-            body.error || "Failed to search food",
+            body?.error?.message || "Failed to search food",
+            body?.error?.code,
         );
     }
 
     return response.json();
 };
 
-export const useInfiniteFoodSearch = (query: string) => {
+export const useFoodSearch = (query: string) => {
     return useInfiniteQuery({
         queryKey: ["food-search", query],
         queryFn: ({ pageParam }) => fetchFoodSearch(query, pageParam),

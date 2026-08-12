@@ -1,20 +1,20 @@
 import { unstable_cache } from "next/cache";
 
-import { logger, ApiError } from "@/shared/lib";
+import { logger, ApiError, fetchWithTimeout } from "@/shared/lib";
 
 import { edamamConfig } from "./config";
 import { EdamamDetailedFood, edamamDetailSchema } from "./schemas";
 
-export async function getFoodByIdFromApi(
+export async function fetchFoodByIdFromEdamam(
     foodId: string,
-): Promise<EdamamDetailedFood | null> {
+): Promise<EdamamDetailedFood> {
     const url = new URL(
         "https://api.edamam.com/api/food-database/v2/nutrients",
     );
     url.searchParams.set("app_id", edamamConfig.EDAMAM_FOOD_APP_ID);
     url.searchParams.set("app_key", edamamConfig.EDAMAM_FOOD_APP_KEY);
 
-    const response = await fetch(url.toString(), {
+    const response = await fetchWithTimeout(url, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -31,6 +31,10 @@ export async function getFoodByIdFromApi(
         }),
     });
     if (!response.ok) {
+        if (response.status === 404) {
+            throw new ApiError(404, "Food not found");
+        }
+
         let detail = `HTTP ${response.status}`;
         try {
             const body = await response.json();
@@ -61,9 +65,9 @@ export async function getFoodByIdFromApi(
     return result.data;
 }
 
-export const getProductById = unstable_cache(
-    async (foodId: string): Promise<EdamamDetailedFood | null> =>
-        getFoodByIdFromApi(foodId),
+export const getFoodById = unstable_cache(
+    async (foodId: string): Promise<EdamamDetailedFood> =>
+        fetchFoodByIdFromEdamam(foodId),
     ["edamam-food-detail"],
     {
         revalidate: 60 * 60 * 24 * 7,

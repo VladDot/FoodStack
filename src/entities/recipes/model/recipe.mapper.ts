@@ -1,7 +1,8 @@
 import { roundValue } from "@/shared/utils";
-import { SpoonacularRecipe } from "@/shared/api/spoonacular";
+import { SpoonacularRecipe } from "@/entities/recipes/api/spoonacular";
 
 import { CleanRecipeItem } from "./types";
+import { pickNutrient } from "./pickNutrient";
 
 export function mapResponseToCleanRecipeItems(
     recipes: SpoonacularRecipe[],
@@ -11,23 +12,15 @@ export function mapResponseToCleanRecipeItems(
     return recipes.map((recipe) => {
         const nutrients = recipe.nutrition?.nutrients || [];
 
-        const findNutrient = (name: string): number => {
-            const amount = nutrients.find(
-                (n) => n.name.toLowerCase() === name.toLowerCase(),
-            )?.amount;
-
-            return amount ?? 0;
-        };
-
         return {
             id: String(recipe.id),
             image: recipe.image || "",
-            fat: roundValue(findNutrient("Fat")),
+            fat: pickNutrient(nutrients, "Fat"),
             title: recipe.title || "Unknown Recipe",
             servings: roundValue(recipe.servings) || 1,
-            protein: roundValue(findNutrient("Protein")),
-            calories: roundValue(findNutrient("Calories")),
-            carbs: roundValue(findNutrient("Carbohydrates")),
+            protein: pickNutrient(nutrients, "Protein"),
+            calories: pickNutrient(nutrients, "Calories"),
+            carbs: pickNutrient(nutrients, "Carbohydrates"),
             ingredients:
                 recipe.extendedIngredients?.map((ing) => ing.original) || [],
         };

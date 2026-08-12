@@ -1,1 +1,30 @@
-{ "test": "test" }
+{
+    "test": "test",
+    "errorState": {
+        "title": "Something went wrong",
+        "message": "Failed to load. Please try again.",
+        "tryAgain": "Try again"
+    },
+    "loadingState": {
+        "label": "Loading"
+    },
+    "notFound": {
+        "title": "Page not found",
+        "message": "This page doesn't exist or has been removed.",
+        "backHome": "Back to home"
+    },
+    "toast": {
+        "rateLimit": "You've reached the daily request limit. Please try again later.",
+        "foodRateLimit": "Too many requests per minute. Please try again in a moment.",
+        "unexpected": "Something went wrong while searching."
+    },
+    "search": {
+        "noResults": "No results for \"{query}\"",
+        "loadMore": "Load more",
+        "loading": "Loading...",
+        "errorFallback": "Something went wrong",
+        "viewDetails": "View Details",
+        "foodPlaceholder": "Search food...",
+        "recipesPlaceholder": "Search Recipes..."
+    }
+}

@@ -1,8 +1,8 @@
-import { CleanDetailedFoodItem } from "../../model/types";
+import { CleanFoodDetailItem } from "../../model/types";
 import { groupNutrients } from "../../model/nutrient-groups";
 
 interface NutrientTableProps {
-    food: CleanDetailedFoodItem;
+    food: CleanFoodDetailItem;
 }
 
 export const NutrientTable = ({ food }: NutrientTableProps) => {

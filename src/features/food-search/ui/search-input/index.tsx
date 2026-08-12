@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { SearchInput } from "@/shared/ui/input";
 
 interface FoodSearchInputProps {
@@ -13,11 +15,12 @@ export function FoodSearchInput({
     onChange,
     minLength,
 }: FoodSearchInputProps) {
+    const t = useTranslations("search");
     return (
         <SearchInput
             value={value}
             minLength={minLength}
-            placeholder="Search food..."
+            placeholder={t("foodPlaceholder")}
             containerClassName="max-w-2xl mx-auto"
             onChange={(e) => onChange(e.target.value)}
         />

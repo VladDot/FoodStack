@@ -1,3 +1,5 @@
+import { RecipeDetailPage } from "@/pages";
+
 export default async function RecipePage({
     params,
 }: {
@@ -5,9 +7,5 @@ export default async function RecipePage({
 }) {
     const { id } = await params;
 
-    return (
-        <div className="p-6">
-            <h1>Деталі рецепта {id}</h1>
-        </div>
-    );
+    return <RecipeDetailPage id={id} />;
 }

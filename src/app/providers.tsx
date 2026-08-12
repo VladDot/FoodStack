@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { Session } from "next-auth";
+import { useTranslations } from "next-intl";
 import { SessionProvider } from "next-auth/react";
 import {
     QueryCache,
@@ -10,7 +11,7 @@ import {
     QueryClientProvider,
 } from "@tanstack/react-query";
 
-import { ApiError } from "@/shared/lib";
+import { isRateLimitError } from "@/shared/lib";
 import { showMessage } from "@/shared/ui/toastify";
 
 interface ProvidersProps {
@@ -19,26 +20,24 @@ interface ProvidersProps {
 }
 
 export function Providers({ children, session }: ProvidersProps) {
+    const t = useTranslations("toast");
+
     const [queryClient] = useState(
         () =>
             new QueryClient({
                 queryCache: new QueryCache({
-                    onError: (error) => {
-                        if (error instanceof ApiError && error.status === 429) {
+                    onError: (error, query) => {
+                        if (isRateLimitError(error)) {
+                            const key = query?.queryKey?.[0];
                             showMessage.warn(
-                                "Request limit exceeded. Please try again later.",
+                                key === "food-search"
+                                    ? t("foodRateLimit")
+                                    : t("rateLimit"),
                             );
                             return;
                         }
 
-                        const message =
-                            error instanceof Error
-                                ? error.message
-                                : "An unexpected error occurred";
-
-                        showMessage.warn(
-                            message || "Something went wrong while searching",
-                        );
+                        showMessage.warn(t("unexpected"));
                     },
                 }),
                 defaultOptions: {

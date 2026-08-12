@@ -1,7 +1,7 @@
 "use client";
 
 import { PreviewCard, SearchResults } from "@/shared/ui";
-import type { CleanFoodItem } from "@/entities/product/model/types";
+import type { CleanFoodItem } from "@/entities/food/model/types";
 
 interface FoodSearchResultsProps {
     query: string;

@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache";
 
-import { logger, ApiError } from "@/shared/lib";
+import { logger, ApiError, fetchWithTimeout } from "@/shared/lib";
 
 import { edamamConfig } from "./config";
 import { EdamamHint, edamamFoodResponseSchema } from "./schemas";
@@ -16,7 +16,7 @@ function extractSessionToken(
     }
 }
 
-export async function getRawFoodsFromApi(
+export async function fetchFoodsFromEdamam(
     query: string,
     cursor?: string,
 ): Promise<{ hints: EdamamHint[]; cursor?: string }> {
@@ -29,7 +29,7 @@ export async function getRawFoodsFromApi(
         url.searchParams.set("session", cursor);
     }
 
-    const response = await fetch(url.toString());
+    const response = await fetchWithTimeout(url);
 
     if (!response.ok) {
         let detail = `HTTP ${response.status}`;
@@ -64,9 +64,9 @@ export async function getRawFoodsFromApi(
     return { hints: result.data.hints, cursor: nextCont };
 }
 
-export const getSearchEdamamFoods = unstable_cache(
+export const getSearchFoods = unstable_cache(
     async (params: { query: string; cursor?: string }) =>
-        getRawFoodsFromApi(params.query, params.cursor),
+        fetchFoodsFromEdamam(params.query, params.cursor),
     ["edamam-foods"],
     { revalidate: 60 * 60 * 24 },
 );
