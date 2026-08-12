@@ -20,6 +20,7 @@ export const FoodHeader = ({ food }: FoodHeaderProps) => {
                     <SkeletonImage
                         width={160}
                         height={160}
+                        sizes="160px"
                         src={food.image}
                         alt={food.title}
                         className="w-40 h-40 rounded-2xl shadow-sm"

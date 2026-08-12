@@ -1,4 +1,4 @@
-import { ImagePlaceholder, SkeletonImage } from "@/shared/ui";
+import { SkeletonImage, ImagePlaceholder } from "@/shared/ui";
 
 import { CleanRecipeDetailItem } from "../../model/types";
 
@@ -16,6 +16,7 @@ export const RecipeHeader = ({ recipe }: RecipeHeaderProps) => {
                     src={recipe.image}
                     alt={recipe.title}
                     className="w-full aspect-video rounded-2xl shadow-sm"
+                    sizes="(min-width: 1919px) 1736px, (min-width: 1440px) 1168px, 100vw"
                 />
             ) : (
                 <ImagePlaceholder className="w-full aspect-video" />

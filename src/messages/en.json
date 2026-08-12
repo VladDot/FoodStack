@@ -17,5 +17,14 @@
         "rateLimit": "You've reached the daily request limit. Please try again later.",
         "foodRateLimit": "Too many requests per minute. Please try again in a moment.",
         "unexpected": "Something went wrong while searching."
+    },
+    "search": {
+        "noResults": "No results for \"{query}\"",
+        "loadMore": "Load more",
+        "loading": "Loading...",
+        "errorFallback": "Something went wrong",
+        "viewDetails": "View Details",
+        "foodPlaceholder": "Search food...",
+        "recipesPlaceholder": "Search Recipes..."
     }
 }

@@ -8,3 +8,5 @@ export type {
 export { mapResponseToCleanRecipeItems } from "./recipe.mapper";
 
 export { mapResponseToCleanRecipeDetail } from "./recipe-detail.mapper";
+
+export { pickNutrient } from "./pickNutrient";

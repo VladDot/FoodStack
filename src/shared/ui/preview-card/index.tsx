@@ -1,3 +1,7 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+
 import { LinkButton } from "../button";
 import { RecipeCardProps } from "./types";
 import { MacroCards } from "../macro-cards";
@@ -9,18 +13,20 @@ export const PreviewCard = ({
     detailsQuery,
     href = `/foods-search/${id}`,
 }: RecipeCardProps) => {
+    const t = useTranslations("search");
     const params = new URLSearchParams();
     if (detailsQuery) params.set("query", detailsQuery);
     if (image) params.set("image", image);
     const queryString = params.toString();
     return (
-        <div className="bg-white p-2 rounded-2xl overflow-hidden border border-neutral-100 shadow-sm transition-all duration-300 ease-in-out hover:shadow-xl shadow-brand-gray hover:scale-110 flex flex-col">
+        <li className="bg-white p-2 rounded-2xl overflow-hidden border border-neutral-100 shadow-sm transition-all duration-300 ease-in-out hover:shadow-xl shadow-brand-gray hover:scale-110 flex flex-col">
             {image ? (
                 <SkeletonImage
                     src={image}
                     alt={title}
                     width={500}
                     height={400}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="w-full aspect-4/3 rounded-2xl bg-neutral-100"
                 />
             ) : (
@@ -30,9 +36,9 @@ export const PreviewCard = ({
             )}
 
             <div className="p-4 flex flex-col gap-4">
-                <p className="text-xl font-bold text-brand-dark uppercase tracking-wide line-clamp-1">
+                <h2 className="text-xl font-bold text-brand-dark uppercase tracking-wide line-clamp-1">
                     {title}
-                </p>
+                </h2>
                 <p className="text-md text-brand-dark/60">{calories} kcal</p>
 
                 <MacroCards
@@ -45,9 +51,9 @@ export const PreviewCard = ({
                     variant="outline"
                     href={`${href}${queryString ? `?${queryString}` : ""}`}
                 >
-                    View Details
+                    {t("viewDetails")}
                 </LinkButton>
             </div>
-        </div>
+        </li>
     );
 };
