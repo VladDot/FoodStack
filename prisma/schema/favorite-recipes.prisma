@@ -1,0 +1,13 @@
+model FavoriteRecipes {
+    id                String   @id @default(cuid())
+    userId            String   @map("user_id")
+    recipeId          String   @map("recipe_id")
+
+    user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    recipe            Recipe   @relation(fields: [recipeId], references: [ id], onDelete: Cascade)
+
+    createdAt         DateTime @default(now()) @map("created_at")
+
+    @@unique([userId, recipeId]) 
+    @@map("favorites_recipes")
+}
