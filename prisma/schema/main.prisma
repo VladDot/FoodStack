@@ -11,6 +11,7 @@ generator erd {
 
 datasource db {
   provider = "postgresql"
+  
 
 }
 
@@ -24,6 +25,9 @@ model User {
   accounts      Account[]
   sessions      Session[]
   recipes       Recipe[]
+  products      Product[]
+  favoritesRecipes     FavoriteRecipes[]
+  favoriteProducts     FavoriteProduct[]
   dailyLogs     DailyLog[]
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
