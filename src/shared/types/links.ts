@@ -1,6 +1,7 @@
 export type LinkItem = {
     href: string;
     label: string;
+    activeByPrefix?: boolean;
 };
 
 export interface NavigationProps {

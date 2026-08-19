@@ -6,6 +6,8 @@
     --breakpoint-desktop: 1440px;
     --breakpoint-desktop-xl: 1919px;
 
+    --header-h: 89px;
+
     --font-montserrat: Montserrat, sans-serif;
     --font-scada: var(--font-scada), sans-serif;
     --font-roboto: var(--font-roboto), sans-serif;
@@ -41,13 +43,13 @@
             width: 0;
         }
         to {
-            width: 400px;
+            width: min(400px, 100vw);
         }
     }
 
     @keyframes fade-out {
         from {
-            width: 400px;
+            width: min(400px, 100vw);
         }
         to {
             width: 0;

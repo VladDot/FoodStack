@@ -15,9 +15,11 @@ export const useMounted = ({ isOpened, duration = 300 }: IMountedProps) => {
 
     useEffect(() => {
         if (!isOpened && isUnmounted) {
-            setTimeout(() => {
+            const timeout = setTimeout(() => {
                 setIsUnmounted(false);
             }, duration);
+
+            return () => clearTimeout(timeout);
         }
     }, [isOpened, duration, isUnmounted]);
 

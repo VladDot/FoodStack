@@ -10,6 +10,12 @@ export const mainLinks: LinkItem[] = [
     { href: routes.general.recipes, label: "Recipes" },
 ];
 
+export const dashboardLink: LinkItem = {
+    label: "Dashboard",
+    activeByPrefix: true,
+    href: routes.user.dashboard.main,
+};
+
 export const authLinks: LinkItem[] = [
     { href: routes.auth.signIn, label: "Sign-in" },
     { href: routes.auth.signUp, label: "Sign-up" },

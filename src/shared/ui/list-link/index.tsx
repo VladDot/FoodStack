@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import type { LucideIcon } from "lucide-react";
 
 import { buildLocalPath } from "@/shared/utils";
 
@@ -13,6 +14,8 @@ interface IListLink {
     locale: string;
     burger?: boolean;
     isOpen?: boolean;
+    icon?: LucideIcon;
+    activeByPrefix?: boolean;
     setIsOpen?: (isOpen: boolean) => void;
 }
 
@@ -23,19 +26,25 @@ export const ListLink = ({
     locale,
     isOpen,
     setIsOpen,
+    icon: Icon,
+    activeByPrefix,
 }: IListLink) => {
     const pathname = usePathname();
     const localHref = buildLocalPath(locale, href);
-    const isActive = pathname === localHref;
+    const isActive = activeByPrefix
+        ? !!pathname &&
+          (pathname === localHref || pathname.startsWith(`${localHref}/`))
+        : pathname === localHref;
     const { link } = getStyles({ burger, isOpen, isActive });
 
     return (
         <li>
             <Link
                 className={link}
-                onClick={() => setIsOpen?.(false)}
                 href={localHref}
+                onClick={() => setIsOpen?.(false)}
             >
+                {Icon && <Icon className="h-5 w-5" />}
                 {label}
             </Link>
         </li>
