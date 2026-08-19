@@ -19,7 +19,7 @@ export const Navigation = ({
 
     return (
         <ul className={ul}>
-            {links.map(({ label, href }, idx) => (
+            {links.map(({ label, href, activeByPrefix }, idx) => (
                 <ListLink
                     href={href}
                     label={label}
@@ -28,6 +28,7 @@ export const Navigation = ({
                     burger={burger}
                     setIsOpen={setIsOpen}
                     key={`nav_${label}_${idx}`}
+                    activeByPrefix={activeByPrefix}
                 />
             ))}
         </ul>

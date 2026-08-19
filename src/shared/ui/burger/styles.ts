@@ -13,7 +13,7 @@ export const getStyles = ({ isOpen }: IGetStyles) => ({
     bottom: cn({ "-rotate-45 -translate-y-2": isOpen }),
 
     burgerMenu: cn(
-        "fixed top-0 left-0 bg-linear-to-r from-brand-green/30 to-brand-green z-998 h-screen ",
+        "fixed top-0 left-0 z-998 h-screen overflow-hidden bg-brand-green max-w-[100vw]",
         isOpen ? "animate-fade-in" : "animate-fade-out",
     ),
 });

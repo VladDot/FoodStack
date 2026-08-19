@@ -11,8 +11,9 @@ export const mainLinks: LinkItem[] = [
 ];
 
 export const dashboardLink: LinkItem = {
-    href: routes.user.dashboard.main,
     label: "Dashboard",
+    activeByPrefix: true,
+    href: routes.user.dashboard.main,
 };
 
 export const authLinks: LinkItem[] = [
