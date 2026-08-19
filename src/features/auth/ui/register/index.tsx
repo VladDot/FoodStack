@@ -1,10 +1,13 @@
 "use client";
 
+import { useLocale } from "next-intl";
 import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 
+import { routes } from "@/shared/constants";
+import { buildLocalPath } from "@/shared/utils";
 import { PasswordInput } from "@/shared/ui/input";
 import { GoogleSigninBtn } from "@/shared/ui/auth";
 import { Button, FormTextInput } from "@/shared/ui";
@@ -30,6 +33,7 @@ export const Register = ({}) => {
     });
 
     const router = useRouter();
+    const locale = useLocale();
     const { isOpen, openModal, closeModal, handleConfirm } = useConfirmModal();
 
     const onSubmit: SubmitHandler<IForm> = async (data: IForm) => {
@@ -59,7 +63,7 @@ export const Register = ({}) => {
                     redirect: false,
                 });
                 router.refresh();
-                router.push("/");
+                router.push(buildLocalPath(locale, routes.user.dashboard.main));
             } catch {
                 toast.error("Помилка реєстрації");
             } finally {

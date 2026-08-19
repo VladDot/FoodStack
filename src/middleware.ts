@@ -25,6 +25,16 @@ function stripLocale(pathname: string): string {
     return pathname;
 }
 
+function getLocale(pathname: string): string {
+    for (const locale of locales) {
+        const prefix = `/${locale}`;
+        if (pathname === prefix || pathname.startsWith(`${prefix}/`)) {
+            return locale;
+        }
+    }
+    return locales[0];
+}
+
 export default auth((req) => {
     const { nextUrl } = req;
     const isLoggedIn = !!req.auth;
@@ -50,7 +60,13 @@ export default auth((req) => {
         (pathname.startsWith(routes.auth.signIn) ||
             pathname.startsWith(routes.auth.signUp))
     ) {
-        return NextResponse.redirect(new URL("/", nextUrl.origin));
+        const locale = getLocale(nextUrl.pathname);
+        return NextResponse.redirect(
+            new URL(
+                `/${locale}${routes.user.dashboard.main}`,
+                nextUrl.origin,
+            ),
+        );
     }
 
     return intlMiddleware(req);

@@ -3,13 +3,20 @@
 import { signIn } from "next-auth/react";
 import { useLocale } from "next-intl";
 
+import { routes } from "@/shared/constants";
+import { buildLocalPath } from "@/shared/utils";
+
 export const GoogleSigninBtn = () => {
     const locale = useLocale();
 
     return (
         <button
             type="button"
-            onClick={() => signIn("google", { redirectTo: `/${locale}/` })}
+            onClick={() =>
+                signIn("google", {
+                    redirectTo: buildLocalPath(locale, routes.user.dashboard.main),
+                })
+            }
             className="w-full flex items-center justify-center gap-3 border border-brand-gray rounded-md py-2 text-brand-dark font-medium hover:bg-neutral-50 transition"
         >
             {/* SVG іконка Google */}

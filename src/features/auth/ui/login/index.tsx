@@ -1,10 +1,13 @@
 "use client";
 
+import { useLocale } from "next-intl";
 import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 
+import { routes } from "@/shared/constants";
+import { buildLocalPath } from "@/shared/utils";
 import { GoogleSigninBtn } from "@/shared/ui/auth";
 import { Button, FormTextInput } from "@/shared/ui";
 
@@ -17,6 +20,7 @@ interface IForm {
 
 export const Login = ({}) => {
     const router = useRouter();
+    const locale = useLocale();
 
     const methods = useForm<IForm>({
         mode: "onBlur",
@@ -39,7 +43,7 @@ export const Login = ({}) => {
         } else {
             toast.success("Ви увійшли!");
             router.refresh();
-            router.push("/");
+            router.push(buildLocalPath(locale, routes.user.dashboard.main));
         }
     };
 
