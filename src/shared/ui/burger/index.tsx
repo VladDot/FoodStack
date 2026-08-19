@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 
+import { LinkItem } from "@/shared/types";
 import { useOutsideClick } from "@/shared/hooks";
 import { mainLinks } from "@/widgets/header/mock";
 
@@ -9,7 +10,11 @@ import { Navigation } from "../nav";
 import { getStyles } from "./styles";
 import { Overlay } from "../overlay";
 
-export const Burger = () => {
+interface BurgerProps {
+    links?: LinkItem[];
+}
+
+export const Burger = ({ links = mainLinks }: BurgerProps) => {
     const ref = useRef<HTMLDivElement>(null);
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -40,9 +45,9 @@ export const Burger = () => {
                     <div className="h-full mt-16">
                         <div className="flex h-full border border-t-2 border-brand-gray/30 align-center ">
                             <Navigation
+                                links={links}
                                 burger={true}
                                 isOpen={isOpen}
-                                links={mainLinks}
                                 setIsOpen={setIsOpen}
                                 navClass="flex flex-col w-full text-sm -translate-y-20 [&>li>a]:text-3xl my-auto gap-y-6 "
                             />

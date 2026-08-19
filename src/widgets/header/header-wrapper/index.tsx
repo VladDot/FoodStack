@@ -5,18 +5,20 @@ import { useSession } from "next-auth/react";
 import { Burger } from "@/shared/ui";
 
 import { Header } from "..";
-import { mainLinks } from "../mock";
 import { HeaderAction } from "../header-action";
+import { mainLinks, dashboardLink } from "../mock";
 
 export const HeaderWrapper = ({}) => {
     const { data: session } = useSession();
     const isLoggedIn = !!session;
+    const links = isLoggedIn ? [...mainLinks, dashboardLink] : mainLinks;
+
     return (
         <Header>
             <Header.Logo />
 
             <div className="hidden laptop:flex flex-1 justify-center">
-                <Header.Navigation links={mainLinks} />
+                <Header.Navigation links={links} />
             </div>
 
             <div className="hidden laptop:flex items-center gap-6 laptop:gap-12 font-scada">
@@ -30,7 +32,7 @@ export const HeaderWrapper = ({}) => {
                     isLoggedIn={isLoggedIn}
                 />
                 <Header.LanguageSwitcher />
-                <Burger />
+                <Burger links={links} />
             </div>
         </Header>
     );
