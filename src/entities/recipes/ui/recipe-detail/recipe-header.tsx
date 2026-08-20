@@ -9,12 +9,12 @@ interface RecipeHeaderProps {
 export const RecipeHeader = ({ recipe }: RecipeHeaderProps) => {
     return (
         <div className="flex flex-col gap-5 mb-6">
-            {recipe.image ? (
+            {recipe.imageUrl ? (
                 <SkeletonImage
                     width={800}
                     height={450}
-                    src={recipe.image}
                     alt={recipe.title}
+                    src={recipe.imageUrl}
                     className="w-full aspect-video rounded-2xl shadow-sm"
                     sizes="(min-width: 1919px) 1736px, (min-width: 1440px) 1168px, 100vw"
                 />

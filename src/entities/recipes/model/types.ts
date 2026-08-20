@@ -27,12 +27,12 @@ export type CleanRecipeDetailItem = {
     id: string;
     fat: number;
     carbs: number;
-    image: string;
     title: string;
     diets: string[];
     protein: number;
     summary: string;
     calories: number;
+    imageUrl: string;
     servings: number;
     sourceUrl?: string;
     dishTypes: string[];

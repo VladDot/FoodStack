@@ -3,6 +3,7 @@ import { MacroCards, CaloriesDisplay } from "@/shared/ui";
 import { Ingredients } from "./ingredients";
 import { Instructions } from "./instructions";
 import { RecipeHeader } from "./recipe-header";
+import { RecipeAction } from "./recipe-actions";
 import { CleanRecipeDetailItem } from "../../model/types";
 
 interface RecipeDetailProps {
@@ -29,6 +30,7 @@ export const RecipeDetail = ({ recipe }: RecipeDetailProps) => {
             <Ingredients ingredients={recipe.ingredients} />
 
             <Instructions steps={recipe.steps} />
+            <RecipeAction recipe={recipe} />
         </div>
     );
 };
