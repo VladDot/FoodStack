@@ -1,4 +1,4 @@
-model Product {
+model ProductInfo {
   id               String   @id @default(cuid())
   name             String
   brand            String?
@@ -14,14 +14,9 @@ model Product {
   totalDaily       Json?    @map("total_daily")
   ingredients      Json?
 
-  userId           String?  @map("user_id")
-  user             User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
-
-  favorites        FavoriteProduct[]
-
   createdAt        DateTime @default(now()) @map("created_at")
   updatedAt        DateTime @updatedAt @map("updated_at")
 
   @@index([externalFoodId])
-  @@map("products")
+  @@map("product_info")
 }

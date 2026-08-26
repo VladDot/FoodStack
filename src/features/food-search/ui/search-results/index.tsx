@@ -1,5 +1,6 @@
 "use client";
 
+import { routes } from "@/shared/constants/routes";
 import { PreviewCard, SearchResults } from "@/shared/ui";
 import type { CleanFoodItem } from "@/entities/food/model/types";
 
@@ -40,6 +41,7 @@ export const FoodSearchResults = ({
                     item={item}
                     key={item.id}
                     detailsQuery={query}
+                    href={`${routes.general.foodsSearch}/${item.id}`}
                 />
             ))}
         </SearchResults>

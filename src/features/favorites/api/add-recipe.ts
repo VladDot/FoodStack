@@ -18,12 +18,30 @@ export const addRecipeToFavorite = async (
     const data = {
         ...recipeRest,
         externalRecipeId: id,
-        userId,
     };
 
-    return await prisma.recipe.upsert({
+    const recipe = await prisma.recipe.upsert({
         where: { externalRecipeId: id },
         create: data,
         update: data,
     });
+
+    await prisma.favoriteRecipes.upsert({
+        where: {
+            userId_recipeId: {
+                userId,
+                recipeId: recipe.id,
+            },
+        },
+        create: {
+            userId,
+            recipeId: recipe.id,
+        },
+        update: {},
+    });
+
+    return {
+        success: true,
+        message: "Recipe added to favorites successfully.",
+    };
 };

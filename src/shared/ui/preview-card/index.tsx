@@ -3,16 +3,16 @@
 import { useTranslations } from "next-intl";
 
 import { LinkButton } from "../button";
-import { RecipeCardProps } from "./types";
 import { MacroCards } from "../macro-cards";
 import { SkeletonImage } from "../skeleton-image";
 import { ImagePlaceholder } from "../image-placeholder";
+import { PreviewCardItem, BasePreviewCardItem } from "./types";
 
-export const PreviewCard = ({
-    item: { id, fat, image, title, carbs, fiber, protein, calories },
+export const PreviewCard = <T extends BasePreviewCardItem>({
+    item: { fat, image, title, carbs, fiber, protein, calories },
     detailsQuery,
-    href = `/foods-search/${id}`,
-}: RecipeCardProps) => {
+    href,
+}: PreviewCardItem<T>) => {
     const t = useTranslations("search");
     const params = new URLSearchParams();
     if (detailsQuery) params.set("query", detailsQuery);
@@ -26,8 +26,8 @@ export const PreviewCard = ({
                     alt={title}
                     width={500}
                     height={400}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="w-full aspect-4/3 rounded-2xl bg-neutral-100"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
             ) : (
                 <div className="w-full aspect-4/3  flex items-center justify-center ">

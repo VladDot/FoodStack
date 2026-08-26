@@ -1,15 +1,15 @@
-type PreviewCardItem = {
+export type BasePreviewCardItem = {
     id: string;
     fat: number;
     carbs: number;
     title: string;
     fiber?: number;
-    image?: string;
     protein: number;
     calories: number;
+    image?: string | null;
 };
-export type RecipeCardProps = {
-    href?: string;
+export type PreviewCardItem<T extends BasePreviewCardItem> = {
+    item: T;
+    href: string;
     detailsQuery?: string;
-    item: PreviewCardItem;
 };

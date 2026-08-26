@@ -1,0 +1,24 @@
+model CoreProduct {
+  id             String   @id @default(cuid())
+  name           String
+  brand          String?
+  externalFoodId String?  @unique @map("external_food_id")
+  
+  calories       Float
+  protein        Float
+  fat            Float
+  carbs          Float
+  fiber          Float    @default(0)
+
+  userId         String?  @map("user_id")
+  user           User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  savedProducts SavedProduct[]
+
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@index([externalFoodId])
+  @@index([name])
+  @@map("core_products")
+}
