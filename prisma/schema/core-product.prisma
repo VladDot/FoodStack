@@ -1,7 +1,14 @@
+enum ProductSource {
+  USDA
+  USER
+}
+
 model CoreProduct {
   id             String   @id @default(cuid())
   name           String
   brand          String?
+
+  source         ProductSource @default(USDA)
   externalFoodId String?  @unique @map("external_food_id")
   
   calories       Float
@@ -9,6 +16,8 @@ model CoreProduct {
   fat            Float
   carbs          Float
   fiber          Float    @default(0)
+
+  defaultUnit String @default("g")
 
   userId         String?  @map("user_id")
   user           User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
